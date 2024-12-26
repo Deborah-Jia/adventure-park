@@ -121,24 +121,134 @@
     
     
         <div class="post-toc">
-            <div class="tocbot-list">
-            </div>
-            <div class="tocbot-list-menu">
-                <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-                <a onclick="go_top()">Back to top</a>
-                <a onclick="go_bottom()">Go to bottom</a>
-            </div>
-        </div>
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // Maximum depth for expansion
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        scrollSmoothOffset: -60, // Adjust this value based on your header height
+        headingsOffset: 100,     // Adjust this value for better position accuracy
+        onClick: extend_click,
+        hasInnerContainers: true,
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        hashChange: true, // Enable URL hash updates
+    };
+
+    function extend_click(e) {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420);
+    }
+
+    // Ensure headings have IDs
+    function ensureHeadingIds() {
+        const headings = document.querySelector(tocbot_default_config.contentSelector)
+            .querySelectorAll(tocbot_default_config.headingSelector);
+        
+        headings.forEach(heading => {
+            if (!heading.id) {
+                heading.id = heading.textContent
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/(^-|-$)/g, '');
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        ensureHeadingIds(); // Generate IDs for headings if they don't exist
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+
+        // Handle hash changes
+        if (window.location.hash) {
+            setTimeout(function() {
+                const element = document.querySelector(window.location.hash);
+                if (element) {
+                    element.scrollIntoView();
+                    window.scrollBy(0, -tocbot_default_config.scrollSmoothOffset);
+                }
+            }, 100);
+        }
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    function go_bottom() {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    }
+
+    function obj_merge(target, source) {
+        return Object.assign({}, target, source);
+    }
+</script>
     
 
     
     <article class="post-wrap">
         <header class="post-header">
             <h1 class="post-title">反刍思维</h1>
-            <!-- Rest of your header code remains the same -->
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">April 28, 2024&nbsp;&nbsp;0:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/adventure-park/categories/Screen-Story/">Screen & Story</a>
+                            
+                        </span>
+                    
+                </div>
+            
         </header>
 
-        <div class="post-content" id="post-content">
+        <div class="post-content">
             <p>有一段时间，我以为自己的周密考虑是我的优点，自豪自己善于把事情安排得井井有条。我总是能够制定出计划 B 到 Z，相信快乐来自于对生活的掌控。然而，当我出国读书工作后，遇到了一系列不顺心的事情。无论我如何反复分析，事情似乎总是朝着我不希望的方向发展。每次反思都让事态变得更糟，一些不愿意回忆的事情也浮现了出来，似乎在证明我的错误和失败，让我感到失控。直到最近，我才了解到“反刍”这个心理学名词，意思是反复咀嚼过去消极的回忆，或者不由自主地沉湎于不好的回忆之中。找了<a href="(https://www.goodreads.com/book/show/27214340-overcoming-unwanted-intrusive-thoughts?ac=1&amp;from_search=true&amp;qid=WdbWuOl3do&amp;rank=1)%5B">一本评价还不错的书</a>开始读。</p>
 <img src="/adventure-park/2024/04/28/rumination/F0A8112B-C92E-4E0E-9168-9BDD3E3A23F9_1_105_c.jpeg" class title="by JS Joyce">
 <p>首先，人人都有或暴力或色情的想法，你并不孤独，但多数人都对自己有这样的想法感到愧疚和自责而不愿意宣之于口。缺少专业的咨询师介入让倾诉这件事变得更加困难，找家人和朋友可能会让事情变得更糟。所以，关键的点在于，如何控制不由自主产生的想法，并且不让它们影响你的正常生活。</p>
@@ -269,85 +379,44 @@
 
         </div>
 
-        <!-- Rest of your post template remains the same -->
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/adventure-park/tags/Book-Reviews/"># Book Reviews</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/adventure-park/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/adventure-park/2024/12/21/2024AYearInReview/">2024 A Year In Review</a>
+            
+            
+            <a class="next" rel="next" href="/adventure-park/2024/04/13/hello-world/">Hello World! How I built this blogging website with ZERO cost</a>
+            
+        </section>
+
+
     </article>
 </div>
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize tocbot
-        tocbot.init({
-            // Where to render the table of contents
-            tocSelector: '.tocbot-list',
-            // Where to grab the headings to build the table of contents
-            contentSelector: '#post-content',
-            // Which headings to grab inside of the contentSelector element
-            headingSelector: 'h1, h2, h3, h4, h5',
-            // Ensure unique IDs for headings
-            hasInnerContainers: true,
-            // Smooth scrolling
-            scrollSmooth: true,
-            // Offset for fixed header
-            scrollSmoothOffset: -60,
-            // Headings offset
-            headingsOffset: 100,
-            // Enable URL updates
-            hashChange: true,
-            // Order list
-            orderedList: false,
-            // Collapse depth
-            collapseDepth: 1
-        });
-
-        // Generate heading IDs if they don't exist
-        const headings = document.querySelectorAll('#post-content h1, #post-content h2, #post-content h3, #post-content h4, #post-content h5');
-        headings.forEach(heading => {
-            if (!heading.id) {
-                heading.id = heading.textContent
-                    .toLowerCase()
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/(^-|-$)/g, '');
-            }
-        });
-
-        // Handle initial hash if present
-        if (window.location.hash) {
-            setTimeout(function() {
-                const element = document.querySelector(window.location.hash);
-                if (element) {
-                    element.scrollIntoView();
-                    window.scrollBy(0, -60);
-                }
-            }, 100);
-        }
-    });
-
-    // TOC expand/collapse functionality
-    function expand_toc() {
-        var b = document.querySelector('.tocbot-toc-expand');
-        var expanded = b.getAttribute('data-expanded');
-        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
-        tocbot.refresh({
-            collapseDepth: expanded ? 1 : 6
-        });
-        b.innerText = expanded ? 'Expand all' : 'Collapse all';
-    }
-
-    function go_top() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-
-    function go_bottom() {
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'smooth'
-        });
-    }
-</script>
 
             </div>
             <footer id="footer" class="footer">

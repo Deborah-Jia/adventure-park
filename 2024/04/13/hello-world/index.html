@@ -121,24 +121,134 @@
     
     
         <div class="post-toc">
-            <div class="tocbot-list">
-            </div>
-            <div class="tocbot-list-menu">
-                <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-                <a onclick="go_top()">Back to top</a>
-                <a onclick="go_bottom()">Go to bottom</a>
-            </div>
-        </div>
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // Maximum depth for expansion
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        scrollSmoothOffset: -60, // Adjust this value based on your header height
+        headingsOffset: 100,     // Adjust this value for better position accuracy
+        onClick: extend_click,
+        hasInnerContainers: true,
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        hashChange: true, // Enable URL hash updates
+    };
+
+    function extend_click(e) {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420);
+    }
+
+    // Ensure headings have IDs
+    function ensureHeadingIds() {
+        const headings = document.querySelector(tocbot_default_config.contentSelector)
+            .querySelectorAll(tocbot_default_config.headingSelector);
+        
+        headings.forEach(heading => {
+            if (!heading.id) {
+                heading.id = heading.textContent
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/(^-|-$)/g, '');
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        ensureHeadingIds(); // Generate IDs for headings if they don't exist
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+
+        // Handle hash changes
+        if (window.location.hash) {
+            setTimeout(function() {
+                const element = document.querySelector(window.location.hash);
+                if (element) {
+                    element.scrollIntoView();
+                    window.scrollBy(0, -tocbot_default_config.scrollSmoothOffset);
+                }
+            }, 100);
+        }
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    function go_bottom() {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    }
+
+    function obj_merge(target, source) {
+        return Object.assign({}, target, source);
+    }
+</script>
     
 
     
     <article class="post-wrap">
         <header class="post-header">
             <h1 class="post-title">Hello World! How I built this blogging website with ZERO cost</h1>
-            <!-- Rest of your header code remains the same -->
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">April 13, 2024&nbsp;&nbsp;0:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/adventure-park/categories/Code-Insight/">Code & Insight</a>
+                            
+                        </span>
+                    
+                </div>
+            
         </header>
 
-        <div class="post-content" id="post-content">
+        <div class="post-content">
             <p>First and foremost, I give all credits of this website building to my study partner <a target="_blank" rel="noopener" href="https://sgzerolc.github.io/sg/about/">OLC</a> who has always encouraged me to buid my own zone and offered treemendous help in initiating, testing, and wrapping up the first version of this website. @OLC, Thanks so much! without you, this personal blogging would just be a blueprint with no progress.</p>
 <h2><span id="what-i-like-abt-this-website">What I like abt this website</span><a href="#what-i-like-abt-this-website" class="header-anchor">¶</a></h2>
 <ol>
@@ -183,85 +293,44 @@
 
         </div>
 
-        <!-- Rest of your post template remains the same -->
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/adventure-park/tags/Tech-Tools/"># Tech Tools</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/adventure-park/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/adventure-park/2024/04/28/rumination/">反刍思维</a>
+            
+            
+            <a class="next" rel="next" href="/adventure-park/2024/04/12/PY_Kid/">Welcoming a New Arrival!</a>
+            
+        </section>
+
+
     </article>
 </div>
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize tocbot
-        tocbot.init({
-            // Where to render the table of contents
-            tocSelector: '.tocbot-list',
-            // Where to grab the headings to build the table of contents
-            contentSelector: '#post-content',
-            // Which headings to grab inside of the contentSelector element
-            headingSelector: 'h1, h2, h3, h4, h5',
-            // Ensure unique IDs for headings
-            hasInnerContainers: true,
-            // Smooth scrolling
-            scrollSmooth: true,
-            // Offset for fixed header
-            scrollSmoothOffset: -60,
-            // Headings offset
-            headingsOffset: 100,
-            // Enable URL updates
-            hashChange: true,
-            // Order list
-            orderedList: false,
-            // Collapse depth
-            collapseDepth: 1
-        });
-
-        // Generate heading IDs if they don't exist
-        const headings = document.querySelectorAll('#post-content h1, #post-content h2, #post-content h3, #post-content h4, #post-content h5');
-        headings.forEach(heading => {
-            if (!heading.id) {
-                heading.id = heading.textContent
-                    .toLowerCase()
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/(^-|-$)/g, '');
-            }
-        });
-
-        // Handle initial hash if present
-        if (window.location.hash) {
-            setTimeout(function() {
-                const element = document.querySelector(window.location.hash);
-                if (element) {
-                    element.scrollIntoView();
-                    window.scrollBy(0, -60);
-                }
-            }, 100);
-        }
-    });
-
-    // TOC expand/collapse functionality
-    function expand_toc() {
-        var b = document.querySelector('.tocbot-toc-expand');
-        var expanded = b.getAttribute('data-expanded');
-        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
-        tocbot.refresh({
-            collapseDepth: expanded ? 1 : 6
-        });
-        b.innerText = expanded ? 'Expand all' : 'Collapse all';
-    }
-
-    function go_top() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-
-    function go_bottom() {
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'smooth'
-        });
-    }
-</script>
 
             </div>
             <footer id="footer" class="footer">
