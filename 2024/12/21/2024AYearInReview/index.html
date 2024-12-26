@@ -121,24 +121,97 @@
     
     
         <div class="post-toc">
-            <div class="tocbot-list">
-            </div>
-            <div class="tocbot-list-menu">
-                <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-                <a onclick="go_top()">Back to top</a>
-                <a onclick="go_bottom()">Go to bottom</a>
-            </div>
-        </div>
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
     
 
     
     <article class="post-wrap">
         <header class="post-header">
             <h1 class="post-title">2024 A Year In Review</h1>
-            <!-- Rest of your header code remains the same -->
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">December 21, 2024&nbsp;&nbsp;0:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/adventure-park/categories/Slices-of-Life/">Slices of Life</a>
+                            
+                        </span>
+                    
+                </div>
+            
         </header>
 
-        <div class="post-content" id="post-content">
+        <div class="post-content">
             <p>🕒 <strong>Estimated Read Time: 16 minutes</strong></p>
 <p>This year has been tremendous for me, with many unexpected changes—both welcome and unwelcome. I was pushed to stop overthinking or planning too far ahead and instead focus on living in the moment, prioritizing what truly matters, addressing issues quickly, and leaving analysis and reflection for later. I was also fortunate to make a wonderful group of new friends, with whom I shared many enthusiastic and meaningful conversations. This helped me open my heart and become more open-minded. Looking back, I gained so much but also lost some. As we say in Chinese, what you gain is what you deserve, and what you lose is what was never meant to be yours. 2025, I am ready.</p>
 <h2><span id="life-amp-experience">Life &amp; Experience</span><a href="#life-amp-experience" class="header-anchor">¶</a></h2>
@@ -248,85 +321,42 @@
 
         </div>
 
-        <!-- Rest of your post template remains the same -->
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/adventure-park/tags/Yearly-Reviews/"># Yearly Reviews</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/adventure-park/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/adventure-park/2024/04/28/rumination/">反刍思维</a>
+            
+        </section>
+
+
     </article>
 </div>
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize tocbot
-        tocbot.init({
-            // Where to render the table of contents
-            tocSelector: '.tocbot-list',
-            // Where to grab the headings to build the table of contents
-            contentSelector: '#post-content',
-            // Which headings to grab inside of the contentSelector element
-            headingSelector: 'h1, h2, h3, h4, h5',
-            // Ensure unique IDs for headings
-            hasInnerContainers: true,
-            // Smooth scrolling
-            scrollSmooth: true,
-            // Offset for fixed header
-            scrollSmoothOffset: -60,
-            // Headings offset
-            headingsOffset: 100,
-            // Enable URL updates
-            hashChange: true,
-            // Order list
-            orderedList: false,
-            // Collapse depth
-            collapseDepth: 1
-        });
-
-        // Generate heading IDs if they don't exist
-        const headings = document.querySelectorAll('#post-content h1, #post-content h2, #post-content h3, #post-content h4, #post-content h5');
-        headings.forEach(heading => {
-            if (!heading.id) {
-                heading.id = heading.textContent
-                    .toLowerCase()
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/(^-|-$)/g, '');
-            }
-        });
-
-        // Handle initial hash if present
-        if (window.location.hash) {
-            setTimeout(function() {
-                const element = document.querySelector(window.location.hash);
-                if (element) {
-                    element.scrollIntoView();
-                    window.scrollBy(0, -60);
-                }
-            }, 100);
-        }
-    });
-
-    // TOC expand/collapse functionality
-    function expand_toc() {
-        var b = document.querySelector('.tocbot-toc-expand');
-        var expanded = b.getAttribute('data-expanded');
-        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
-        tocbot.refresh({
-            collapseDepth: expanded ? 1 : 6
-        });
-        b.innerText = expanded ? 'Expand all' : 'Collapse all';
-    }
-
-    function go_top() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-
-    function go_bottom() {
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'smooth'
-        });
-    }
-</script>
 
             </div>
             <footer id="footer" class="footer">
