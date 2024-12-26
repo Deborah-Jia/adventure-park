@@ -151,7 +151,7 @@
         }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
     }
 
-    document.ready(function() {
+    document.addEventListener("DOMContentLoaded", function() {
         tocbot.init(obj_merge(tocbot_default_config, {
             collapseDepth: 1
         }));
