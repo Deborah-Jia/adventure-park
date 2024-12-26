@@ -130,68 +130,31 @@
     </div>
 </div>
 
-
 <script>
     var tocbot_timer;
-    var DEPTH_MAX = 6; // Maximum depth for expansion
+    var DEPTH_MAX = 6; // 为 6 时展开所有
     var tocbot_default_config = {
         tocSelector: '.tocbot-list',
         contentSelector: '.post-content',
         headingSelector: 'h1, h2, h3, h4, h5',
         orderedList: false,
         scrollSmooth: true,
-        scrollSmoothOffset: -60, // Adjust this value based on your header height
-        headingsOffset: 100,     // Adjust this value for better position accuracy
         onClick: extend_click,
-        hasInnerContainers: true,
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        hashChange: true, // Enable URL hash updates
     };
 
-    function extend_click(e) {
+    function extend_click() {
         clearTimeout(tocbot_timer);
         tocbot_timer = setTimeout(function() {
             tocbot.refresh(obj_merge(tocbot_default_config, {
                 hasInnerContainers: true
             }));
-        }, 420);
-    }
-
-    // Ensure headings have IDs
-    function ensureHeadingIds() {
-        const headings = document.querySelector(tocbot_default_config.contentSelector)
-            .querySelectorAll(tocbot_default_config.headingSelector);
-        
-        headings.forEach(heading => {
-            if (!heading.id) {
-                heading.id = heading.textContent
-                    .toLowerCase()
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/(^-|-$)/g, '');
-            }
-        });
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-        ensureHeadingIds(); // Generate IDs for headings if they don't exist
         tocbot.init(obj_merge(tocbot_default_config, {
             collapseDepth: 1
         }));
-
-        // Handle hash changes
-        if (window.location.hash) {
-            setTimeout(function() {
-                const element = document.querySelector(window.location.hash);
-                if (element) {
-                    element.scrollIntoView();
-                    window.scrollBy(0, -tocbot_default_config.scrollSmoothOffset);
-                }
-            }, 100);
-        }
     });
 
     function expand_toc() {
@@ -205,21 +168,20 @@
     }
 
     function go_top() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        window.scrollTo(0, 0);
     }
 
     function go_bottom() {
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'smooth'
-        });
+        window.scrollTo(0, document.body.scrollHeight);
     }
 
     function obj_merge(target, source) {
-        return Object.assign({}, target, source);
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
     }
 </script>
     
