@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+
+
+<title>反刍思维 | </title>
+
+
+
+    <link rel="icon" href="/adventure-park/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/adventure-park/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/adventure-park/js/script.js"></script>
+    
+    <script src="/adventure-park/js/tocbot.min.js"></script>
+    
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/adventure-park/">Deborah Li JIA</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/adventure-park/archives">Posts</a>
+                
+                    <a class="menu-item" href="/adventure-park/category">Categories</a>
+                
+                    <a class="menu-item" href="/adventure-park/tag">Tags</a>
+                
+                    <a class="menu-item" href="/adventure-park/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/adventure-park/">Deborah Li JIA</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/adventure-park/archives">Posts</a>
+                
+                    <a class="menu-item" href="/adventure-park/category">Categories</a>
+                
+                    <a class="menu-item" href="/adventure-park/tag">Tags</a>
+                
+                    <a class="menu-item" href="/adventure-park/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // Maximum depth for expansion
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        scrollSmoothOffset: -60, // Adjust this value based on your header height
+        headingsOffset: 100,     // Adjust this value for better position accuracy
+        onClick: extend_click,
+        hasInnerContainers: true,
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        hashChange: true, // Enable URL hash updates
+    };
+
+    function extend_click(e) {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420);
+    }
+
+    // Ensure headings have IDs
+    function ensureHeadingIds() {
+        const headings = document.querySelector(tocbot_default_config.contentSelector)
+            .querySelectorAll(tocbot_default_config.headingSelector);
+        
+        headings.forEach(heading => {
+            if (!heading.id) {
+                heading.id = heading.textContent
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/(^-|-$)/g, '');
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        ensureHeadingIds(); // Generate IDs for headings if they don't exist
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+
+        // Handle hash changes
+        if (window.location.hash) {
+            setTimeout(function() {
+                const element = document.querySelector(window.location.hash);
+                if (element) {
+                    element.scrollIntoView();
+                    window.scrollBy(0, -tocbot_default_config.scrollSmoothOffset);
+                }
+            }, 100);
+        }
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    function go_bottom() {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    }
+
+    function obj_merge(target, source) {
+        return Object.assign({}, target, source);
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">反刍思维</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">April 28, 2024&nbsp;&nbsp;0:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/adventure-park/categories/Screen-Story/">Screen & Story</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>有一段时间，我以为自己的周密考虑是我的优点，自豪自己善于把事情安排得井井有条。我总是能够制定出计划 B 到 Z，相信快乐来自于对生活的掌控。然而，当我出国读书工作后，遇到了一系列不顺心的事情。无论我如何反复分析，事情似乎总是朝着我不希望的方向发展。每次反思都让事态变得更糟，一些不愿意回忆的事情也浮现了出来，似乎在证明我的错误和失败，让我感到失控。直到最近，我才了解到“反刍”这个心理学名词，意思是反复咀嚼过去消极的回忆，或者不由自主地沉湎于不好的回忆之中。找了<a href="(https://www.goodreads.com/book/show/27214340-overcoming-unwanted-intrusive-thoughts?ac=1&amp;from_search=true&amp;qid=WdbWuOl3do&amp;rank=1)%5B">一本评价还不错的书</a>开始读。</p>
+<img src="/adventure-park/2024/04/28/rumination/F0A8112B-C92E-4E0E-9168-9BDD3E3A23F9_1_105_c.jpeg" class title="by JS Joyce">
+<p>首先，人人都有或暴力或色情的想法，你并不孤独，但多数人都对自己有这样的想法感到愧疚和自责而不愿意宣之于口。缺少专业的咨询师介入让倾诉这件事变得更加困难，找家人和朋友可能会让事情变得更糟。所以，关键的点在于，如何控制不由自主产生的想法，并且不让它们影响你的正常生活。</p>
+<h2><span id="know-about-unwanted-intrusive-thoughts">Know about unwanted intrusive thoughts</span><a href="#know-about-unwanted-intrusive-thoughts" class="header-anchor">¶</a></h2>
+<p>unwanted intrusive thoughts 是暂时的，但你越是拼命抵制，它越是难以快速散去。again产生这样那样的想法并不奇怪，但我们的应对办法可能出了问题。内心的声音分为三种：</p>
+<ul>
+<li>Worried Voice（“要是……了怎么办”）</li>
+<li>False Comfort （由worried voice引发，通过接二连三的否定带来的虚假放松，但焦虑假设太多，此起彼伏无法完全消灭焦虑的声音，反而让焦虑越来越严重）</li>
+<li>Wise Mind （冷静克制的旁观者，只关注当下。“Let them remain as thoughts”）</li>
+</ul>
+<p>作者举了一个🌰看见可爱的小猫咪产生了掐死它的想法。What you resist tend to persist. Thoughts stick because of the energy you expend to fight them. 用油救火，于是火越烧越旺。“不去想它也是想它的一种方式” 这就是 stuck thought</p>
+<h3><span id="impulses-and-intrusive-thoughts">Impulses and intrusive thoughts</span><a href="#impulses-and-intrusive-thoughts" class="header-anchor">¶</a></h3>
+<p>disorder of under control 和 over control ，一个是先做再想，另一个是想很多再做。两者截然不同，然而带给人的情绪感受可能大差不差。</p>
+<h3><span id="when-intrusive-thoughts-are-likely-to-happen">When Intrusive Thoughts Are Likely to Happen</span><a href="#when-intrusive-thoughts-are-likely-to-happen" class="header-anchor">¶</a></h3>
+<p>睡眠不足，情绪不佳，生理期，服用药物，醉酒后的第二天，醒来后和睡觉前。很多时候担心失态本身比真正失态更影响你的心理健康。Wise Mind会承认Worried Voice和False Comfort 的担忧，因为它们追求的完美无风险的世界是无意义的（self-defeating）</p>
+<p>🌰以为担心被牙医拔错智齿，询问了所有拔过智齿的人，看了网上的所有帖子，结果任何一个拔错牙的帖子都让人更加精神紧张。（“别去想胡萝卜”）</p>
+<p>侵入性想法的trigger：个人经历，社交媒体的宣传，正在发生的事情。</p>
+<h2><span id="qin-ru-xing-xiang-fa-de-bu-tong-fen-lei-jie-he-shi-li">侵入性想法的不同分类（结合实例）</span><a href="#qin-ru-xing-xiang-fa-de-bu-tong-fen-lei-jie-he-shi-li" class="header-anchor">¶</a></h2>
+<ol>
+<li>Morally Repugnant Thoughts
+<ul>
+<li>Harming and Self-Harming Thoughts (尤其是伤害自己和无辜的人)</li>
+<li>sexual （乱伦，恋童等）</li>
+<li>impure religious</li>
+<li>disgust-causing thoughts (忍不住想到恶心的事)</li>
+</ul>
+</li>
+<li>“Big Issue” Thoughts 重要但无解的问题
+<ul>
+<li>Uncertainty and Unknowability Thoughts （我的孩子会一直安全吗）</li>
+<li>Questioning Reality （我问过朋友，你怎么知道自己不是生活在楚门的世界里？）</li>
+<li>Purpose-of-Life Thoughts</li>
+<li>Questioning Beliefs （对赛姐有一点点爱更多的是恨）</li>
+</ul>
+</li>
+<li>Nonsensical Thoughts (无意义，完全说不通的想法)
+<ul>
+<li>Losing-Your-Mind Thoughts （想舔火车玻璃窗，吃狗粮，感觉所有的食物都有玻璃碎片）</li>
+<li>Mental Checking （反复读书中的某句话确认自己理解正确，反复回忆某段对话以确信自己没误伤对方）</li>
+<li>Doubts about Relationships （夺命连环call，随时随地查勤）</li>
+<li>Scrupulous Thoughts （认为自己没有那么出色、善良和慷慨）</li>
+</ul>
+</li>
+<li>Sexual-Orientation and Sexual-Identity Thoughts</li>
+<li>Intrusive Visual Images
+<ul>
+<li>Crazy or Humiliating Actions （想呕吐到所有人身上，对别人大喊大叫）</li>
+<li>Illness, Dying, and Death Scenes</li>
+<li>Traumatic Memories</li>
+<li>Worry
+<ul>
+<li>Productive worry （有目标有计划，有想法之后忧虑就消失了 e.g. 给车加油）</li>
+<li>Toxic worry （循环往复，没有确定的解决办法 worried voice 和 false comfort 持续打架）
+<ul>
+<li>single topic</li>
+<li>Multi topic</li>
+<li>Meta worry （我很担心，但我更担心”担心所带来的免疫系统受损“）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Not Entirely Unwanted Intrusive Thoughts
+<ul>
+<li>Revenge （看到老板就想给他的轮胎放气）</li>
+<li>bereavement</li>
+<li>love sickness （谈恋爱真上头，满脑子都是她她她）</li>
+<li>resentment （锦鲤朋友终于倒霉了，呵呵好开心……我怎么是这样的人？！）</li>
+</ul>
+</li>
+</ol>
+<img src="/adventure-park/2024/04/28/rumination/3DB7B86A-CC7A-419D-89DA-4FBE5BE9C691_1_105_c.jpeg" class title="old-school bus">
+<p><strong>中场休息</strong>：侵入性想法证明你想象力丰富😇仅此而已，不要怀疑自己为什么产生这样的想法，它证明不了什么。</p>
+<ol start="7">
+<li>Personal Loss, Failure, or Mistake （已经完结的案例好像有疏漏；如果不跟前男友分手就好了；如果没丢那笔钱会怎么样）</li>
+<li>Somatosensory Intrusions</li>
+</ol>
+<h2><span id="ren-lei-xiang-fa-de-jiu-da-mi-si">人类想法的九大迷思</span><a href="#ren-lei-xiang-fa-de-jiu-da-mi-si" class="header-anchor">¶</a></h2>
+<ol>
+<li><strong>我们能控制自己的想法</strong></li>
+</ol>
+<p>不必刻意让思绪停滞，只需做个旁观者即可。试图用积极的想法取代消极想法并不总是有效的，因为消极想法很快就会以更强烈的形式回来。</p>
+<ol start="2">
+<li><strong>我们的想法证明了我们是什么样的人</strong></li>
+</ol>
+<p>性格与想法无关，它与你在生活中所做的选择和真实行动有关。</p>
+<ol start="3">
+<li><strong>我们的想法揭示了真实的自我</strong></li>
+</ol>
+<p>这是一种过时且不再正确的理论了。相反，持续的侵入性想法是你真实所想的反面，它们之所以挥之不去，是因为你坚持不懈地与之斗争。</p>
+<ol start="3">
+<li><strong>无意识的想法会影响行为</strong></li>
+<li><strong>想着某件事，那么就更容易发生</strong></li>
+</ol>
+<p>想法和事实不同，想象一个人死去并不会增加ta的死亡概率。有人可能说，如果我的想法已经足够消极，那我不就会做更消极的事情吗？确实如此，但这跟“想法能影响事情发生的概率”还是不同的，因为你的主观能动性和事物发展的客观规律是两个话题。</p>
+<ol start="6">
+<li>（与5相反）<strong>想着某件事，那它就更不可能发生了</strong></li>
+</ol>
+<p>看起来，“担心家人“这件事让你时刻保持警觉，并且带来了一种”我在时刻保护他们”的感觉；但事实上，你只是让大脑倍感压力，无时无刻不在为家人们的安全担忧。记住，你的想法不能减少危险发生的概率，时刻挂念着家人的安全只会让你愈发焦虑。</p>
+<ol start="7">
+<li><strong>只有生病的人才会产生侵入性想法</strong></li>
+</ol>
+<p>我们都有奇奇怪怪的、或恶毒或悲愤的想法，即使特蕾莎修女也不能幸免🙂让本书读者更困扰的是<em>不断重复</em>的侵入性想法，但是记住，即使是这样恼人的旋律也不能定义你的性格或者你作为人的价值，它只与你的感受和处理方式有关。</p>
+<ol start="8">
+<li><strong>每个想法都值得考虑</strong></li>
+</ol>
+<p>看电视或者听电台时有不同的频道，你的一百万个想法可能都不值得一提，没有必要给侵入性想法赋予意义和关注度。你的注意力被打劫了而已。提醒自己⚠️这是垃圾电台，换下一个频道！</p>
+<ol start="9">
+<li><strong>重复性的想法都很重要</strong></li>
+</ol>
+<p>事实上，想法的重要性和频次并不相关；相反，你愈是抵抗，它就愈是不断涌现。如果放弃抵抗，想法可能还消失得快点。不断出现的想法是“卡壳了”而不是真正重要的。</p>
+<h2><span id="qin-ru-xing-xiang-fa-huan-zhe-chang-jian-wen-ti-jie-da">侵入性想法患者常见问题解答</span><a href="#qin-ru-xing-xiang-fa-huan-zhe-chang-jian-wen-ti-jie-da" class="header-anchor">¶</a></h2>
+<ul>
+<li>为什么我的一些想法感觉像冲动？</li>
+</ul>
+<p>想法和行动之间的差异是很明显的，想法是一种安全的方式来排练没有后果的行动。但是当你焦虑时，这种差异似乎消失了。当你努力避免一个想法时，焦虑会飙升，你对私人想法与现实世界中具有真实后果的行动之间的深刻差异的感知会急剧下降。把这些想法当成无关紧要的事情就好了，因为真是如此。</p>
+<ul>
+<li>所以我到底是什么毛病？</li>
+</ul>
+<p>你有重复的侵入性想法，不多不少，仅此而已。你的问题在于把这些随机的想法想得太严重，并且觉得自己性格有问题。</p>
+<ul>
+<li></li>
+</ul>
+<p>Reference:</p>
+<p><a target="_blank" rel="noopener" href="https://www.sandstonecare.com/blog/rumination/#:~:text=Cognitive%20behavioral%20therapy%20(CBT)%20is,disorders%20and%20substance%20use%20disorders.">Rumination: How to Stop Ruminating</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.goodreads.com/book/show/27214340-overcoming-unwanted-intrusive-thoughts?ac=1&amp;from_search=true&amp;qid=WdbWuOl3do&amp;rank=1">Overcoming Unwanted Intrusive Thoughts: A CBT-Based Guide to Getting Over Frightening, Obsessive, or Disturbing Thoughts</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/adventure-park/tags/Book-Reviews/"># Book Reviews</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/adventure-park/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/adventure-park/2024/12/21/2024AYearInReview/">2024 A Year In Review</a>
+            
+            
+            <a class="next" rel="next" href="/adventure-park/2024/04/13/hello-world/">Hello World! How I built this blogging website with ZERO cost</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>©  | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
