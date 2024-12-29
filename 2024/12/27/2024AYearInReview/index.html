@@ -132,7 +132,7 @@
 
 <script>
     var tocbot_timer;
-    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var DEPTH_MAX = 6; // Maximum depth for expansion
     var tocbot_default_config = {
         tocSelector: '.tocbot-list',
         contentSelector: '.post-content',
@@ -140,21 +140,55 @@
         orderedList: false,
         scrollSmooth: true,
         onClick: extend_click,
+        // hasInnerContainers: true,
+        // linkClass: 'tocbot-link',
+        // activeLinkClass: 'tocbot-active-link',
+        // listClass: 'tocbot-list',
+        // isCollapsedClass: 'tocbot-is-collapsed',
+        // collapsibleClass: 'tocbot-is-collapsible',
+        // hashChange: true, // Enable URL hash updates
     };
 
-    function extend_click() {
+    function extend_click(e) {
         clearTimeout(tocbot_timer);
         tocbot_timer = setTimeout(function() {
             tocbot.refresh(obj_merge(tocbot_default_config, {
                 hasInnerContainers: true
             }));
-        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+        }, 420);
     }
 
-    document.ready(function() {
+    // Ensure headings have IDs
+    function ensureHeadingIds() {
+        const headings = document.querySelector(tocbot_default_config.contentSelector)
+            .querySelectorAll(tocbot_default_config.headingSelector);
+        
+        headings.forEach(heading => {
+            if (!heading.id) {
+                heading.id = heading.textContent
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/(^-|-$)/g, '');
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        ensureHeadingIds(); // Generate IDs for headings if they don't exist
         tocbot.init(obj_merge(tocbot_default_config, {
             collapseDepth: 1
         }));
+
+        // Handle hash changes
+        if (window.location.hash) {
+            setTimeout(function() {
+                const element = document.querySelector(window.location.hash);
+                if (element) {
+                    element.scrollIntoView();
+                    window.scrollBy(0, -tocbot_default_config.scrollSmoothOffset);
+                }
+            }, 100);
+        }
     });
 
     function expand_toc() {
@@ -168,20 +202,21 @@
     }
 
     function go_top() {
-        window.scrollTo(0, 0);
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     }
 
     function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
     }
 
     function obj_merge(target, source) {
-        for (var item in source) {
-            if (source.hasOwnProperty(item)) {
-                target[item] = source[item];
-            }
-        }
-        return target;
+        return Object.assign({}, target, source);
     }
 </script>
     
