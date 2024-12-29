@@ -131,57 +131,60 @@
 </div>
 
 <script>
-    var tocbot_timer;
-    var DEPTH_MAX = 6; // Maximum depth for expansion
+    var DEPTH_MAX = 6;
     var tocbot_default_config = {
         tocSelector: '.tocbot-list',
         contentSelector: '.post-content',
         headingSelector: 'h1, h2, h3, h4, h5',
         orderedList: false,
         scrollSmooth: true,
-        onClick: extend_click,
-        // hasInnerContainers: true,
-        // linkClass: 'tocbot-link',
-        // activeLinkClass: 'tocbot-active-link',
-        // listClass: 'tocbot-list',
-        // isCollapsedClass: 'tocbot-is-collapsed',
-        // collapsibleClass: 'tocbot-is-collapsible',
-        // hashChange: true, // Enable URL hash updates
+        scrollSmoothOffset: -60,
+        headingsOffset: 100,
+        hasInnerContainers: true,
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        listItemClass: 'tocbot-list-item',
+        collapseDepth: 1,
+        hashChange: true
     };
 
-    function extend_click(e) {
-        clearTimeout(tocbot_timer);
-        tocbot_timer = setTimeout(function() {
-            tocbot.refresh(obj_merge(tocbot_default_config, {
-                hasInnerContainers: true
-            }));
-        }, 420);
+    // Initialize tocbot
+    document.addEventListener('DOMContentLoaded', function() {
+        initTocbot();
+        handleInitialHash();
+    });
+
+    function initTocbot() {
+        if (typeof tocbot !== 'undefined') {
+            tocbot.destroy();
+            ensureHeadingIds();
+            tocbot.init(tocbot_default_config);
+        }
     }
 
-    // Ensure headings have IDs
     function ensureHeadingIds() {
-        const headings = document.querySelector(tocbot_default_config.contentSelector)
-            .querySelectorAll(tocbot_default_config.headingSelector);
-        
+        const content = document.querySelector(tocbot_default_config.contentSelector);
+        if (!content) return;
+
+        const headings = content.querySelectorAll(tocbot_default_config.headingSelector);
         headings.forEach(heading => {
             if (!heading.id) {
-                heading.id = heading.textContent
+                const id = heading.textContent
+                    .trim()
                     .toLowerCase()
                     .replace(/[^a-z0-9]+/g, '-')
                     .replace(/(^-|-$)/g, '');
+                heading.id = id;
             }
         });
     }
 
-    document.addEventListener("DOMContentLoaded", function() {
-        ensureHeadingIds(); // Generate IDs for headings if they don't exist
-        tocbot.init(obj_merge(tocbot_default_config, {
-            collapseDepth: 1
-        }));
-
-        // Handle hash changes
+    function handleInitialHash() {
         if (window.location.hash) {
-            setTimeout(function() {
+            setTimeout(() => {
                 const element = document.querySelector(window.location.hash);
                 if (element) {
                     element.scrollIntoView();
@@ -189,16 +192,20 @@
                 }
             }, 100);
         }
-    });
+    }
 
     function expand_toc() {
-        var b = document.querySelector('.tocbot-toc-expand');
-        var expanded = b.getAttribute('data-expanded');
-        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
-        tocbot.refresh(obj_merge(tocbot_default_config, {
-            collapseDepth: expanded ? 1 : DEPTH_MAX
-        }));
-        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+        const expandButton = document.querySelector('.tocbot-toc-expand');
+        const isExpanded = expandButton.getAttribute('data-expanded') === 'true';
+        
+        // Update button state
+        expandButton.setAttribute('data-expanded', !isExpanded);
+        expandButton.textContent = isExpanded ? 'Expand all' : 'Collapse all';
+
+        // Reinitialize tocbot with new depth
+        tocbot.destroy();
+        tocbot_default_config.collapseDepth = isExpanded ? 1 : DEPTH_MAX;
+        tocbot.init(tocbot_default_config);
     }
 
     function go_top() {
@@ -214,11 +221,88 @@
             behavior: 'smooth'
         });
     }
-
-    function obj_merge(target, source) {
-        return Object.assign({}, target, source);
-    }
 </script>
+
+<style>
+.post-toc {
+    position: sticky;
+    top: 60px;
+    float: right;
+    width: 260px;
+    margin-left: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.tocbot-list {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+.tocbot-list ol {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.tocbot-list a {
+    color: #34495e;
+    font-size: 14px;
+    text-decoration: none;
+    display: block;
+    padding: 5px 0;
+}
+
+.tocbot-list a:hover {
+    color: #3273dc;
+}
+
+.tocbot-list-item {
+    margin: 2px 0;
+}
+
+.is-active-link {
+    color: #3273dc !important;
+    font-weight: bold;
+}
+
+.tocbot-is-collapsed {
+    max-height: 0;
+    overflow: hidden;
+}
+
+.tocbot-is-collapsible {
+    max-height: 1000px;
+    overflow: hidden;
+    transition: all 300ms ease-in-out;
+}
+
+.tocbot-list-menu {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.tocbot-list-menu a {
+    display: inline-block;
+    margin-right: 10px;
+    color: #666;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.tocbot-list-menu a:hover {
+    color: #3273dc;
+}
+
+@media screen and (max-width: 960px) {
+    .post-toc {
+        display: none;
+    }
+}
+</style>
+
     
 
     
