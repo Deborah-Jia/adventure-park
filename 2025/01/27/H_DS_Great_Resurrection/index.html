@@ -120,6 +120,100 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <!-- <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a> -->
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    // var tocbot_timer; // if uncommented, toc will jump around
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+        hasInnerContainers: true,
+        linkClass: 'tocbot-link',
+        // activeLinkClass: 'tocbot-active-link', // if uncommented, no bold highlight to the current content
+        // listClass: 'tocbot-list', // If uncommented, the sub toc cannot unfold correctly
+        // isCollapsedClass: 'tocbot-is-collapsed',
+        // collapsibleClass: 'tocbot-is-collapsible',
+        hashChange: true, // Enable URL hash updates
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420);
+    }
+
+    // Ensure headings have IDs
+    function ensureHeadingIds() {
+        const headings = document.querySelector(tocbot_default_config.contentSelector)
+            .querySelectorAll(tocbot_default_config.headingSelector);
+        
+        headings.forEach(heading => {
+            if (!heading.id) {
+                heading.id = heading.textContent
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/(^-|-$)/g, '');
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        ensureHeadingIds(); // Generate IDs for headings if they don't exist
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+
+        // Handle hash changes
+        if (window.location.hash) {
+            setTimeout(function() {
+                const element = document.querySelector(window.location.hash);
+                if (element) {
+                    element.scrollIntoView();
+                    window.scrollBy(0, -tocbot_default_config.scrollSmoothOffset);
+                }
+            }, 100);
+        }
+    });
+
+    // function expand_toc() {
+    //     var b = document.querySelector('.tocbot-toc-expand');
+    //     var expanded = b.getAttribute('data-expanded');
+    //     expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+    //     tocbot.refresh(obj_merge(tocbot_default_config, {
+    //         collapseDepth: expanded ? 1 : DEPTH_MAX
+    //     }));
+    //     b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    // }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        return Object.assign({}, target, source);
+    }
+</script>
+    
 
     
     <article class="post-wrap">
@@ -131,14 +225,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">April 12, 2024&nbsp;&nbsp;Friday</a>
+                        Date: <a href="#">January 27, 2025&nbsp;&nbsp;Monday</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/adventure-park/categories/example/">example</a>
+                                <a href="/adventure-park/categories/Code-Insight/">Code & Insight</a>
                             
                         </span>
                     
@@ -147,9 +241,9 @@
         </header>
 
         <div class="post-content">
-            <p>空有雄心壮志可不行，还要有行动。目前的计划是浏览官网的工作机会，跟hiring manager和招工组组长打招呼了解情况，同时完成《数据科学面试》这本书和datacamp上面的数据科学家track</p>
+            <p>空有雄心壮志可不行，还要有行动。目前的计划是浏览官网的工作机会，跟hiring HR和招工组组长打招呼了解情况，同时完成《数据科学面试》这本书和datacamp上面的数据科学家track</p>
 <ul>
-<li>[ ] W1 (12.16-12.22)
+<li>[x] W1 (12.16-12.22) 因为各种随机事件和情绪波动没能坚持下去
 <ul>
 <li>[ ] ace the data science interview:</li>
 <li>[ ] DataCamp DS track:</li>
@@ -157,6 +251,25 @@
 </ul>
 </li>
 </ul>
+<h4><span id="w4-2025-jan-6-jan-12">W4 (2025.Jan.6 - Jan.12)</span><a href="#w4-2025-jan-6-jan-12" class="header-anchor">ᡣ𐭩</a></h4>
+<ul>
+<li>[ ] ace the data science interview: ❌</li>
+<li>[x] DataCamp DS track: 每天都在打一下卡复习</li>
+<li>[x] Job Hunt: 被早申请的人抢先了，郁闷</li>
+</ul>
+<h4><span id="w5-jan-13-jan-19">W5(Jan.13 - Jan.19)</span><a href="#w5-jan-13-jan-19" class="header-anchor">ᡣ𐭩</a></h4>
+<ul>
+<li>[x] DataCamp DS track: 每天都在打一下卡复习</li>
+<li>[x] [ ]Job Hunt: 持续刷内网，无消息</li>
+</ul>
+<h4><span id="w6-jan-20-jan-26">W6(Jan.20 - Jan.26)</span><a href="#w6-jan-20-jan-26" class="header-anchor">ᡣ𐭩</a></h4>
+<ul>
+<li>[x] DataCamp DS track: 每天都在打一下卡复习</li>
+<li>[x] Job Hunt: 被通知了权益类开了传统+写代码的混合岗，兴趣恹恹，没去问；偶然发现新开了<a target="_blank" rel="noopener" href="https://careers.blackrock.com/job/budapest/performance-and-attribution-portfolio-risk-modelling-associate/45831/76446253840#anchor-career-path">基金收益归因建模岗位</a>深得我心，周日晚上直接兴奋到睡不着，准备第二天去问问</li>
+</ul>
+<h4><span id="w7-jan-27-feb-02-gao-qiang-du-xue-xi-da-zuo-zhan">W7(Jan.27-Feb.02) 高强度学习大作战‼️</span><a href="#w7-jan-27-feb-02-gao-qiang-du-xue-xi-da-zuo-zhan" class="header-anchor">ᡣ𐭩</a></h4>
+<p>最理想的情况是W8面试，预计会有2到3轮。内容很丰富，需要复习一下统计学，还要了解金融市场和相关产品。另外，很可能会现场考察我的Python等编程能力。</p>
+<h5><span id="monday">Monday</span><a href="#monday" class="header-anchor">ᡣ𐭩</a></h5>
 <!-- flag of hidden posts -->
         </div>
 
@@ -175,7 +288,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/adventure-park/tags/example/"># example</a>
+                        <a href="/adventure-park/tags/Tidbits/"># Tidbits</a>
                     
                         
                 </span>
