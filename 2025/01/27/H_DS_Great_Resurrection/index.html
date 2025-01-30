@@ -291,11 +291,12 @@
 <li><strong>Counting</strong>: Use permutations when order matters and combinations when it doesn’t.</li>
 </ol>
 <p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2XcsV7eK-BDMlaGCFJgf6pOjW2ccJV3_j5A&amp;s" alt="排列组合公式- 李大嘴- 博客园"></p>
+<p>阶乘（Factorial）：3! =6, 4!=24, 5! =120, 6! =720, 7! =5040</p>
 <ol start="4">
 <li><strong>Random Variables and Probability Distribution</strong></li>
 </ol>
 <p><strong>Discrete random variables</strong> have a countable range and are described by the <strong>probability mass function (PMF)</strong>.</p>
-<p><strong>Continuous random variables</strong> have an uncountable range and are described by the <strong>probability density function (PDF)</strong>, which is not measurable for a specific value of xxx.</p>
+<p><strong>Continuous random variables</strong> have an uncountable range and are described by the <strong>probability density function (PDF)</strong>, which is not measurable for a specific value that P(X=x)=0, but PDF itself is still a valid function that describes how probability mass is spread over an interval.</p>
 <p>The <strong>cumulative distribution function (CDF)</strong> is either given by a sum or an integral.</p>
 <p><img src="https://www.gstatic.com/education/formulas2/553212783/en/cumulative_distribution_function.svg" alt="F_X(x) = P(X\leq x)"></p>
 <ol start="5">
@@ -334,6 +335,35 @@
 </li>
 <li>
 <p>Markov Chains</p>
+</li>
+</ol>
+<h6><span id="6-statistics">6. Statistics</span><a href="#6-statistics" class="header-anchor">ᡣ𐭩</a></h6>
+<ol>
+<li>
+<p>Properties of Random Variables that always hold true for both discrete and continuous</p>
+<ol>
+<li>The <strong><em>expectation</em>/average/mean</strong> is given by the integral of the value of X with it’s PDF</li>
+</ol>
+<img src="/adventure-park/2025/01/27/H_DS_Great_Resurrection/image-20250130141755145.png" class title="image-20250130141755145">
+<ol start="2">
+<li>The <em><strong>variance</strong></em> is the spread between numbers in a data set. It’s alwasy non-negative and is given by :</li>
+</ol>
+<img src="/adventure-park/2025/01/27/H_DS_Great_Resurrection/image-20250130141924665.png" class title="image-20250130141924665">
+<p>Its square root is called <strong>Standard Deviation</strong>.</p>
+<ol start="3">
+<li>
+<p><em><strong>Covariance</strong></em> is a measure of the association or dependence between two random variables X and Y. Covariance can be either positive or negative. (Variance is always positive.)</p>
+<img src="/adventure-park/2025/01/27/H_DS_Great_Resurrection/image-20250130142617718.png" class title="image-20250130142617718">
+<ul>
+<li>cov(X, Y ) will be positive if large values of X tend to occur with large values of Y , and small values of X tend to occur with small values of Y . For example, if X is height and Y is weight of a randomly selected person, we would expect cov(X, Y ) to be positive.</li>
+<li>cov(X, Y ) will be negative if large values of X tend to occur with small values of Y , and small values of X tend to occur with large values of Y . For example, if X is age of a randomly selected person, and Y is heart rate, we would expect X and Y to be negatively correlated (older people have slower heart rates).</li>
+<li>If X and Y are independent, then there is no pattern between large values of X and large values of Y , so cov(X, Y ) = 0. However, cov(X, Y ) = 0 does NOT imply that X and Y are independent, unless X and Y are Normally distributed.</li>
+</ul>
+</li>
+<li>
+<p>Correlation is</p>
+</li>
+</ol>
 </li>
 </ol>
 <h4><span id="mock-interview-questions">Mock Interview Questions:</span><a href="#mock-interview-questions" class="header-anchor">ᡣ𐭩</a></h4>
@@ -426,7 +456,6 @@
 <p>- <strong>Leverage your internal knowledge:</strong> Highlight your familiarity with BlackRock’s tools (e.g., Aladdin), processes, and culture.</p>
 <p>- <strong>Use real-world examples:</strong> Draw from your experience at BlackRock to demonstrate your understanding of financial products and risk modelling.</p>
 <p>- <strong>Show enthusiasm for the role:</strong> Emphasize your interest in performance attribution and risk modelling, and how it aligns with BlackRock’s mission.</p>
-<p>Good luck with your interview! Let me know if you’d like help preparing for any specific question.</p>
 </li>
 </ol>
 <!-- flag of hidden posts -->
