@@ -255,7 +255,7 @@
 <ul>
 <li>[ ] ace the data science interview: ❌</li>
 <li>[x] DataCamp DS track: 每天都在打一下卡复习</li>
-<li>[x] Job Hunt: 被早申请的人抢先了，郁闷</li>
+<li>[x] Job Hunt: 被狗屎抢先了，郁闷</li>
 </ul>
 <h4><span id="w5-jan-13-jan-19">W5(Jan.13 - Jan.19)</span><a href="#w5-jan-13-jan-19" class="header-anchor">ᡣ𐭩</a></h4>
 <ul>
@@ -307,7 +307,7 @@
 <p>Probability Distributions</p>
 <ol>
 <li>
-<p><strong>Binomial distribution</strong>: the probability of <em>k</em> number of successes in <em>n</em> independent trials where the outcome of each event is binary, e.g. coin flips.</p>
+<p><strong>Binomial distribution</strong>: the probability of <em>k</em> number of successes in <em>n</em> independent trials where the outcome of each event is binary, e.g. coin flips. <strong>Bernoulli</strong> is a special case of Binomial with number of trials equal to 1.</p>
 <p><img src="https://www.gstatic.com/education/formulas2/553212783/en/binomial_distribution_formula.svg" alt="P_{x} = {n \choose x} p^{x} q^{n-x}"></p>
 </li>
 <li>
@@ -319,7 +319,7 @@
 <li>
 <p><strong>Uniform distribution</strong>: a constant probability of an X falling between values on the interval a to b.</p>
 <p><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/1592bd4a48c6e3defe80032e220d1b4c0ef1e0f5" alt="{\displaystyle f(x)={\begin{cases}{\frac {1}{b-a}}&amp;{\text{for }}a\leq x\leq b,\[8pt]0&amp;{\text{for }}x&lt;a\ {\text{ or }}\ x&gt;b.\end{cases}}}"></p>
-<p>The mean is (a+b)/2, the variance is [(b-a)^2]/12</p>
+<p>The mean is <strong>(a+b)/2</strong>, the variance is <strong>[(b-a)^2]/12</strong></p>
 <p>Example: sampling (random number generation) and hypotesis testing</p>
 </li>
 <li>
@@ -361,103 +361,215 @@
 </ul>
 </li>
 <li>
-<p>Correlation is</p>
+<p><strong>Correlation</strong> is the normalization of covariance. It is given by the covariance, scaled by the overall variability in X and Y . As a result, the correlation coefficient is always between −1 and +1, so it is easily compared for different quantities.</p>
+<img src="/adventure-park/2025/01/27/H_DS_Great_Resurrection/image-20250130143241719.png" class title="image-20250130143241719">
+<p>The correlation is 0 if X and Y are independent, but a correlation of 0 does not imply that X and Y are independent.</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Law of Large Numbers</strong>: if you sample a random variable independently a large number of times, the measured average value should converge to the random variable’s true expectation.</p>
+<p>e.g. coin flipping over a lot of times approaches 1/2.</p>
+</li>
+<li>
+<p><strong>Central Limit Theorem</strong>: if you repeatedly sample a random variable a large numeber of times, the distribution of the sample mean will approach a normal distribution regardless of the intial distribution of the random variable. It provides the basis for</p>
+</li>
+<li>
+<p><strong>Hypothesis Testing</strong>: the process of testing whether a sample of data supports a particular hypothesis.</p>
+<p>Steps:</p>
+<ul>
+<li>
+<p>state a null hypothesis and an alternative hypothesis</p>
+</li>
+<li>
+<p>use a particular test statistic (the number calculated from a statistical test of a hypothesis) of the null hypothesis to calculate the corresponding p-value</p>
+</li>
+<li>
+<p>compare the p-value to a certain significant level α</p>
+</li>
+</ul>
+<p><strong>Z Test</strong>: used when the sample size is large (to invoke the CLT) or when the population variance is known. <img src="https://miro.medium.com/v2/resize:fit:1400/1*5HodQlD9g8BrXe8Wb2JYHg.png" alt="What is Z-Test in statistics?. A z-test is a statistical test used to… | by  Rohan Paris | Medium"></p>
+<p><strong>t-Test</strong>: uses the sample variance in place of population variance as the smaple size is small and the population variance is unknown. It is paramatized by the degress of freedom (the number of independent observations in a dataset, <strong>n-1</strong>)</p>
+<img src="/adventure-park/2025/01/27/H_DS_Great_Resurrection/WeChate5569ff42f0cc0117490ffe5f0559e6d.jpg" class title="WeChate5569ff42f0cc0117490ffe5f0559e6d">
+<p>t-test is similar to the Z test, but has larger tails (i.e. extreme events happen with greater grequency than the modeled distribution would predict)</p>
+<p><strong>Chi-Squared Test</strong>: used to assess goodness of git, or to examine whether two categorical variables (two dimensions of the contingency table) are independent in influencing the test statistic.</p>
+<p><img src="data:image/png;base64,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" alt="Chi-Square Test: Formula and ..."></p>
+<p>O is the observed value of interest and E is its expected value.</p>
+<p><img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/Chi_Sq_formula_1.png" alt="Chi_Sq_formula_1."></p>
 </li>
 </ol>
 </li>
 </ol>
-<h4><span id="mock-interview-questions">Mock Interview Questions:</span><a href="#mock-interview-questions" class="header-anchor">ᡣ𐭩</a></h4>
-<h5><span id="basic-financial-products-knowledge"><strong>Basic Financial Products Knowledge</strong></span><a href="#basic-financial-products-knowledge" class="header-anchor">ᡣ𐭩</a></h5>
+<p><strong>p-value</strong> measures the probability of obtaining the observed results, assuming that the null hypothesis is true. The <strong>alpha</strong> level /<strong>significance level</strong> is the probability of rejecting the null hypothesis when it is true.</p>
+<p><em>Learn how to explain p-values and confidence intervals, in technical and nontechnial terms</em></p>
+<ol start="5">
+<li>Type I and II Errors</li>
+</ol>
+<p><strong>false positive</strong>: rejected the null hypothesis when it is correct</p>
+<p><strong>false negative</strong>: not rejected the null hypothesis when it is incorrect</p>
+<h2><span id="probability-mock-interview-questions">Probability Mock Interview questions</span><a href="#probability-mock-interview-questions" class="header-anchor">ᡣ𐭩</a></h2>
+<h3><span id="1-basic-probability-questions"><strong>1. Basic Probability Questions</strong></span><a href="#1-basic-probability-questions" class="header-anchor">ᡣ𐭩</a></h3>
+<p>These questions test your understanding of fundamental probability concepts.</p>
+<h4><span id="example-questions"><strong>Example Questions:</strong></span><a href="#example-questions" class="header-anchor">ᡣ𐭩</a></h4>
 <ol>
-<li><strong>Can you explain the key differences between equities, fixed income, and derivatives?</strong></li>
-</ol>
-<p>- Follow-up: How do these products behave differently in a portfolio context?</p>
-<ol start="2">
-<li><strong>What are the main types of fixed income securities, and how do they differ in terms of risk and return?</strong></li>
-</ol>
-<p>- Follow-up: How would you assess the credit risk of a corporate bond?</p>
-<ol start="3">
-<li><strong>What is the difference between active and passive investment strategies?</strong></li>
-</ol>
-<p>- Follow-up: How does BlackRock’s approach to ETFs (iShares) fit into this framework?</p>
-<ol start="4">
-<li><strong>Can you describe the concept of duration in fixed income? How does it impact a bond’s price sensitivity to interest rate changes?</strong></li>
-<li><strong>What are the key characteristics of a derivative product like an option or a swap?</strong></li>
-</ol>
-<p>- Follow-up: How might derivatives be used to hedge portfolio risk?</p>
-<ol start="6">
-<li><strong>What is the difference between mutual funds and ETFs?</strong></li>
-</ol>
-<p>- Follow-up: How do these products align with BlackRock’s investment philosophy?</p>
-<ol start="7">
-<li><strong>How do you evaluate the risk-return profile of a portfolio that includes a mix of asset classes (e.g., equities, bonds, and alternatives)?</strong></li>
-</ol>
-<p>—</p>
-<h5><span id="performance-and-attribution"><strong>Performance and Attribution</strong></span><a href="#performance-and-attribution" class="header-anchor">ᡣ𐭩</a></h5>
-<ol start="8">
-<li><strong>What is performance attribution, and why is it important in portfolio management?</strong></li>
-</ol>
-<p>- Follow-up: Can you explain the difference between allocation effect and selection effect in attribution analysis?</p>
-<ol start="9">
-<li><strong>How would you measure the contribution of a specific asset class to the overall portfolio performance?</strong></li>
-<li><strong>What are the key metrics used to evaluate portfolio performance (e.g., Sharpe ratio, alpha, beta)?</strong></li>
-</ol>
-<p>- Follow-up: How would you interpret a negative alpha for a portfolio?</p>
-<ol start="11">
-<li><strong>Can you explain the concept of tracking error? How is it relevant to passive and active strategies?</strong></li>
-<li><strong>What is the difference between absolute and relative performance? How would you communicate this to a client?</strong></li>
-</ol>
-<p>—</p>
-<h5><span id="portfolio-risk-modelling"><strong>Portfolio Risk Modelling</strong></span><a href="#portfolio-risk-modelling" class="header-anchor">ᡣ𐭩</a></h5>
-<ol start="13">
-<li><strong>What are the main types of risk in a portfolio (e.g., market risk, credit risk, liquidity risk)?</strong></li>
-</ol>
-<p>- Follow-up: How would you model and quantify these risks?</p>
-<ol start="14">
-<li><strong>Can you explain Value at Risk (VaR) and its limitations as a risk measure?</strong></li>
-<li><strong>How would you assess the impact of interest rate changes on a fixed income portfolio?</strong></li>
-<li><strong>What is stress testing, and how does it complement traditional risk models?</strong></li>
-<li><strong>How do you incorporate macroeconomic factors into portfolio risk modelling?</strong></li>
-<li><strong>What is the role of correlation in portfolio risk, and how can diversification reduce risk?</strong></li>
-</ol>
-<p>—</p>
-<h5><span id="blackrock-specific-questions"><strong>BlackRock-Specific Questions</strong></span><a href="#blackrock-specific-questions" class="header-anchor">ᡣ𐭩</a></h5>
-<ol start="19">
-<li><strong>How does BlackRock’s Aladdin platform support portfolio risk modelling and performance attribution?</strong></li>
-</ol>
-<p>- Follow-up: Have you used Aladdin in your current role? If so, how?</p>
-<ol start="20">
-<li><strong>What do you think sets BlackRock apart from other asset managers in terms of risk management and performance analysis?</strong></li>
-<li><strong>How do BlackRock’s iShares ETFs fit into the broader investment landscape, and how would you explain their role to a client?</strong></li>
-<li><strong>As an internal candidate, how have you contributed to BlackRock’s mission of creating a better financial future for our clients?</strong></li>
-</ol>
-<p>—</p>
-<h5><span id="behavioral-and-situational-questions"><strong>Behavioral and Situational Questions</strong></span><a href="#behavioral-and-situational-questions" class="header-anchor">ᡣ𐭩</a></h5>
-<ol start="23">
-<li><strong>Describe a time when you had to explain complex financial concepts to a non-technical audience. How did you ensure they understood?</strong></li>
-<li><strong>How do you prioritize and manage competing deadlines, especially when working on performance and risk analysis?</strong></li>
-<li><strong>Can you give an example of a time when you identified a risk in a portfolio and took action to mitigate it?</strong></li>
-</ol>
-<p>—</p>
-<h5><span id="technical-skills"><strong>Technical Skills</strong></span><a href="#technical-skills" class="header-anchor">ᡣ𐭩</a></h5>
-<ol start="26">
-<li><strong>What tools or software have you used for performance attribution and risk modelling (e.g., Excel, Python, R, Aladdin)?</strong></li>
-<li><strong>How would you approach building a model to analyze the risk of a multi-asset portfolio?</strong></li>
-<li><strong>Can you walk me through how you would calculate the Sharpe ratio for a portfolio?</strong></li>
-</ol>
-<p>—</p>
-<h5><span id="closing-questions"><strong>Closing Questions</strong></span><a href="#closing-questions" class="header-anchor">ᡣ𐭩</a></h5>
-<ol start="29">
-<li><strong>What do you see as the biggest challenges in performance and risk modelling today?</strong></li>
-<li><strong>How do you stay updated on industry trends and developments in financial products and risk management?</strong></li>
-</ol>
-<p>—</p>
-<h5><span id="tips-for-preparation">Tips for Preparation:</span><a href="#tips-for-preparation" class="header-anchor">ᡣ𐭩</a></h5>
-<p>- <strong>Leverage your internal knowledge:</strong> Highlight your familiarity with BlackRock’s tools (e.g., Aladdin), processes, and culture.</p>
-<p>- <strong>Use real-world examples:</strong> Draw from your experience at BlackRock to demonstrate your understanding of financial products and risk modelling.</p>
-<p>- <strong>Show enthusiasm for the role:</strong> Emphasize your interest in performance attribution and risk modelling, and how it aligns with BlackRock’s mission.</p>
+<li>
+<p><strong>What is the probability of rolling a 6 on a fair six-sided die?</strong></p>
+<ul>
+<li><strong>Answer:</strong> ( \frac{1}{6} ) or approximately 16.67%.</li>
+</ul>
+</li>
+<li>
+<p><strong>If you draw a card from a standard deck of 52 cards, what is the probability that it is a heart or a queen?</strong></p>
+<ul>
+<li><strong>Answer:</strong>
+<ul>
+<li>Probability of a heart: ( \frac{13}{52} = \frac{1}{4} ).</li>
+<li>Probability of a queen: ( \frac{4}{52} = \frac{1}{13} ).</li>
+<li>Probability of both (queen of hearts): ( \frac{1}{52} ).</li>
+<li>Using the addition rule: ( \frac{1}{4} + \frac{1}{13} - \frac{1}{52} = \frac{16}{52} = \frac{4}{13} ).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>If two events A and B are independent, what is the probability of both occurring?</strong></p>
+<ul>
+<li><strong>Answer:</strong> ( P(A \text{ and } B) = P(A) \times P(B) ).</li>
+</ul>
 </li>
 </ol>
+<hr>
+<h3><span id="2-conditional-probability"><strong>2. Conditional Probability</strong></span><a href="#2-conditional-probability" class="header-anchor">ᡣ𐭩</a></h3>
+<p>These questions test your ability to calculate probabilities based on given conditions.</p>
+<h4><span id="example-questions"><strong>Example Questions:</strong></span><a href="#example-questions" class="header-anchor">ᡣ𐭩</a></h4>
+<ol>
+<li>
+<p><strong>In a portfolio, 60% of the assets are equities, and 40% are bonds. If 10% of the equities and 5% of the bonds are underperforming, what is the probability that a randomly selected underperforming asset is an equity?</strong></p>
+<ul>
+<li><strong>Answer:</strong> Use Bayes’ Theorem.
+<ul>
+<li>( P(\text{Equity} | \text{Underperforming}) = \frac{P(\text{Underperforming} | \text{Equity}) \times P(\text{Equity})}{P(\text{Underperforming})} ).</li>
+<li>( P(\text{Underperforming}) = (0.10 \times 0.60) + (0.05 \times 0.40) = 0.08 ).</li>
+<li>( P(\text{Equity} | \text{Underperforming}) = \frac{0.10 \times 0.60}{0.08} = 0.75 ) or 75%.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>If the probability of a recession is 20%, and the probability of a stock market crash given a recession is 50%, what is the probability of both a recession and a stock market crash occurring?</strong></p>
+<ul>
+<li><strong>Answer:</strong> ( P(\text{Recession and Crash}) = P(\text{Recession}) \times P(\text{Crash} | \text{Recession}) = 0.20 \times 0.50 = 0.10 ) or 10%.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3><span id="3-probability-distributions"><strong>3. Probability Distributions</strong></span><a href="#3-probability-distributions" class="header-anchor">ᡣ𐭩</a></h3>
+<p>These questions test your knowledge of common probability distributions and their applications.</p>
+<h4><span id="example-questions"><strong>Example Questions:</strong></span><a href="#example-questions" class="header-anchor">ᡣ𐭩</a></h4>
+<ol>
+<li>
+<p><strong>What is the difference between a normal distribution and a binomial distribution?</strong></p>
+<ul>
+<li><strong>Answer:</strong>
+<ul>
+<li><strong>Normal Distribution:</strong> Continuous distribution, symmetric, characterized by mean (( \mu )) and standard deviation (( \sigma )).</li>
+<li><strong>Binomial Distribution:</strong> Discrete distribution, models the number of successes in a fixed number of trials, characterized by the number of trials (( n )) and probability of success (( p )).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>If the returns of a portfolio are normally distributed with a mean of 8% and a standard deviation of 5%, what is the probability that the return will be less than 0%?</strong></p>
+<ul>
+<li><strong>Answer:</strong> Use the Z-score formula:
+<ul>
+<li>( Z = \frac{X - \mu}{\sigma} = \frac{0 - 8}{5} = -1.6 ).</li>
+<li>From the Z-table, ( P(Z &lt; -1.6) \approx 5.48% ).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>What is the expected value of a binomial distribution with 10 trials and a success probability of 0.3?</strong></p>
+<ul>
+<li><strong>Answer:</strong> ( E(X) = n \times p = 10 \times 0.3 = 3 ).</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3><span id="4-combinatorics"><strong>4. Combinatorics</strong></span><a href="#4-combinatorics" class="header-anchor">ᡣ𐭩</a></h3>
+<p>These questions test your ability to calculate combinations and permutations.</p>
+<h4><span id="example-questions"><strong>Example Questions:</strong></span><a href="#example-questions" class="header-anchor">ᡣ𐭩</a></h4>
+<ol>
+<li>
+<p><strong>How many ways can you choose 3 stocks out of 10 for a portfolio?</strong></p>
+<ul>
+<li><strong>Answer:</strong> Use combinations: ( C(10, 3) = \frac{10!}{3! \times 7!} = 120 ).</li>
+</ul>
+</li>
+<li>
+<p><strong>If you have 5 bonds and want to create a portfolio of 2, how many unique portfolios can you create?</strong></p>
+<ul>
+<li><strong>Answer:</strong> ( C(5, 2) = \frac{5!}{2! \times 3!} = 10 ).</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3><span id="5-probability-in-risk-modeling"><strong>5. Probability in Risk Modeling</strong></span><a href="#5-probability-in-risk-modeling" class="header-anchor">ᡣ𐭩</a></h3>
+<p>These questions test your ability to apply probability concepts to risk modeling and portfolio management.</p>
+<h4><span id="example-questions"><strong>Example Questions:</strong></span><a href="#example-questions" class="header-anchor">ᡣ𐭩</a></h4>
+<ol>
+<li>
+<p><strong>What is Value at Risk (VaR), and how is probability used in its calculation?</strong></p>
+<ul>
+<li><strong>Answer:</strong> VaR measures the maximum potential loss of a portfolio over a specified time period at a given confidence level (e.g., 95%). Probability is used to determine the likelihood of losses exceeding the VaR threshold.</li>
+</ul>
+</li>
+<li>
+<p><strong>If a portfolio has a 5% VaR of $1 million, what does this mean?</strong></p>
+<ul>
+<li><strong>Answer:</strong> There is a 5% probability that the portfolio will lose more than $1 million over the specified time period.</li>
+</ul>
+</li>
+<li>
+<p><strong>How would you calculate the probability of a portfolio losing more than 10% in a year, given its mean return and standard deviation?</strong></p>
+<ul>
+<li><strong>Answer:</strong> Use the normal distribution:
+<ul>
+<li>( Z = \frac{-10% - \mu}{\sigma} ).</li>
+<li>Find ( P(Z &lt; \text{calculated Z-score}) ) using the Z-table.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3><span id="6-real-world-applications"><strong>6. Real-World Applications</strong></span><a href="#6-real-world-applications" class="header-anchor">ᡣ𐭩</a></h3>
+<p>These questions test your ability to apply probability concepts to real-world financial scenarios.</p>
+<h4><span id="example-questions">**Example Questions:</span><a href="#example-questions" class="header-anchor">ᡣ𐭩</a></h4>
+<ol>
+<li>
+<p><strong>If a portfolio has a 60% chance of earning a 10% return and a 40% chance of losing 5%, what is the expected return?</strong></p>
+<ul>
+<li><strong>Answer:</strong> ( E® = (0.60 \times 10%) + (0.40 \times -5%) = 6% - 2% = 4% ).</li>
+</ul>
+</li>
+<li>
+<p><strong>What is the probability of a portfolio outperforming its benchmark, given historical data?</strong></p>
+<ul>
+<li><strong>Answer:</strong> Use historical outperformance rates or statistical methods like hypothesis testing.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3><span id="key-takeaways"><strong>Key Takeaways</strong></span><a href="#key-takeaways" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li><strong>Fundamental Concepts:</strong> Be comfortable with basic probability, conditional probability, and distributions.</li>
+<li><strong>Risk Modeling:</strong> Understand how probability is applied in risk metrics like VaR.</li>
+<li><strong>Real-World Applications:</strong> Be prepared to apply probability to financial scenarios, such as portfolio returns or risk analysis.</li>
+</ul>
+<hr>
+<p>Let me know if you’d like to dive deeper into any of these topics or practice more questions!</p>
 <!-- flag of hidden posts -->
         </div>
 
