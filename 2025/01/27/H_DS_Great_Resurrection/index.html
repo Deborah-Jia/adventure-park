@@ -407,6 +407,7 @@
 </ol>
 <p><strong>false positive</strong>: rejected the null hypothesis when it is correct</p>
 <p><strong>false negative</strong>: not rejected the null hypothesis when it is incorrect</p>
+<p>(1- alpha) is the confidence level and (1-beta) is the power of test (i.e. the probability of rejecting the null hypothesis when it is false).</p>
 <h2><span id="probability-mock-interview-questions">Probability Mock Interview questions</span><a href="#probability-mock-interview-questions" class="header-anchor">ᡣ𐭩</a></h2>
 <h3><span id="1-basic-probability-questions"><strong>1. Basic Probability Questions</strong></span><a href="#1-basic-probability-questions" class="header-anchor">ᡣ𐭩</a></h3>
 <p>These questions test your understanding of fundamental probability concepts.</p>
@@ -568,8 +569,222 @@
 <li><strong>Risk Modeling:</strong> Understand how probability is applied in risk metrics like VaR.</li>
 <li><strong>Real-World Applications:</strong> Be prepared to apply probability to financial scenarios, such as portfolio returns or risk analysis.</li>
 </ul>
+<p>In an interview for a role like <strong>Performance and Attribution Portfolio Risk Modelling Associate</strong>, you can expect <strong>statistics questions</strong> to assess your quantitative skills, understanding of data analysis, and ability to apply statistical concepts to financial modeling and risk analysis. Below are some <strong>possible statistics questions</strong> that could be asked, along with explanations and examples:</p>
 <hr>
-<p>Let me know if you’d like to dive deeper into any of these topics or practice more questions!</p>
+<h2><span id="statistics-mock-interview-questions">Statistics Mock Interview questions</span><a href="#statistics-mock-interview-questions" class="header-anchor">ᡣ𐭩</a></h2>
+<h3><span id="1-descriptive-statistics"><strong>1. Descriptive Statistics</strong></span><a href="#1-descriptive-statistics" class="header-anchor">ᡣ𐭩</a></h3>
+<p>These questions test your understanding of basic statistical measures used to summarize data.</p>
+<h4><span id="example-questions"><strong>Example Questions:</strong></span><a href="#example-questions" class="header-anchor">ᡣ𐭩</a></h4>
+<ol>
+<li>
+<p><strong>What is the difference between mean, median, and mode?</strong></p>
+<ul>
+<li><strong>Answer:</strong>
+<ul>
+<li><strong>Mean:</strong> The average of all data points.</li>
+<li><strong>Median:</strong> The middle value when data is sorted in ascending order.</li>
+<li><strong>Mode:</strong> The most frequently occurring value in the dataset.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>How would you handle outliers in a dataset?</strong></p>
+<ul>
+<li><strong>Answer:</strong> Outliers can be handled by:
+<ul>
+<li>Removing them if they are errors.</li>
+<li>Transforming the data (e.g., log transformation).</li>
+<li>Using robust statistical measures like the median instead of the mean.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>What is the standard deviation, and why is it important?</strong></p>
+<ul>
+<li><strong>Answer:</strong> Standard deviation measures the dispersion of data points around the mean. It is important because it quantifies risk and variability in financial returns.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3><span id="2-probability-distributions"><strong>2. Probability Distributions</strong></span><a href="#2-probability-distributions" class="header-anchor">ᡣ𐭩</a></h3>
+<p>These questions test your knowledge of common probability distributions and their applications.</p>
+<h4><span id="example-questions"><strong>Example Questions:</strong></span><a href="#example-questions" class="header-anchor">ᡣ𐭩</a></h4>
+<ol>
+<li>
+<p><strong>What is the difference between a normal distribution and a log-normal distribution?</strong></p>
+<ul>
+<li><strong>Answer:</strong>
+<ul>
+<li><strong>Normal Distribution:</strong> Symmetric, bell-shaped, describes many natural phenomena.</li>
+<li><strong>Log-Normal Distribution:</strong> Skewed to the right, used for variables that are always positive (e.g., stock prices).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>When would you use a Poisson distribution?</strong></p>
+<ul>
+<li><strong>Answer:</strong> The Poisson distribution is used to model the number of events occurring in a fixed interval of time or space, given a constant mean rate (e.g., number of trades per day).</li>
+</ul>
+</li>
+<li>
+<p><strong>What is the Central Limit Theorem, and why is it important?</strong></p>
+<ul>
+<li><strong>Answer:</strong> The Central Limit Theorem states that the sampling distribution of the mean of any independent, random variable will be approximately normal if the sample size is large enough. It is important because it allows us to make inferences about population parameters using sample statistics.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3><span id="3-hypothesis-testing"><strong>3. Hypothesis Testing</strong></span><a href="#3-hypothesis-testing" class="header-anchor">ᡣ𐭩</a></h3>
+<p>These questions test your ability to formulate and test hypotheses.</p>
+<h4><span id="example-questions"><strong>Example Questions:</strong></span><a href="#example-questions" class="header-anchor">ᡣ𐭩</a></h4>
+<ol>
+<li>
+<p><strong>What is a p-value, and how do you interpret it?</strong></p>
+<ul>
+<li><strong>Answer:</strong> The p-value is the probability of observing the data (or something more extreme) if the null hypothesis is true. A low p-value (typically &lt; 0.05) suggests rejecting the null hypothesis.</li>
+</ul>
+</li>
+<li>
+<p><strong>How would you test if the mean return of a portfolio is significantly different from a benchmark?</strong></p>
+<ul>
+<li><strong>Answer:</strong> Use a <strong>t-test</strong>:
+<ul>
+<li>Null hypothesis (( H_0 )): Mean return of the portfolio = Benchmark return.</li>
+<li>Alternative hypothesis (( H_1 )): Mean return of the portfolio ≠ Benchmark return.</li>
+<li>Calculate the t-statistic and compare it to the critical value or use the p-value to make a decision.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>What is the difference between a one-tailed and two-tailed test?</strong></p>
+<ul>
+<li><strong>Answer:</strong>
+<ul>
+<li><strong>One-tailed test:</strong> Tests for the possibility of an effect in one direction (e.g., greater than or less than).</li>
+<li><strong>Two-tailed test:</strong> Tests for the possibility of an effect in both directions (e.g., not equal to).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3><span id="4-regression-analysis"><strong>4. Regression Analysis</strong></span><a href="#4-regression-analysis" class="header-anchor">ᡣ𐭩</a></h3>
+<p>These questions test your understanding of regression models and their applications.</p>
+<h4><span id="example-questions"><strong>Example Questions:</strong></span><a href="#example-questions" class="header-anchor">ᡣ𐭩</a></h4>
+<ol>
+<li>
+<p><strong>What is the difference between linear regression and multiple regression?</strong></p>
+<ul>
+<li><strong>Answer:</strong>
+<ul>
+<li><strong>Linear Regression:</strong> Models the relationship between one independent variable and one dependent variable.</li>
+<li><strong>Multiple Regression:</strong> Models the relationship between multiple independent variables and one dependent variable.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>How do you interpret the R-squared value in a regression model?</strong></p>
+<ul>
+<li><strong>Answer:</strong> R-squared measures the proportion of variance in the dependent variable explained by the independent variables. A higher R-squared indicates a better fit.</li>
+</ul>
+</li>
+<li>
+<p><strong>What is multicollinearity, and how does it affect regression analysis?</strong></p>
+<ul>
+<li><strong>Answer:</strong> Multicollinearity occurs when independent variables are highly correlated. It can inflate the variance of coefficient estimates and make the model unreliable.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3><span id="5-time-series-analysis"><strong>5. Time Series Analysis</strong></span><a href="#5-time-series-analysis" class="header-anchor">ᡣ𐭩</a></h3>
+<p>These questions test your ability to analyze data over time.</p>
+<h4><span id="example-questions"><strong>Example Questions:</strong></span><a href="#example-questions" class="header-anchor">ᡣ𐭩</a></h4>
+<ol>
+<li>
+<p><strong>What is autocorrelation, and how is it detected?</strong></p>
+<ul>
+<li><strong>Answer:</strong> Autocorrelation measures the correlation of a time series with its own lagged values. It can be detected using the <strong>Durbin-Watson test</strong> or by plotting the autocorrelation function (ACF).</li>
+</ul>
+</li>
+<li>
+<p><strong>What is stationarity, and why is it important in time series analysis?</strong></p>
+<ul>
+<li><strong>Answer:</strong> Stationarity means that the statistical properties of a time series (e.g., mean, variance) do not change over time. It is important because many time series models (e.g., ARIMA) assume stationarity.</li>
+</ul>
+</li>
+<li>
+<p><strong>How would you model a time series with seasonality?</strong></p>
+<ul>
+<li><strong>Answer:</strong> Use models like <strong>SARIMA</strong> (Seasonal ARIMA) or decompose the time series into trend, seasonal, and residual components.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3><span id="6-risk-and-portfolio-statistics"><strong>6. Risk and Portfolio Statistics</strong></span><a href="#6-risk-and-portfolio-statistics" class="header-anchor">ᡣ𐭩</a></h3>
+<p>These questions test your ability to apply statistical concepts to financial risk and portfolio management.</p>
+<h4><span id="example-questions"><strong>Example Questions:</strong></span><a href="#example-questions" class="header-anchor">ᡣ𐭩</a></h4>
+<ol>
+<li>
+<p><strong>What is the Sharpe ratio, and how is it calculated?</strong></p>
+<ul>
+<li><strong>Answer:</strong> The Sharpe ratio measures risk-adjusted return:<br>
+[<br>
+\text{Sharpe Ratio} = \frac{\text{Portfolio Return} - \text{Risk-Free Rate}}{\text{Standard Deviation of Portfolio Returns}}<br>
+]</li>
+</ul>
+</li>
+<li>
+<p><strong>What is Value at Risk (VaR), and how is it calculated?</strong></p>
+<ul>
+<li><strong>Answer:</strong> VaR measures the maximum potential loss of a portfolio over a specified time period at a given confidence level. It can be calculated using historical simulation, variance-covariance method, or Monte Carlo simulation.</li>
+</ul>
+</li>
+<li>
+<p><strong>How would you calculate the correlation between two assets in a portfolio?</strong></p>
+<ul>
+<li><strong>Answer:</strong> Use the formula:<br>
+[<br>
+\text{Correlation} = \frac{\text{Covariance}(X, Y)}{\text{Standard Deviation}(X) \times \text{Standard Deviation}(Y)}<br>
+]</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3><span id="7-real-world-applications"><strong>7. Real-World Applications</strong></span><a href="#7-real-world-applications" class="header-anchor">ᡣ𐭩</a></h3>
+<p>These questions test your ability to apply statistical concepts to real-world financial scenarios.</p>
+<h4><span id="example-questions"><strong>Example Questions:</strong></span><a href="#example-questions" class="header-anchor">ᡣ𐭩</a></h4>
+<ol>
+<li>
+<p><strong>How would you analyze the performance of a portfolio relative to its benchmark?</strong></p>
+<ul>
+<li><strong>Answer:</strong> Use performance attribution analysis, regression analysis (e.g., CAPM), and risk-adjusted metrics like Sharpe ratio or Information ratio.</li>
+</ul>
+</li>
+<li>
+<p><strong>What statistical methods would you use to predict stock prices?</strong></p>
+<ul>
+<li><strong>Answer:</strong> Time series models (e.g., ARIMA, GARCH), machine learning models (e.g., random forests, neural networks), or regression analysis.</li>
+</ul>
+</li>
+<li>
+<p><strong>How would you assess the impact of macroeconomic factors on portfolio returns?</strong></p>
+<ul>
+<li><strong>Answer:</strong> Use multiple regression analysis with macroeconomic variables (e.g., GDP growth, interest rates) as independent variables and portfolio returns as the dependent variable.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3><span id="key-takeaways"><strong>Key Takeaways</strong></span><a href="#key-takeaways" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li><strong>Fundamental Concepts:</strong> Be comfortable with descriptive statistics, probability distributions, and hypothesis testing.</li>
+<li><strong>Advanced Techniques:</strong> Understand regression analysis, time series analysis, and risk metrics.</li>
+<li><strong>Real-World Applications:</strong> Be prepared to apply statistical methods to financial data and portfolio management.</li>
+</ul>
 <!-- flag of hidden posts -->
         </div>
 
