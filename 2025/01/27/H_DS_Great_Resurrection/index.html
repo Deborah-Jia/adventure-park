@@ -286,6 +286,7 @@
 <li>
 <p><strong>Binomial distribution</strong>: the probability of <em>k</em> number of successes in <em>n</em> independent trials where the outcome of each event is binary, e.g. coin flips. <strong>Bernoulli</strong> is a special case of Binomial with number of trials equal to 1.</p>
 <p><img src="https://www.gstatic.com/education/formulas2/553212783/en/binomial_distribution_formula.svg" alt="P_{x} = {n \choose x} p^{x} q^{n-x}"></p>
+<p>Mean:np, variance: np(1-p)</p>
 </li>
 <li>
 <p><strong>Poisson distribution</strong>: the probability of the number of events occuring within a particular fixed interval where the known, constant rate of each event’s occurrence is λ.</p>
@@ -301,8 +302,7 @@
 </li>
 <li>
 <p><strong>Exponential distribution</strong>: the probability distribution of the distance between events in a Poisson point process having a set rate parameter of λ. Its mean is 1/λ, and its variance is 1/λ^2</p>
-<p>Example: wait times, such as the time untill a customer makes a purchase or the time until a default in</p>
-<p>credit occurs.</p>
+<p>Example: wait times, such as the time untill a customer makes a purchase or the time until a default in credit occurs.</p>
 </li>
 <li>
 <p><strong>Normal distribution</strong>: bell curve. natually dit into many real-life occurrences and the Central Limit Theorem (CLT).</p>
@@ -329,7 +329,7 @@
 <p>Its square root is called <strong>Standard Deviation</strong>.</p>
 <ol start="3">
 <li>
-<p><em><strong>Covariance</strong></em> is a measure of the association or dependence between two random variables X and Y. Covariance can be either positive or negative. (Variance is always positive.)</p>
+<p><em><strong>Covariance</strong></em> is a measure of the association or dependence between two random variables X and Y. Covariance can be either positive or negative (between positive infinity and negative infinity). (Variance is always positive.)</p>
 <img src="/adventure-park/2025/01/27/H_DS_Great_Resurrection/image-20250130142617718.png" class title="image-20250130142617718">
 <ul>
 <li>cov(X, Y ) will be positive if large values of X tend to occur with large values of Y , and small values of X tend to occur with small values of Y . For example, if X is height and Y is weight of a randomly selected person, we would expect cov(X, Y ) to be positive.</li>
@@ -348,11 +348,11 @@
 </ol>
 </li>
 <li>
-<p><strong>Law of Large Numbers</strong>: if you sample a random variable independently a large number of times, the measured average value should converge to the random variable’s true expectation.</p>
+<p><strong>Law of Large Numbers</strong>: if you sample a random variable independently a large number of times, the measured average value should converge to the random variable’s true expectation. Usually greater than 30 times</p>
 <p>e.g. coin flipping over a lot of times approaches 1/2.</p>
 </li>
 <li>
-<p><strong>Central Limit Theorem</strong>: if you repeatedly sample a random variable a large numeber of times, the distribution of the sample mean will approach a normal distribution regardless of the intial distribution of the random variable. It provides the basis for</p>
+<p><strong>Central Limit Theorem</strong>: if you repeatedly sample a random variable a large numeber of times, the distribution of the sample mean will approach a normal distribution regardless of the intial distribution of the random variable. It provides the basis for <strong>statistical inference</strong>, particularly for Hypothesis Testing, Confidence Intervals, Regression &amp; Machine Learning Models, A/B Testing &amp; Experimentation and so forth.</p>
 </li>
 <li>
 <p><strong>Hypothesis Testing</strong>: the process of testing whether a sample of data supports a particular hypothesis.</p>
@@ -371,8 +371,8 @@
 <p><strong>Z Test</strong>: used when the sample size is large (to invoke the CLT) or when the population variance is known. <img src="https://miro.medium.com/v2/resize:fit:1400/1*5HodQlD9g8BrXe8Wb2JYHg.png" alt="What is Z-Test in statistics?. A z-test is a statistical test used to… | by  Rohan Paris | Medium"></p>
 <p><strong>t-Test</strong>: uses the sample variance in place of population variance as the smaple size is small and the population variance is unknown. It is paramatized by the degress of freedom (the number of independent observations in a dataset, <strong>n-1</strong>)</p>
 <img src="/adventure-park/2025/01/27/H_DS_Great_Resurrection/WeChate5569ff42f0cc0117490ffe5f0559e6d.jpg" class title="WeChate5569ff42f0cc0117490ffe5f0559e6d">
-<p>t-test is similar to the Z test, but has larger tails (i.e. extreme events happen with greater grequency than the modeled distribution would predict)</p>
-<p><strong>Chi-Squared Test</strong>: used to assess goodness of git, or to examine whether two categorical variables (two dimensions of the contingency table) are independent in influencing the test statistic.</p>
+<p>t-test is similar to the Z test, but has larger tails (i.e. extreme events happen with greater frequency than the modeled distribution would predict)</p>
+<p><strong>Chi-Squared Test</strong>: used to assess goodness of fit, or to examine whether two categorical variables (two dimensions of the contingency table) are independent in influencing the test statistic.</p>
 <p><img src="data:image/png;base64,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" alt="Chi-Square Test: Formula and ..."></p>
 <p>O is the observed value of interest and E is its expected value.</p>
 <p><img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/Chi_Sq_formula_1.png" alt="Chi_Sq_formula_1."></p>
@@ -385,7 +385,7 @@
 <hr>
 <h3><span id="1-p-value"><strong>1. P-Value</strong></span><a href="#1-p-value" class="header-anchor">ᡣ𐭩</a></h3>
 <p><strong>Technical Explanation:</strong><br>
-The <strong>p-value</strong> is the probability of obtaining a test statistic at least as extreme as the one observed, assuming the null hypothesis is true. It helps us determine whether our observed data is due to random chance.</p>
+<strong>p-value</strong> measures the probability of obtaining the observed results, assuming that the null hypothesis is true.</p>
 <ul>
 <li>A <strong>low p-value (typically ≤ 0.05)</strong> suggests that the observed data is unlikely under the null hypothesis, leading us to <strong>reject the null hypothesis</strong> (i.e., there is significant evidence for the alternative hypothesis).</li>
 <li>A <strong>high p-value (&gt; 0.05)</strong> means the data is more consistent with the null hypothesis, so we <strong>fail to reject it</strong> (i.e., we don’t have enough evidence to say there’s an effect).</li>
@@ -397,7 +397,7 @@ Imagine you’re flipping a coin and suspect it’s biased toward heads. You fli
 <hr>
 <h3><span id="2-confidence-interval-ci"><strong>2. Confidence Interval (CI)</strong></span><a href="#2-confidence-interval-ci" class="header-anchor">ᡣ𐭩</a></h3>
 <p><strong>Technical Explanation:</strong><br>
-A <strong>confidence interval (CI)</strong> gives a range of values that is likely to contain the true population parameter (e.g., a mean or proportion) with a certain confidence level, usually <strong>95%</strong>.</p>
+A <strong>confidence interval (CI)</strong> the probability that a population parameter will fall between a set of values for a certain proportion of times, usually <strong>95%</strong>.</p>
 <p>For example, a <strong>95% CI of [4.5, 6.2]</strong> means that if we repeated the experiment many times, <strong>95% of those CIs would contain the true value</strong>.</p>
 <ul>
 <li>A <strong>narrow CI</strong> suggests higher precision (less uncertainty).</li>
