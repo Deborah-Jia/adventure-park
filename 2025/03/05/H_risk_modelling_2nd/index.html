@@ -264,6 +264,90 @@
 <p>An interest rate swap can be valued by calculating the present value of the fixed and floating cash flows. The fixed cash flows are calculated using the fixed rate and discounted to the present using the relevant discount curve. The floating cash flows are based on a reference rate, such as LIBOR, and are typically valued using the forward rate for the reference.</p>
 <h4><span id="how-would-you-build-a-derivatives-pricing-model"><strong>How would you build a derivatives pricing model?</strong></span><a href="#how-would-you-build-a-derivatives-pricing-model" class="header-anchor">ᡣ𐭩</a></h4>
 <p>A derivatives pricing model is typically built by using the <strong>no-arbitrage principle</strong>, which ensures that no risk-free profit opportunities exist. For options, the <strong>Black-Scholes</strong> model is commonly used, and for interest rate derivatives, <strong>modeling the term structure</strong> using the <strong>Hull-White</strong> or <strong>Black-Karasinski</strong> models is often appropriate. Calibration of these models to market data is essential to ensure accurate pricing.</p>
+<hr>
+<h3><span id="3-portfolio-risk-amp-attribution"><strong>3. Portfolio Risk &amp; Attribution</strong></span><a href="#3-portfolio-risk-amp-attribution" class="header-anchor">ᡣ𐭩</a></h3>
+<h4><span id="how-do-you-calculate-and-interpret-ex-ante-and-ex-post-risk-metrics-in-portfolio-management"><strong>How do you calculate and interpret ex-ante and ex-post risk metrics in portfolio management?</strong></span><a href="#how-do-you-calculate-and-interpret-ex-ante-and-ex-post-risk-metrics-in-portfolio-management" class="header-anchor">ᡣ𐭩</a></h4>
+<ul>
+<li><strong>Ex-ante risk</strong> is forward-looking and includes metrics like predicted <strong>VaR, tracking error, and factor exposures</strong> to estimate potential risk before it happens.</li>
+<li><strong>Ex-post risk</strong> is backward-looking, using historical returns to measure realized <strong>volatility, Sharpe ratio, and historical drawdowns</strong>.</li>
+<li>Both are important for performance evaluation—ex-ante helps with risk control, while ex-post validates risk models.</li>
+</ul>
+<h4><span id="can-you-explain-tracking-error-and-how-it-is-used-in-portfolio-management"><strong>Can you explain tracking error and how it is used in portfolio management?</strong></span><a href="#can-you-explain-tracking-error-and-how-it-is-used-in-portfolio-management" class="header-anchor">ᡣ𐭩</a></h4>
+<ul>
+<li><strong>Tracking error</strong> measures the standard deviation of portfolio returns relative to a benchmark.</li>
+<li>It’s used to assess how actively a portfolio deviates from the benchmark and helps investors evaluate active risk-taking.</li>
+</ul>
+<h4><span id="what-are-the-key-components-of-performance-attribution"><strong>What are the key components of performance attribution?</strong></span><a href="#what-are-the-key-components-of-performance-attribution" class="header-anchor">ᡣ𐭩</a></h4>
+<ul>
+<li><strong>Brinson attribution</strong> breaks down performance into <strong>asset allocation, security selection, and interaction effects</strong>.</li>
+<li><strong>Factor-based attribution</strong> explains performance using exposures to factors like interest rates, credit spreads, or equity styles.</li>
+<li><strong>Risk-adjusted attribution</strong> normalizes returns based on risk, often using <strong>Sharpe or information ratios</strong>.</li>
+</ul>
+<h4><span id="how-would-you-measure-the-contribution-of-different-asset-classes-to-portfolio-risk"><strong>How would you measure the contribution of different asset classes to portfolio risk?</strong></span><a href="#how-would-you-measure-the-contribution-of-different-asset-classes-to-portfolio-risk" class="header-anchor">ᡣ𐭩</a></h4>
+<ul>
+<li><strong>Risk decomposition</strong> using <strong>factor models (e.g., APT or Fama-French)</strong> to break down risk by drivers.</li>
+<li><strong>Marginal and component VaR</strong> measures how much each asset class contributes to total portfolio risk.</li>
+<li><strong>Historical stress testing</strong> to see how asset classes behave under extreme conditions.</li>
+</ul>
+<h4><span id="how-do-you-stress-test-a-portfolio-against-market-shocks"><strong>How do you stress test a portfolio against market shocks?</strong></span><a href="#how-do-you-stress-test-a-portfolio-against-market-shocks" class="header-anchor">ᡣ𐭩</a></h4>
+<ul>
+<li>Use <strong>historical stress tests</strong> (e.g., 2008 crisis) and <strong>hypothetical scenarios</strong> (e.g., 200 bps rate hike).</li>
+<li>Apply <strong>factor shocks</strong> to interest rates, credit spreads, and volatilities to see impact.</li>
+<li>Assess <strong>portfolio drawdowns and correlation shifts</strong>.</li>
+</ul>
+<hr>
+<h3><span id="4-quantitative-modeling-amp-python-for-risk-analytics"><strong>4. Quantitative Modeling &amp; Python for Risk Analytics</strong></span><a href="#4-quantitative-modeling-amp-python-for-risk-analytics" class="header-anchor">ᡣ𐭩</a></h3>
+<h4><span id="how-would-you-estimate-the-volatility-of-a-financial-asset"><strong>How would you estimate the volatility of a financial asset?</strong></span><a href="#how-would-you-estimate-the-volatility-of-a-financial-asset" class="header-anchor">ᡣ𐭩</a></h4>
+<ul>
+<li>Use <strong>historical volatility</strong> (standard deviation of returns) or <strong>GARCH models</strong> for dynamic volatility estimates.</li>
+<li><strong>Implied volatility</strong> from options markets can also be used as a forward-looking measure.</li>
+</ul>
+<h4><span id="what-are-some-common-ways-to-model-correlation-in-financial-markets"><strong>What are some common ways to model correlation in financial markets?</strong></span><a href="#what-are-some-common-ways-to-model-correlation-in-financial-markets" class="header-anchor">ᡣ𐭩</a></h4>
+<ul>
+<li><strong>Historical correlation</strong> using rolling windows.</li>
+<li><strong>Multivariate GARCH</strong> for dynamic correlation structures.</li>
+<li><strong>Copula models</strong> for tail dependencies.</li>
+</ul>
+<h4><span id="how-do-you-handle-missing-data-in-financial-time-series"><strong>How do you handle missing data in financial time series?</strong></span><a href="#how-do-you-handle-missing-data-in-financial-time-series" class="header-anchor">ᡣ𐭩</a></h4>
+<ul>
+<li>Use <strong>forward-filling or interpolation</strong> for small gaps.</li>
+<li><strong>Model-based imputation</strong> (e.g., Kalman filtering) for more complex cases.</li>
+<li><strong>Deleting missing data</strong> if it’s non-informative and won’t bias the analysis.</li>
+</ul>
+<h4><span id="how-would-you-implement-a-monte-carlo-simulation-for-risk-estimation"><strong>How would you implement a Monte Carlo simulation for risk estimation?</strong></span><a href="#how-would-you-implement-a-monte-carlo-simulation-for-risk-estimation" class="header-anchor">ᡣ𐭩</a></h4>
+<ul>
+<li>Simulate <strong>random price paths</strong> using geometric Brownian motion or other stochastic processes.</li>
+<li>Calculate <strong>portfolio value at each simulation step</strong> and compute <strong>VaR or expected shortfall</strong>.</li>
+<li>Increase simulation runs to ensure stability of results.</li>
+</ul>
+<h4><span id="what-are-the-key-considerations-when-implementing-a-factor-risk-model"><strong>What are the key considerations when implementing a factor risk model?</strong></span><a href="#what-are-the-key-considerations-when-implementing-a-factor-risk-model" class="header-anchor">ᡣ𐭩</a></h4>
+<ul>
+<li><strong>Selecting relevant risk factors</strong> (e.g., interest rates, credit spreads, equity factors).</li>
+<li><strong>Ensuring factor stability</strong> by testing over different time periods.</li>
+<li><strong>Validating the model</strong> using out-of-sample performance.</li>
+</ul>
+<hr>
+<h3><span id="5-market-events-amp-practical-understanding"><strong>5. Market Events &amp; Practical Understanding</strong></span><a href="#5-market-events-amp-practical-understanding" class="header-anchor">ᡣ𐭩</a></h3>
+<h4><span id="how-would-a-rapid-increase-in-interest-rates-affect-different-asset-classes"><strong>How would a rapid increase in interest rates affect different asset classes?</strong></span><a href="#how-would-a-rapid-increase-in-interest-rates-affect-different-asset-classes" class="header-anchor">ᡣ𐭩</a></h4>
+<ul>
+<li><strong>Fixed income:</strong> Prices drop, longer-duration bonds fall more.</li>
+<li><strong>Equities:</strong> Growth stocks suffer more due to lower present value of future cash flows.</li>
+<li><strong>Commodities:</strong> May be impacted by macro factors like inflation expectations.</li>
+<li><strong>Currencies:</strong> Higher rates often strengthen the currency due to higher yields.</li>
+</ul>
+<h4><span id="how-would-you-assess-the-impact-of-a-geopolitical-crisis-on-financial-markets"><strong>How would you assess the impact of a geopolitical crisis on financial markets?</strong></span><a href="#how-would-you-assess-the-impact-of-a-geopolitical-crisis-on-financial-markets" class="header-anchor">ᡣ𐭩</a></h4>
+<ul>
+<li><strong>Increased volatility and risk-off sentiment.</strong></li>
+<li><strong>Flight to safety:</strong> Bonds, gold, and USD tend to rise.</li>
+<li><strong>Credit spreads widen:</strong> Riskier debt gets more expensive.</li>
+<li><strong>Equity sell-offs</strong>, especially in exposed sectors.</li>
+</ul>
+<h4><span id="what-are-the-implications-of-yield-curve-inversion"><strong>What are the implications of yield curve inversion?</strong></span><a href="#what-are-the-implications-of-yield-curve-inversion" class="header-anchor">ᡣ𐭩</a></h4>
+<ul>
+<li>Typically signals <strong>economic slowdown or recession</strong>.</li>
+<li><strong>Banks suffer</strong> due to lower net interest margins.</li>
+<li><strong>Flight to quality:</strong> Investors shift to long-term bonds, pushing yields lower.</li>
+</ul>
 <!-- flag of hidden posts -->
         </div>
 
