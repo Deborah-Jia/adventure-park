@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+
+
+<title>risk_modelling_2nd_prep | </title><meta name="robots" content="noindex">
+
+
+
+    <link rel="icon" href="/adventure-park/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/adventure-park/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/adventure-park/js/script.js"></script>
+    
+    <script src="/adventure-park/js/tocbot.min.js"></script>
+    
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/adventure-park/">Deborah Li JIA</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/adventure-park/archives">Posts</a>
+                
+                    <a class="menu-item" href="/adventure-park/category">Categories</a>
+                
+                    <a class="menu-item" href="/adventure-park/tag">Tags</a>
+                
+                    <a class="menu-item" href="/adventure-park/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/adventure-park/">Deborah Li JIA</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/adventure-park/archives">Posts</a>
+                
+                    <a class="menu-item" href="/adventure-park/category">Categories</a>
+                
+                    <a class="menu-item" href="/adventure-park/tag">Tags</a>
+                
+                    <a class="menu-item" href="/adventure-park/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <!-- <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a> -->
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    // var tocbot_timer; // if uncommented, toc will jump around
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+        hasInnerContainers: true,
+        linkClass: 'tocbot-link',
+        // activeLinkClass: 'tocbot-active-link', // if uncommented, no bold highlight to the current content
+        // listClass: 'tocbot-list', // If uncommented, the sub toc cannot unfold correctly
+        // isCollapsedClass: 'tocbot-is-collapsed',
+        // collapsibleClass: 'tocbot-is-collapsible',
+        hashChange: true, // Enable URL hash updates
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420);
+    }
+
+    // Ensure headings have IDs
+    function ensureHeadingIds() {
+        const headings = document.querySelector(tocbot_default_config.contentSelector)
+            .querySelectorAll(tocbot_default_config.headingSelector);
+        
+        headings.forEach(heading => {
+            if (!heading.id) {
+                heading.id = heading.textContent
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/(^-|-$)/g, '');
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        ensureHeadingIds(); // Generate IDs for headings if they don't exist
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+
+        // Handle hash changes
+        if (window.location.hash) {
+            setTimeout(function() {
+                const element = document.querySelector(window.location.hash);
+                if (element) {
+                    element.scrollIntoView();
+                    window.scrollBy(0, -tocbot_default_config.scrollSmoothOffset);
+                }
+            }, 100);
+        }
+    });
+
+    // function expand_toc() {
+    //     var b = document.querySelector('.tocbot-toc-expand');
+    //     var expanded = b.getAttribute('data-expanded');
+    //     expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+    //     tocbot.refresh(obj_merge(tocbot_default_config, {
+    //         collapseDepth: expanded ? 1 : DEPTH_MAX
+    //     }));
+    //     b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    // }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        return Object.assign({}, target, source);
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">risk_modelling_2nd_prep</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">June 6, 2025&nbsp;&nbsp;Friday</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/adventure-park/categories/example/">example</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3><span id="1-fixed-income-amp-risk-analytics"><strong>1. Fixed Income &amp; Risk Analytics</strong></span><a href="#1-fixed-income-amp-risk-analytics" class="header-anchor">ᡣ𐭩</a></h3>
+<h4><span id="how-do-you-construct-and-interpret-a-yield-curve"><strong>How do you construct and interpret a yield curve?</strong></span><a href="#how-do-you-construct-and-interpret-a-yield-curve" class="header-anchor">ᡣ𐭩</a></h4>
+<p>To construct a yield curve, you typically use the current interest rates for bonds of different maturities. You can plot the bond yields on the vertical axis and the maturities on the horizontal axis. A yield curve typically reflects expectations of future interest rates and economic conditions. A normal upward-sloping curve indicates expectations of higher rates in the future, while an inverted curve can suggest economic downturns.</p>
+<h4><span id="explain-duration-and-convexity-how-are-they-used-in-risk-management"><strong>Explain duration and convexity. How are they used in risk management?</strong></span><a href="#explain-duration-and-convexity-how-are-they-used-in-risk-management" class="header-anchor">ᡣ𐭩</a></h4>
+<p>Duration measures a bond’s price sensitivity to interest rate changes; it helps assess interest rate risk. The higher the duration, the more sensitive the bond price is to interest rate changes. Convexity is the curvature of the bond’s price-yield curve, indicating how much the duration changes as yields change. Both metrics are used to manage interest rate risk, with duration providing the first-order approximation and convexity offering insights into second-order risk.</p>
+<h4><span id="what-are-the-key-risk-factors-affecting-a-fixed-income-portfolio"><strong>What are the key risk factors affecting a fixed income portfolio?</strong></span><a href="#what-are-the-key-risk-factors-affecting-a-fixed-income-portfolio" class="header-anchor">ᡣ𐭩</a></h4>
+<p>Key risk factors include interest rate risk, credit risk, liquidity risk, and inflation risk. Interest rate risk arises from changes in interest rates, credit risk relates to the possibility of issuer default, liquidity risk is concerned with the ability to trade bonds at desired prices, and inflation risk is the erosion of returns due to rising prices.</p>
+<h4><span id="how-would-you-model-credit-risk-in-fixed-income-securities"><strong>How would you model credit risk in fixed income securities?</strong></span><a href="#how-would-you-model-credit-risk-in-fixed-income-securities" class="header-anchor">ᡣ𐭩</a></h4>
+<p>Credit risk can be modeled using probability of default (PD), loss given default (LGD), and exposure at default (EAD). One approach is to use structural models, like the Merton model, or reduced-form models. Credit spreads and rating transitions are also useful indicators of credit risk.</p>
+<h4><span id="explain-historical-var-vs-monte-carlo-var-which-one-is-more-appropriate-for-a-fixed-income-portfolio"><strong>Explain Historical VaR vs. Monte Carlo VaR. Which one is more appropriate for a fixed income portfolio?</strong></span><a href="#explain-historical-var-vs-monte-carlo-var-which-one-is-more-appropriate-for-a-fixed-income-portfolio" class="header-anchor">ᡣ𐭩</a></h4>
+<p>Historical VaR uses historical data to estimate potential losses, while Monte Carlo VaR simulates future price paths using random sampling. For a fixed income portfolio, Monte Carlo is generally preferred because it allows for more flexibility and can model more complex portfolios with non-linear risks, like options or structured products.</p>
+<hr>
+<h3><span id="2-derivatives-amp-yield-curve-modeling"><strong>2. Derivatives &amp; Yield Curve Modeling</strong></span><a href="#2-derivatives-amp-yield-curve-modeling" class="header-anchor">ᡣ𐭩</a></h3>
+<h4><span id="what-are-the-main-differences-between-forward-rates-spot-rates-and-par-rates"><strong>What are the main differences between forward rates, spot rates, and par rates?</strong></span><a href="#what-are-the-main-differences-between-forward-rates-spot-rates-and-par-rates" class="header-anchor">ᡣ𐭩</a></h4>
+<p>Spot rates are the yields on zero-coupon bonds for specific maturities. Forward rates represent future interest rates implied by the spot curve. Par rates are the yields at which a bond would trade at par (i.e., price equals face value) for a specific maturity. Forward rates are derived from spot rates, while par rates are used to price bonds at par.</p>
+<h4><span id="how-would-you-calibrate-a-hull-white-or-black-derman-toy-interest-rate-model"><strong>How would you calibrate a Hull-White or Black-Derman-Toy interest rate model?</strong></span><a href="#how-would-you-calibrate-a-hull-white-or-black-derman-toy-interest-rate-model" class="header-anchor">ᡣ𐭩</a></h4>
+<p>To calibrate these models, you would use market data, like interest rate swaps or futures, to match the model’s output to observed market prices. Calibration involves adjusting the model’s parameters, such as mean reversion speed and volatility, until the model’s simulated interest rate paths fit the historical or market data closely.</p>
+<h4><span id="what-are-some-common-yield-curve-interpolation-techniques"><strong>What are some common yield curve interpolation techniques?</strong></span><a href="#what-are-some-common-yield-curve-interpolation-techniques" class="header-anchor">ᡣ𐭩</a></h4>
+<p>Common techniques include linear interpolation, cubic spline, and Nelson-Siegel models. Linear interpolation is straightforward but may not handle the curve’s curvature well, while cubic splines offer smoothness. Nelson-Siegel is often used for fitting yield curves to bond market data as it provides a good balance between flexibility and stability.</p>
+<h4><span id="can-you-explain-how-to-value-an-interest-rate-swap"><strong>Can you explain how to value an interest rate swap?</strong></span><a href="#can-you-explain-how-to-value-an-interest-rate-swap" class="header-anchor">ᡣ𐭩</a></h4>
+<p>An interest rate swap can be valued by calculating the present value of the fixed and floating cash flows. The fixed cash flows are calculated using the fixed rate and discounted to the present using the relevant discount curve. The floating cash flows are based on a reference rate, such as LIBOR, and are typically valued using the forward rate for the reference.</p>
+<h4><span id="how-would-you-build-a-derivatives-pricing-model"><strong>How would you build a derivatives pricing model?</strong></span><a href="#how-would-you-build-a-derivatives-pricing-model" class="header-anchor">ᡣ𐭩</a></h4>
+<p>A derivatives pricing model is typically built by using the <strong>no-arbitrage principle</strong>, which ensures that no risk-free profit opportunities exist. For options, the <strong>Black-Scholes</strong> model is commonly used, and for interest rate derivatives, <strong>modeling the term structure</strong> using the <strong>Hull-White</strong> or <strong>Black-Karasinski</strong> models is often appropriate. Calibration of these models to market data is essential to ensure accurate pricing.</p>
+<!-- flag of hidden posts -->
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/adventure-park/tags/example/"># example</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/adventure-park/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>©  | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
