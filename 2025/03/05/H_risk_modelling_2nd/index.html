@@ -478,8 +478,27 @@
 <h4><span id="what-are-the-key-components-of-performance-attribution"><strong>What are the key components of performance attribution?</strong></span><a href="#what-are-the-key-components-of-performance-attribution" class="header-anchor">ᡣ𐭩</a></h4>
 <ul>
 <li><strong>Brinson attribution</strong> breaks down performance into <strong>asset allocation, security selection, and interaction effects</strong>.</li>
-<li><strong>Factor-based attribution</strong> explains performance using exposures to factors like interest rates, credit spreads, or equity styles.</li>
-<li><strong>Risk-adjusted attribution</strong> normalizes returns based on risk, often using <strong>Sharpe or information ratios</strong>.</li>
+<li><strong>Factor-based attribution</strong> explains performance using factors incude Macroeconomic factors, Risk factors and Style factors.</li>
+<li><strong>Risk-adjusted attribution</strong> normalizes returns based on risk, often using <strong>Sharpe or information ratios</strong></li>
+</ul>
+<h5><span id="what-are-the-common-factor-models-used-in-factor-based-attribution">What are the <strong>Common Factor Models</strong> Used in Factor-Based Attribution?</span><a href="#what-are-the-common-factor-models-used-in-factor-based-attribution" class="header-anchor">ᡣ𐭩</a></h5>
+<p><strong>Fama-French 3-Factor Model</strong>:</p>
+<ul>
+<li><strong>Market</strong> (overall market return)</li>
+<li><strong>Size</strong> (Small vs. Big companies)</li>
+<li><strong>Value</strong> (Value vs. Growth stocks)</li>
+</ul>
+<p><strong>Carhart 4-Factor Model</strong>:</p>
+<ul>
+<li>Adds <strong>Momentum</strong> to the Fama-French model (stocks that have performed well recently are expected to continue performing well).</li>
+</ul>
+<p><strong>Barra Risk Factor Model</strong>:</p>
+<ul>
+<li>A widely used factor model that includes various risk factors such as <strong>market</strong>, <strong>interest rates</strong>, <strong>sector</strong>, <strong>size</strong>, <strong>value</strong>, and <strong>growth</strong> factors.</li>
+</ul>
+<p><strong>APT (Arbitrage Pricing Theory)</strong>:</p>
+<ul>
+<li>A multi-factor model used to explain asset returns through various risk factors, which can be macroeconomic, industry-specific, or style factors.</li>
 </ul>
 <h4><span id="how-would-you-measure-the-contribution-of-different-asset-classes-to-portfolio-risk"><strong>How would you measure the contribution of different asset classes to portfolio risk?</strong></span><a href="#how-would-you-measure-the-contribution-of-different-asset-classes-to-portfolio-risk" class="header-anchor">ᡣ𐭩</a></h4>
 <ul>
@@ -487,6 +506,13 @@
 <li><strong>Marginal and component VaR</strong> measures how much each asset class contributes to total portfolio risk.</li>
 <li><strong>Historical stress testing</strong> to see how asset classes behave under extreme conditions.</li>
 </ul>
+<h5><span id="what-are-the-steps-of-portfolio-risk-decomposition-methods">What are the steps of <strong>portfolio risk decomposition</strong> methods?</span><a href="#what-are-the-steps-of-portfolio-risk-decomposition-methods" class="header-anchor">ᡣ𐭩</a></h5>
+<ol>
+<li><strong>Calculate the total portfolio risk</strong> (usually standard deviation or variance) based on the weighted returns of each asset class and their covariances.</li>
+<li><strong>Calculate the marginal contribution to risk</strong> for each asset class. This is done by finding the derivative of the portfolio risk with respect to the weight of each asset class, which tells you how much additional risk is added by increasing the allocation to that asset class.</li>
+<li><strong>Calculate the total contribution to portfolio risk</strong> for each asset class. This is done by multiplying the asset class’s weight by its marginal risk contribution.</li>
+<li><strong>Use correlation and covariance</strong> to assess how asset classes interact with one another. For example, negative correlations between assets (like stocks and bonds) can reduce overall portfolio risk.</li>
+</ol>
 <h4><span id="how-do-you-stress-test-a-portfolio-against-market-shocks"><strong>How do you stress test a portfolio against market shocks?</strong></span><a href="#how-do-you-stress-test-a-portfolio-against-market-shocks" class="header-anchor">ᡣ𐭩</a></h4>
 <ul>
 <li>Use <strong>historical stress tests</strong> (e.g., 2008 crisis) and <strong>hypothetical scenarios</strong> (e.g., 200 bps rate hike).</li>
