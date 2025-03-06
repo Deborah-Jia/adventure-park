@@ -449,6 +449,9 @@
 <li><strong>+Rho (ρ):</strong> Measures sensitivity to interest rates.</li>
 </ul>
 <p>So, while Black-Scholes <strong>prices</strong> the option, Greeks help traders <strong>value and manage</strong> the option by predicting how its price will react to market changes.</p>
+<h5><span id="why-do-higher-interest-rates-favor-calls">Why Do Higher Interest Rates Favor Calls?</span><a href="#why-do-higher-interest-rates-favor-calls" class="header-anchor">ᡣ𐭩</a></h5>
+<p>Holding cash becomes more attractive than holding stocks. This increases <strong>demand for call options</strong>, raising their prices.</p>
+<p>The present value of the strike price decreases, making the call option more valuable. C≈S−PV(K)</p>
 <h4><span id="how-would-you-calibrate-a-hull-white-or-black-derman-toy-interest-rate-model"><strong>How would you calibrate a Hull-White or Black-Derman-Toy interest rate model?</strong></span><a href="#how-would-you-calibrate-a-hull-white-or-black-derman-toy-interest-rate-model" class="header-anchor">ᡣ𐭩</a></h4>
 <p>To calibrate these models, you would use market data, like interest rate swaps or futures, to match the model’s output to observed market prices. Calibration involves adjusting the model’s parameters, such as mean reversion speed and volatility, until the model’s simulated interest rate paths fit the historical or market data closely.</p>
 <h4><span id="what-are-some-common-yield-curve-interpolation-techniques"><strong>What are some common yield curve interpolation techniques?</strong></span><a href="#what-are-some-common-yield-curve-interpolation-techniques" class="header-anchor">ᡣ𐭩</a></h4>
@@ -457,10 +460,16 @@
 <h3><span id="3-portfolio-risk-amp-attribution"><strong>3. Portfolio Risk &amp; Attribution</strong></span><a href="#3-portfolio-risk-amp-attribution" class="header-anchor">ᡣ𐭩</a></h3>
 <h4><span id="how-do-you-calculate-and-interpret-ex-ante-and-ex-post-risk-metrics-in-portfolio-management"><strong>How do you calculate and interpret ex-ante and ex-post risk metrics in portfolio management?</strong></span><a href="#how-do-you-calculate-and-interpret-ex-ante-and-ex-post-risk-metrics-in-portfolio-management" class="header-anchor">ᡣ𐭩</a></h4>
 <ul>
-<li><strong>Ex-ante risk</strong> is forward-looking and includes metrics like predicted <strong>VaR, tracking error, and factor exposures</strong> to estimate potential risk before it happens.</li>
+<li><strong>Ex-ante risk</strong> is forward-looking and includes metrics like predicted **VaR and tracking error (s<em>tandard Deviation of (P - B)</em>) to estimate potential risk before it happens.</li>
 <li><strong>Ex-post risk</strong> is backward-looking, using historical returns to measure realized <strong>volatility, Sharpe ratio, and historical drawdowns</strong>.</li>
 <li>Both are important for performance evaluation—ex-ante helps with risk control, while ex-post validates risk models.</li>
 </ul>
+<h5><span id="how-do-you-understand-var">How do you understand VaR?</span><a href="#how-do-you-understand-var" class="header-anchor">ᡣ𐭩</a></h5>
+<p>Value at Risk (VaR) is a widely used <strong>risk measure</strong> that estimates the potential <strong>maximum loss</strong> of a portfolio over a given <strong>time horizon</strong> at a specified <strong>confidence level</strong>. It helps financial institutions, traders, and risk managers quantify and control downside risk.</p>
+<p><strong>Variance-Covariance (Parametric)</strong> – Assumes normal distribution of returns and uses mean/variance to compute VaR. <strong>E® - Z score * sigma</strong></p>
+<h5><span id="how-do-you-understand-historical-drawdown">How do you understand Historical drawdown?</span><a href="#how-do-you-understand-historical-drawdown" class="header-anchor">ᡣ𐭩</a></h5>
+<p>A drawdown is the peak-to-trough of a portfolio during a specific period. It shows how <strong>bad the worst losses were</strong> at different points in the asset’s history. It can be used to measure an investment’s historical risk, compare the performance of different funds, or monitor a portfolio’s performance.</p>
+<p>Drawdown= (Peak Value−Trough Value)/Peak Value</p>
 <h4><span id="can-you-explain-tracking-error-and-how-it-is-used-in-portfolio-management"><strong>Can you explain tracking error and how it is used in portfolio management?</strong></span><a href="#can-you-explain-tracking-error-and-how-it-is-used-in-portfolio-management" class="header-anchor">ᡣ𐭩</a></h4>
 <ul>
 <li><strong>Tracking error</strong> measures the standard deviation of portfolio returns relative to a benchmark.</li>
