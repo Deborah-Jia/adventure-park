@@ -244,26 +244,215 @@
             <h3><span id="1-fixed-income-amp-risk-analytics"><strong>1. Fixed Income &amp; Risk Analytics</strong></span><a href="#1-fixed-income-amp-risk-analytics" class="header-anchor">ᡣ𐭩</a></h3>
 <h4><span id="how-do-you-construct-and-interpret-a-yield-curve"><strong>How do you construct and interpret a yield curve?</strong></span><a href="#how-do-you-construct-and-interpret-a-yield-curve" class="header-anchor">ᡣ𐭩</a></h4>
 <p>To construct a yield curve, you typically use the current interest rates for bonds of different maturities. You can plot the bond yields on the vertical axis and the maturities on the horizontal axis. A yield curve typically reflects expectations of future interest rates and economic conditions. A normal upward-sloping curve indicates expectations of higher rates in the future, while an inverted curve can suggest economic downturns.</p>
+<h5><span id="how-is-interest-rate-different-from-coupon-and-the-difference-bwtween-yield-and-return">How is interest rate different from coupon, and the difference bwtween yield and return?</span><a href="#how-is-interest-rate-different-from-coupon-and-the-difference-bwtween-yield-and-return" class="header-anchor">ᡣ𐭩</a></h5>
+<p>The <strong>coupon rate</strong> is the fixed percentage of the bond’s face value paid as interest to bondholders, while the <strong>interest rate</strong> (or market rate) fluctuates based on central bank policies, inflation, economic conditions, and market demand. and affects the bond’s price. When market interest rates rise above the coupon rate, the bond’s price falls, and vice versa.</p>
+<p><strong>Yield</strong> is the <strong>expected</strong> income from an investment (e.g., bond coupon payments) as a percentage of its price, while <strong>return</strong> is the <strong>actual</strong> total profit or loss, including price changes and interest reinvestment.</p>
+<ul>
+<li><strong>Yield</strong> → Forward-looking, based on <strong>current price</strong> and <strong>income</strong> (e.g., bond coupons). We have coupon yield/norminal yield, Current Yield and Yield to Maturity.</li>
+<li><strong>Return</strong> → Backward-looking, includes <strong>income + capital gains/losses</strong> over a period.</li>
+</ul>
+<p>A bond’s <strong>yield may stay steady</strong>, but its <strong>return can vary</strong> due to price changes. Yield (e.g., YTM) estimates what you expect to earn. Return shows what you actually earned.</p>
+<p>If you <strong>hold a bond until maturity</strong>, your return <strong>should approximate YTM</strong> (assuming no default).</p>
+<p>If you <strong>sell early</strong>, return depends on market conditions, making it <strong>different from yield</strong>.</p>
+<p>Yield is great for <strong>comparing bonds</strong>, but return tells you how <strong>your investment actually performed</strong>.</p>
 <h4><span id="explain-duration-and-convexity-how-are-they-used-in-risk-management"><strong>Explain duration and convexity. How are they used in risk management?</strong></span><a href="#explain-duration-and-convexity-how-are-they-used-in-risk-management" class="header-anchor">ᡣ𐭩</a></h4>
 <p>Duration measures a bond’s price sensitivity to interest rate changes; it helps assess interest rate risk. The higher the duration, the more sensitive the bond price is to interest rate changes. Convexity is the curvature of the bond’s price-yield curve, indicating how much the duration changes as yields change. Both metrics are used to manage interest rate risk, with duration providing the first-order approximation and convexity offering insights into second-order risk.</p>
+<h5><span id="how-many-factors-impacting-duration-and-how">How many factors impacting duration and how?</span><a href="#how-many-factors-impacting-duration-and-how" class="header-anchor">ᡣ𐭩</a></h5>
+<p>Duration measures a bond’s sensitivity to interest rate changes. Several factors impact duration:</p>
+<ol>
+<li><strong>Coupon Rate</strong>:
+<ul>
+<li><strong>Inverse relationship</strong>: The lower the coupon rate, the higher the duration. Lower coupons mean a larger portion of the bond’s value comes from the final principal repayment, which is further in the future.</li>
+</ul>
+</li>
+<li><strong>Maturity</strong>:
+<ul>
+<li><strong>Direct relationship</strong>: The longer the maturity, the higher the duration. Bonds with longer maturity periods have payments spread out over a longer time, increasing sensitivity to interest rate changes.</li>
+</ul>
+</li>
+<li><strong>Interest Rates (Yield to Maturity)</strong>:
+<ul>
+<li><strong>Inverse relationship</strong>: Higher interest rates lower duration. As rates increase, the present value of future cash flows decreases, shortening the bond’s effective duration.</li>
+</ul>
+</li>
+<li><strong>Payment Frequency</strong>:
+<ul>
+<li><strong>Direct relationship</strong>: Bonds that pay interest more frequently (e.g., semi-annual vs. annual) typically have shorter durations because cash flows are received sooner.</li>
+</ul>
+</li>
+<li><strong>Embedded Options (Put, Call, etc.)</strong>:
+<ul>
+<li><strong>Inverse relationship</strong>: Bonds with embedded options (like callable or putable bonds) will have a shorter duration based on how likely the options are exercised, which can alter cash flow timing.</li>
+</ul>
+</li>
+</ol>
+<p>In summary, <strong>duration increases with lower coupon rates, longer maturities, and lower yields</strong>, and it decreases with higher coupon rates and features that shorten the time horizon for cash flows, such as callable bonds.</p>
 <h4><span id="what-are-the-key-risk-factors-affecting-a-fixed-income-portfolio"><strong>What are the key risk factors affecting a fixed income portfolio?</strong></span><a href="#what-are-the-key-risk-factors-affecting-a-fixed-income-portfolio" class="header-anchor">ᡣ𐭩</a></h4>
 <p>Key risk factors include interest rate risk, credit risk, liquidity risk, and inflation risk. Interest rate risk arises from changes in interest rates, credit risk relates to the possibility of issuer default, liquidity risk is concerned with the ability to trade bonds at desired prices, and inflation risk is the erosion of returns due to rising prices.</p>
 <h4><span id="how-would-you-model-credit-risk-in-fixed-income-securities"><strong>How would you model credit risk in fixed income securities?</strong></span><a href="#how-would-you-model-credit-risk-in-fixed-income-securities" class="header-anchor">ᡣ𐭩</a></h4>
-<p>Credit risk can be modeled using probability of default (PD), loss given default (LGD), and exposure at default (EAD). One approach is to use structural models, like the Merton model, or reduced-form models. Credit spreads and rating transitions are also useful indicators of credit risk.</p>
+<p>Credit risk can be modeled using probability of default (PD), loss given default (LGD), and exposure at default (EAD). One approach is to use structural models, like the Merton model, or reduced-form models. Credit spreads and rating transition matrix are also useful indicators of credit risk.</p>
+<h5><span id="how-is-structural-models-different-from-reduced-form-models">How is structural models different from reduced-form models?</span><a href="#how-is-structural-models-different-from-reduced-form-models" class="header-anchor">ᡣ𐭩</a></h5>
+<p>Both approaches are used in credit risk modeling, with structural models being more theory-driven and suited to understanding the economic dynamics of a firm, while reduced-form models are data-driven, more flexible and rely on market-based information.</p>
+<p><strong>Structural Models:</strong></p>
+<ul>
+<li>These models focus on the <em>economic fundamentals</em> of the firm or entity. They attempt to explain the default of a company by modeling its assets and liabilities, with the idea that default occurs when the firm’s assets fall below its liabilities (the firm’s value is insufficient to meet its obligations).</li>
+<li>Example: The <strong>Merton model</strong>, which assumes a firm’s equity as a call option on its assets, with default occurring if the value of the firm’s assets falls below the value of its liabilities at maturity.</li>
+</ul>
+<p><strong>Reduced-Form Models:</strong></p>
+<ul>
+<li>These models focus on <em>statistical relationships</em> and do not require assumptions about the underlying economic processes of the firm. They model default as a random event that follows a certain intensity or hazard rate (probability of default over time).</li>
+<li>Example: The <strong>Jarrow-Turnbull model</strong>, where default occurs based on a default intensity process, and the model focuses on the probability of default without modeling the firm’s asset structure directly.</li>
+</ul>
+<h5><span id="how-to-interept-credit-spreads">How to interept credit spreads?</span><a href="#how-to-interept-credit-spreads" class="header-anchor">ᡣ𐭩</a></h5>
+<p>Credit spreads represent the difference in yield between a corporate bond (or any credit instrument) and a risk-free benchmark bond, typically government bonds of the same maturity (e.g., U.S. Treasury bonds).</p>
+<p>Here’s how to interpret credit spreads:</p>
+<ol>
+<li><strong>Credit Risk</strong>: A larger credit spread indicates higher perceived risk of default by the issuer. If an issuer has a weaker financial profile or a higher likelihood of default, investors will demand a higher yield to compensate for the risk.</li>
+<li><strong>Market Conditions</strong>: In times of economic stress or market uncertainty, credit spreads tend to widen as investors become more risk-averse. During periods of growth and stability, credit spreads may narrow as investors are more willing to take on risk.</li>
+<li><strong>Issuer Quality</strong>: A narrower credit spread indicates lower risk, typically associated with higher-quality issuers (e.g., blue-chip companies with strong financials). A wider spread signals greater risk, usually tied to lower-rated or more volatile issuers.</li>
+<li><strong>Relative Value</strong>: Credit spreads can also be used to assess the relative value of bonds. If a bond has a larger spread compared to similar bonds with the same credit rating and maturity, it may be undervalued or have other risk factors not immediately apparent.</li>
+</ol>
+<p>In summary, credit spreads provide insights into the level of perceived credit risk, market conditions, and the relative riskiness of an issuer compared to a benchmark.</p>
+<h5><span id="how-is-credit-spreads-different-from-i-spread-g-spread-and-z-spread">How is Credit spreads different from i-spread, g-spread, and z-spread?</span><a href="#how-is-credit-spreads-different-from-i-spread-g-spread-and-z-spread" class="header-anchor">ᡣ𐭩</a></h5>
+<p>Credit spreads, i-spread, g-spread, and z-spread are all ways to measure the difference in yield between a corporate bond and a risk-free benchmark bond (typically government bonds), but they each account for different aspects of the yield curve and bond characteristics.</p>
+<h3><span id="1-credit-spread">1. <strong>Credit Spread</strong></span><a href="#1-credit-spread" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li><strong>Definition</strong>: The credit spread is simply the difference in yield between a corporate bond and a comparable risk-free bond (such as a U.S. Treasury bond) of the same maturity. It reflects the additional risk of the corporate bond relative to the government bond, primarily due to credit risk.</li>
+<li><strong>Key Focus</strong>: Credit risk (the risk that the issuer of the bond will default).</li>
+</ul>
+<h3><span id="2-i-spread-interpolated-spread">2. <strong>I-Spread (Interpolated Spread)</strong></span><a href="#2-i-spread-interpolated-spread" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li><strong>Definition</strong>: The I-spread is the difference between the yield of a corporate bond and the interpolated yield of a government bond with the same maturity, using a risk-free government bond yield curve. It is called “interpolated” because it is based on government bond yields for maturities that may not be exactly the same as the corporate bond maturity.</li>
+<li><strong>Key Focus</strong>: It accounts for the bond’s credit risk but does so in terms of a more precise comparison to the risk-free curve, considering the actual maturities of the bonds.</li>
+</ul>
+<h3><span id="3-g-spread-government-spread">3. <strong>G-Spread (Government Spread)</strong></span><a href="#3-g-spread-government-spread" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li><strong>Definition</strong>: The G-spread is the difference between the yield of a corporate bond and the yield of a government bond with the same maturity (usually U.S. Treasuries). The G-spread assumes the government bond is a risk-free bond.</li>
+<li><strong>Key Focus</strong>: It reflects the risk premium that investors demand for holding corporate bonds over government bonds, factoring in the bond’s credit risk.</li>
+</ul>
+<h3><span id="4-z-spread-zero-volatility-spread">4. <strong>Z-Spread (Zero-Volatility Spread)</strong></span><a href="#4-z-spread-zero-volatility-spread" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li><strong>Definition</strong>: The Z-spread is the constant spread that, when added to the risk-free yield curve, makes the present value of a bond’s cash flows equal to its market price. It accounts for the credit risk and the term structure of interest rates, including changes in interest rates and the shape of the yield curve.</li>
+<li><strong>Key Focus</strong>: The Z-spread takes into account all future cash flows of a bond (coupons and principal payments) and adjusts for the shape of the yield curve, providing a more precise measure of the credit risk over the life of the bond.</li>
+</ul>
+<h3><span id="summary-of-differences">Summary of Differences:</span><a href="#summary-of-differences" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li><strong>Credit Spread</strong>: Simple difference between corporate bond yield and risk-free bond yield of the same maturity.</li>
+<li><strong>I-Spread</strong>: Difference between corporate bond yield and interpolated government bond yield.</li>
+<li><strong>G-Spread</strong>: Difference between corporate bond yield and government bond yield of the same maturity.</li>
+<li><strong>Z-Spread</strong>: The spread that, when added to the risk-free yield curve, matches the bond’s price, considering all cash flows.</li>
+</ul>
+<p>In essence, while the credit spread gives a basic measure of credit risk, the I-spread, G-spread, and Z-spread provide increasingly sophisticated measures of that risk, with the Z-spread being the most comprehensive as it accounts for the time value of money and future cash flows.</p>
+<h5><span id="is-oas-larger-than-z-spread">Is OAS larger than Z spread?</span><a href="#is-oas-larger-than-z-spread" class="header-anchor">ᡣ𐭩</a></h5>
+<p>OAS (Option-Adjusted Spread) is a measure of the spread between a bond’s yield and the risk-free yield curve after adjusting for embedded options (such as call or put options). It considers the potential impact of an option on the bond’s cash flows.</p>
+<p>For callable bonds, the OAS is <strong>smaller</strong> than the Z-spread because the call option benefits the issuer, reducing the bondholder’s expected return.<strong>OAS = Z-Spread - Option Value (in yield terms)</strong></p>
+<p>For putable bonds, the OAS is <strong>larger</strong> than the Z-spread because the put option benefits the bondholder, increasing the expected return. <strong>OAS = Z-Spread + Option Value (in yield terms)</strong></p>
+<p>For option-free bonds, it’s the same.</p>
 <h4><span id="explain-historical-var-vs-monte-carlo-var-which-one-is-more-appropriate-for-a-fixed-income-portfolio"><strong>Explain Historical VaR vs. Monte Carlo VaR. Which one is more appropriate for a fixed income portfolio?</strong></span><a href="#explain-historical-var-vs-monte-carlo-var-which-one-is-more-appropriate-for-a-fixed-income-portfolio" class="header-anchor">ᡣ𐭩</a></h4>
 <p>Historical VaR uses historical data to estimate potential losses, while Monte Carlo VaR simulates future price paths using random sampling. For a fixed income portfolio, Monte Carlo is generally preferred because it allows for more flexibility and can model more complex portfolios with non-linear risks, like options or structured products.</p>
+<h5><span id="in-which-case-is-historical-var-better-than-monte-carlo-var">In which case is <strong>Historical VaR</strong> Better than <strong>Monte Carlo VaR</strong>?</span><a href="#in-which-case-is-historical-var-better-than-monte-carlo-var" class="header-anchor">ᡣ𐭩</a></h5>
+<p><strong>Historical Value at Risk (VaR)</strong> is often preferred over <strong>Monte Carlo VaR</strong> in the following scenarios:</p>
+<ol>
+<li><strong>When Market Conditions Are Stable</strong>
+<ul>
+<li>Historical VaR relies on past data to estimate future risk. If market conditions are relatively stable, past returns can be a reliable indicator of future risks.</li>
+</ul>
+</li>
+<li><strong>When There Is Limited Computational Power</strong>
+<ul>
+<li>Historical VaR is straightforward and computationally efficient since it only requires sorting past return data, whereas Monte Carlo VaR requires intensive simulations.</li>
+</ul>
+</li>
+<li><strong>When You Want to Capture Real-World Fat-Tailed Events</strong>
+<ul>
+<li>Since Historical VaR is based on actual market movements, it naturally incorporates past extreme events, such as financial crises, whereas Monte Carlo simulations depend on the assumed distribution and may underestimate tail risk.</li>
+</ul>
+</li>
+<li><strong>When There Are No Complex Derivatives in the Portfolio</strong>
+<ul>
+<li>Historical VaR works well for portfolios consisting mainly of linear instruments (stocks, bonds, FX), but struggles with options and path-dependent derivatives. Monte Carlo VaR is more suitable when complex derivatives require dynamic modeling.</li>
+</ul>
+</li>
+<li><strong>When Data Is Sufficient and Representative</strong>
+<ul>
+<li>If there is a long and representative historical dataset that includes different market regimes (booms, crashes), Historical VaR can provide a realistic risk estimate without requiring additional modeling assumptions.</li>
+</ul>
+</li>
+</ol>
+<h3><span id="when-monte-carlo-var-is-preferable">When <strong>Monte Carlo VaR</strong> Is Preferable</span><a href="#when-monte-carlo-var-is-preferable" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li>If market conditions are highly volatile or changing rapidly.</li>
+<li>If the portfolio contains complex derivatives or non-linear instruments.</li>
+<li>If a flexible and forward-looking risk assessment is required.</li>
+</ul>
+<p>Thus, <strong>Historical VaR is better when market conditions are stable, computational resources are limited, and the portfolio is primarily composed of linear instruments.</strong></p>
+<p><a href>###</a></p>
 <hr>
 <h3><span id="2-derivatives-amp-yield-curve-modeling"><strong>2. Derivatives &amp; Yield Curve Modeling</strong></span><a href="#2-derivatives-amp-yield-curve-modeling" class="header-anchor">ᡣ𐭩</a></h3>
 <h4><span id="what-are-the-main-differences-between-forward-rates-spot-rates-and-par-rates"><strong>What are the main differences between forward rates, spot rates, and par rates?</strong></span><a href="#what-are-the-main-differences-between-forward-rates-spot-rates-and-par-rates" class="header-anchor">ᡣ𐭩</a></h4>
 <p>Spot rates are the yields on zero-coupon bonds for specific maturities. Forward rates represent future interest rates implied by the spot curve. Par rates are the yields at which a bond would trade at par (i.e., price equals face value) for a specific maturity. Forward rates are derived from spot rates, while par rates are used to price bonds at par.</p>
+<h5><span id="how-do-you-understand-term-straucture-how-is-it-different-from-yield-curve">How do you understand term straucture? How is it different from yield curve?</span><a href="#how-do-you-understand-term-straucture-how-is-it-different-from-yield-curve" class="header-anchor">ᡣ𐭩</a></h5>
+<p><strong>Term structure</strong> refers to the relationship between interest rates (or yields) and different maturities of bonds. It represents how interest rates change over time for bonds with identical credit risk but varying maturities. A yield curve is a <strong>graphical representation</strong> of the term structure.</p>
+<ol>
+<li><strong>Yield Curve Shapes</strong>
+<ul>
+<li><strong>Upward-Sloping (Normal Curve)</strong>: Long-term yields are higher than short-term yields, indicating expectations of economic growth and potential inflation.</li>
+<li><strong>Downward-Sloping (Inverted Curve)</strong>: Short-term yields are higher than long-term yields, often signaling an economic slowdown or recession.</li>
+<li><strong>Flat Curve</strong>: Yields are similar across different maturities, often suggesting uncertainty or a transition between economic cycles.</li>
+</ul>
+</li>
+<li><strong>Factors Influencing Term Structure</strong>
+<ul>
+<li><strong>Expectations Theory</strong>: Future interest rates drive the yield curve (e.g., if rates are expected to rise, long-term yields will be higher).</li>
+<li><strong>Liquidity Preference Theory</strong>: Investors demand higher yields for long-term bonds due to uncertainty.</li>
+<li><strong>Market Segmentation Theory</strong>: Different investor groups prefer different maturities, affecting supply and demand at different points on the curve.</li>
+</ul>
+</li>
+</ol>
+<p>The term structure helps in:</p>
+<ul>
+<li><strong>Bond Pricing</strong>: Longer-duration bonds are more sensitive to interest rate changes.</li>
+<li><strong>Risk Management</strong>: Investors use yield curve movements to assess market expectations.</li>
+<li><strong>Macroeconomic Indicators</strong>: Yield curve inversions are seen as recession warnings.</li>
+</ul>
+<h4><span id="can-you-explain-how-to-value-an-interest-rate-swap"><strong>Can you explain how to value an interest rate swap?</strong></span><a href="#can-you-explain-how-to-value-an-interest-rate-swap" class="header-anchor">ᡣ𐭩</a></h4>
+<p>An interest rate swap can be valued by calculating the present value of the fixed and floating cash flows. The fixed cash flows are calculated using the fixed rate and discounted to the present using the relevant discount curve. The floating cash flows are based on a reference rate, such as LIBOR, and are typically valued using the forward rate for the reference.</p>
+<h5><span id="why-euribor-is-better-than-libor">Why Euribor is better than libor?</span><a href="#why-euribor-is-better-than-libor" class="header-anchor">ᡣ𐭩</a></h5>
+<p>Euribor is considered better than LIBOR for several reasons:</p>
+<ol>
+<li><strong>Transparency &amp; Governance</strong> – Euribor is based on actual interbank lending transactions within the Eurozone, whereas LIBOR was often based on panel banks’ estimates, making it vulnerable to manipulation (as seen in the LIBOR scandal).</li>
+<li><strong>Regulatory Oversight</strong> – Euribor is regulated under the <strong>EU Benchmarks Regulation (BMR)</strong>, ensuring stricter governance and reliability, whereas LIBOR was phased out due to credibility issues.</li>
+<li><strong>Market Representation</strong> – Euribor reflects the borrowing costs of a broader set of banks in the Eurozone, making it more representative of the European financial market, whereas LIBOR was primarily dominated by a few major global banks.</li>
+<li><strong>Sustainability &amp; Continuity</strong> – LIBOR was discontinued for most currencies by 2021 due to its flaws, while Euribor remains widely used and has been reformed to enhance its robustness and reliability.</li>
+</ol>
+<h4><span id="how-would-you-build-a-derivatives-pricing-model"><strong>How would you build a derivatives pricing model?</strong></span><a href="#how-would-you-build-a-derivatives-pricing-model" class="header-anchor">ᡣ𐭩</a></h4>
+<p>A derivatives pricing model is typically built by using the <strong>no-arbitrage principle</strong>, which ensures that no risk-free profit opportunities exist. For options, the <strong>Black-Scholes</strong> model is commonly used, and for interest rate derivatives, <strong>modeling the term structure</strong> using the <strong>Hull-White</strong> or <strong>Black-Karasinski</strong> models is often appropriate. Calibration of these models to market data is essential to ensure accurate pricing.</p>
+<h5><span id="what-are-the-inputs-to-black-scholes-model-and-what-are-the-greeks">What are the inputs to Black-Scholes Model and what are the Greeks?</span><a href="#what-are-the-inputs-to-black-scholes-model-and-what-are-the-greeks" class="header-anchor">ᡣ𐭩</a></h5>
+<ol>
+<li><strong>Stock Price (S)</strong> – The current price of the underlying asset.</li>
+<li><strong>Strike Price (K)</strong> – The predetermined price at which the option can be exercised.</li>
+<li><strong>Time to Expiration (T - t)</strong> – The time remaining until the option expires, usually expressed in years.</li>
+<li><strong>Risk-Free Interest Rate ®</strong> – The continuously compounded risk-free rate over the option’s life.</li>
+<li><strong>Volatility (σ)</strong> – The standard deviation of the underlying asset’s returns, reflecting market uncertainty.</li>
+</ol>
+<p>Greeks are related to <strong>valuation</strong>, not just pricing.</p>
+<ul>
+<li><strong>Pricing</strong>: The Black-Scholes formula gives a price based on inputs like stock price, strike price, volatility, time to expiration, and interest rates.</li>
+<li><strong>Valuation</strong>: Greeks measure how an option’s price will change when these inputs change. They help traders assess risk and make pricing adjustments.</li>
+</ul>
+<p>Greeks quantify the <strong>sensitivity</strong> of the option price to different factors.</p>
+<ul>
+<li><strong>+Delta (Δ):</strong> Measures sensitivity to the underlying asset price. Positively related for a call option.</li>
+<li><strong>Gamma (Γ):</strong> Measures the rate of change of Delta, affecting convexity. No direct impact</li>
+<li><strong>+Theta (Θ):</strong> Measures the impact of time decay, showing how the option loses value over time.</li>
+<li><strong>+Vega (ν):</strong> Measures sensitivity to volatility.</li>
+<li><strong>+Rho (ρ):</strong> Measures sensitivity to interest rates.</li>
+</ul>
+<p>So, while Black-Scholes <strong>prices</strong> the option, Greeks help traders <strong>value and manage</strong> the option by predicting how its price will react to market changes.</p>
 <h4><span id="how-would-you-calibrate-a-hull-white-or-black-derman-toy-interest-rate-model"><strong>How would you calibrate a Hull-White or Black-Derman-Toy interest rate model?</strong></span><a href="#how-would-you-calibrate-a-hull-white-or-black-derman-toy-interest-rate-model" class="header-anchor">ᡣ𐭩</a></h4>
 <p>To calibrate these models, you would use market data, like interest rate swaps or futures, to match the model’s output to observed market prices. Calibration involves adjusting the model’s parameters, such as mean reversion speed and volatility, until the model’s simulated interest rate paths fit the historical or market data closely.</p>
 <h4><span id="what-are-some-common-yield-curve-interpolation-techniques"><strong>What are some common yield curve interpolation techniques?</strong></span><a href="#what-are-some-common-yield-curve-interpolation-techniques" class="header-anchor">ᡣ𐭩</a></h4>
 <p>Common techniques include linear interpolation, cubic spline, and Nelson-Siegel models. Linear interpolation is straightforward but may not handle the curve’s curvature well, while cubic splines offer smoothness. Nelson-Siegel is often used for fitting yield curves to bond market data as it provides a good balance between flexibility and stability.</p>
-<h4><span id="can-you-explain-how-to-value-an-interest-rate-swap"><strong>Can you explain how to value an interest rate swap?</strong></span><a href="#can-you-explain-how-to-value-an-interest-rate-swap" class="header-anchor">ᡣ𐭩</a></h4>
-<p>An interest rate swap can be valued by calculating the present value of the fixed and floating cash flows. The fixed cash flows are calculated using the fixed rate and discounted to the present using the relevant discount curve. The floating cash flows are based on a reference rate, such as LIBOR, and are typically valued using the forward rate for the reference.</p>
-<h4><span id="how-would-you-build-a-derivatives-pricing-model"><strong>How would you build a derivatives pricing model?</strong></span><a href="#how-would-you-build-a-derivatives-pricing-model" class="header-anchor">ᡣ𐭩</a></h4>
-<p>A derivatives pricing model is typically built by using the <strong>no-arbitrage principle</strong>, which ensures that no risk-free profit opportunities exist. For options, the <strong>Black-Scholes</strong> model is commonly used, and for interest rate derivatives, <strong>modeling the term structure</strong> using the <strong>Hull-White</strong> or <strong>Black-Karasinski</strong> models is often appropriate. Calibration of these models to market data is essential to ensure accurate pricing.</p>
 <hr>
 <h3><span id="3-portfolio-risk-amp-attribution"><strong>3. Portfolio Risk &amp; Attribution</strong></span><a href="#3-portfolio-risk-amp-attribution" class="header-anchor">ᡣ𐭩</a></h3>
 <h4><span id="how-do-you-calculate-and-interpret-ex-ante-and-ex-post-risk-metrics-in-portfolio-management"><strong>How do you calculate and interpret ex-ante and ex-post risk metrics in portfolio management?</strong></span><a href="#how-do-you-calculate-and-interpret-ex-ante-and-ex-post-risk-metrics-in-portfolio-management" class="header-anchor">ᡣ𐭩</a></h4>
