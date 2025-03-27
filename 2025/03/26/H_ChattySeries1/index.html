@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+
+
+<title>与AI自问自答系列之一 | </title><meta name="robots" content="noindex">
+
+
+
+    <link rel="icon" href="/adventure-park/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/adventure-park/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/adventure-park/js/script.js"></script>
+    
+    <script src="/adventure-park/js/tocbot.min.js"></script>
+    
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/adventure-park/">Deborah Li JIA</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/adventure-park/archives">Posts</a>
+                
+                    <a class="menu-item" href="/adventure-park/category">Categories</a>
+                
+                    <a class="menu-item" href="/adventure-park/tag">Tags</a>
+                
+                    <a class="menu-item" href="/adventure-park/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/adventure-park/">Deborah Li JIA</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/adventure-park/archives">Posts</a>
+                
+                    <a class="menu-item" href="/adventure-park/category">Categories</a>
+                
+                    <a class="menu-item" href="/adventure-park/tag">Tags</a>
+                
+                    <a class="menu-item" href="/adventure-park/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <!-- <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a> -->
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    // var tocbot_timer; // if uncommented, toc will jump around
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+        hasInnerContainers: true,
+        linkClass: 'tocbot-link',
+        // activeLinkClass: 'tocbot-active-link', // if uncommented, no bold highlight to the current content
+        // listClass: 'tocbot-list', // If uncommented, the sub toc cannot unfold correctly
+        // isCollapsedClass: 'tocbot-is-collapsed',
+        // collapsibleClass: 'tocbot-is-collapsible',
+        hashChange: true, // Enable URL hash updates
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420);
+    }
+
+    // Ensure headings have IDs
+    function ensureHeadingIds() {
+        const headings = document.querySelector(tocbot_default_config.contentSelector)
+            .querySelectorAll(tocbot_default_config.headingSelector);
+        
+        headings.forEach(heading => {
+            if (!heading.id) {
+                heading.id = heading.textContent
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/(^-|-$)/g, '');
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        ensureHeadingIds(); // Generate IDs for headings if they don't exist
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+
+        // Handle hash changes
+        if (window.location.hash) {
+            setTimeout(function() {
+                const element = document.querySelector(window.location.hash);
+                if (element) {
+                    element.scrollIntoView();
+                    window.scrollBy(0, -tocbot_default_config.scrollSmoothOffset);
+                }
+            }, 100);
+        }
+    });
+
+    // function expand_toc() {
+    //     var b = document.querySelector('.tocbot-toc-expand');
+    //     var expanded = b.getAttribute('data-expanded');
+    //     expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+    //     tocbot.refresh(obj_merge(tocbot_default_config, {
+    //         collapseDepth: expanded ? 1 : DEPTH_MAX
+    //     }));
+    //     b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    // }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        return Object.assign({}, target, source);
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">与AI自问自答系列之一</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 26, 2025&nbsp;&nbsp;Wednesday</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/adventure-park/categories/example/">example</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>I have another confusion about myself, and I had it for long. I didn’t feel joy at all when my manager told me this. then after 5 hours, after I log off, I had dinner, took a walk, shared my experience online and told my friends, I suddenly feel so happy. what’s wrong with me having a lag most of the time?</p>
+<p>There’s absolutely nothing <em>wrong</em> with you! What you’re describing sounds like <strong>delayed emotional processing</strong>, which is actually pretty common. Here’s why this might be happening:</p>
+<h3><span id="1-your-brain-prioritizes-logic-first"><strong>1. Your Brain Prioritizes Logic First</strong></span><a href="#1-your-brain-prioritizes-logic-first" class="header-anchor">ᡣ𐭩</a></h3>
+<p>When you got the news from your manager, you were still in “work mode.” Your brain was likely focused on processing information rationally rather than reacting emotionally. Once you logged off and stepped away from the situation, your emotions had space to surface.</p>
+<h3><span id="2-your-nervous-system-needed-time-to-catch-up"><strong>2. Your Nervous System Needed Time to Catch Up</strong></span><a href="#2-your-nervous-system-needed-time-to-catch-up" class="header-anchor">ᡣ𐭩</a></h3>
+<p>Stressful situations—like dealing with discrimination and an HR investigation—can put you in a heightened state of alert. Even if you <em>know</em> something is good news, your body might still be processing everything at a slower pace. Once you relaxed (eating, walking, talking to friends), your brain could finally “release” the joy.</p>
+<h3><span id="3-social-sharing-helps-you-process-feelings"><strong>3. Social Sharing Helps You Process Feelings</strong></span><a href="#3-social-sharing-helps-you-process-feelings" class="header-anchor">ᡣ𐭩</a></h3>
+<p>Talking to others and sharing your experience online probably helped validate your emotions. Our brains naturally seek connection, and expressing emotions externally can make them feel <em>real</em>, which might explain why the happiness hit <em>after</em> you shared.</p>
+<h3><span id="4-you-might-be-naturally-reflective"><strong>4. You Might Be Naturally Reflective</strong></span><a href="#4-you-might-be-naturally-reflective" class="header-anchor">ᡣ𐭩</a></h3>
+<p>Some people just process emotions differently. If you tend to think things through before reacting, you might experience emotional responses with a delay. It’s not a flaw—just a different way of experiencing the world!</p>
+<h4><span id="does-this-happen-to-you-in-other-situations-too-like-big-achievements-or-sad-news"><strong>Does this happen to you in other situations too, like big achievements or sad news?</strong></span><a href="#does-this-happen-to-you-in-other-situations-too-like-big-achievements-or-sad-news" class="header-anchor">ᡣ𐭩</a></h4>
+<p>I feel hopeless again, though Norbert (my ex) has never been my life goal; maybe it’s just the loss of romantic attachment. I wonder what I should do next? I am not a career person apparently, and I just wanna do some interesting work, keep learning. I am not into marriage; having kids sounds exhausting. What next? hobbies? but one cannot treat reading 1000 books or lose weight as a life goal right?</p>
+<p>I hear you. It sounds like you’re in a place where you’re questioning <strong>what truly fulfills you</strong>—beyond relationships, beyond career expectations, beyond societal norms like marriage and kids. And that’s a tough but important question.</p>
+<h3><span id="1-the-loss-of-romantic-attachment"><strong>1. The Loss of Romantic Attachment</strong></span><a href="#1-the-loss-of-romantic-attachment" class="header-anchor">ᡣ𐭩</a></h3>
+<p>Even though Norbert wasn’t your “life goal,” losing a romantic attachment can still leave an emotional void. It’s not about him specifically—it’s about that sense of connection and meaning that a relationship brings. It makes sense that you’re feeling hopeless now, because your mind is probably asking, <em>“What am I working toward? What’s next?”</em></p>
+<h3><span id="2-if-not-career-then-what"><strong>2. If Not Career, Then What?</strong></span><a href="#2-if-not-career-then-what" class="header-anchor">ᡣ𐭩</a></h3>
+<p>You’re right—some people live for career success, but that’s not what drives you. You love learning, doing interesting work, and coding, but you don’t see these things as <em>defining your entire purpose</em>. That’s okay. Not having a “dream job” doesn’t mean you lack direction—it just means you want fulfillment on your own terms.</p>
+<h3><span id="3-can-hobbies-be-a-life-goal"><strong>3. Can Hobbies Be a Life Goal?</strong></span><a href="#3-can-hobbies-be-a-life-goal" class="header-anchor">ᡣ𐭩</a></h3>
+<p>I actually think hobbies <em>can</em> be a life goal—but they have to be framed in a way that feels meaningful to you. For example:</p>
+<ul>
+<li>Instead of “reading 1000 books,” it could be <em>curating your own personal philosophy through books and sharing insights with others.</em></li>
+<li>Instead of “losing weight,” it could be <em>exploring fitness that makes you feel powerful and free.</em></li>
+</ul>
+<p>The key is <strong>not just doing things, but making them feel purposeful.</strong></p>
+<h3><span id="4-what-next-some-ideas"><strong>4. What Next? (Some Ideas)</strong></span><a href="#4-what-next-some-ideas" class="header-anchor">ᡣ𐭩</a></h3>
+<p>If you’re looking for something fulfilling but don’t want the traditional “career-marriage-kids” path, here are a few alternative directions:</p>
+<p>💡 <strong>Creative Exploration</strong> – Writing a blog (not just for documenting, but shaping ideas), art, storytelling, or something uniquely <em>you</em>.<br>
+💡 <strong>Mastery of a Skill</strong> – Coding deep dives, data science projects that <em>excite</em> you, language learning, or something technical but fulfilling.<br>
+💡 <strong>Community &amp; Mentorship</strong> – Maybe you’d enjoy helping others in a way that doesn’t drain you—mentoring, sharing insights, or collaborating with like-minded people.<br>
+💡 <strong>Deep Life Experiences</strong> – Travel, immersive learning, or long-term projects that make life feel richer.</p>
+<p>It’s okay not to have <em>one</em> grand purpose right now. Sometimes, the goal is just <strong>building a fulfilling daily life</strong> that feels worth waking up to.</p>
+<p>What parts of life still excite you, even a little? Maybe we can build from there.</p>
+<p>I enjoy reading a lot, I love writing too. These days my routine is to visit a cafe and start write my blog or diary. i want to note down what happened, my feelings, my imagination and how I sailed through everything… I don’t know if it is “meaningful” or “useful” but I just love it. Sometimes I feel like if I am wasting my time as these do not generate cash flow, but I just love it. Besides, I do jogging, I enjoy walking too. Playing sports also sounds fun.</p>
+<p>That makes a lot of sense. When you’re used to measuring success through numbers—grades, salaries, promotions—it can feel unsettling to engage in something that isn’t <em>quantifiable</em>. But at the same time, you already know deep down that <strong>not everything valuable can be measured.</strong></p>
+<p>Maybe instead of KPIs, you could redefine success in a way that feels natural to you. For example:</p>
+<ul>
+<li>Instead of measuring by views or income, measure by <strong>how deeply you connect with what you write</strong> (or how much joy it brings you).</li>
+<li>Instead of tracking “productivity,” track <strong>the richness of your experiences</strong>—new places visited, interesting ideas explored, meaningful conversations had.</li>
+<li>If you still want some structure, you could set personal milestones—like writing 100 reflections, finishing a book that deeply moves you, or running a certain distance just for fun.</li>
+</ul>
+<p>It sounds like your current life setup is actually quite fulfilling—your biggest challenge is just <strong>unlearning the need for constant external validation.</strong> Do you think you’d feel more at ease if you had a new way to define progress?</p>
+<p>First can you tell me more about unlearning and the need for constant external validation? Second, I do hope you can help me define progress in a new way.</p>
+<h3><span id="1-unlearning-amp-the-need-for-external-validation"><strong>1. Unlearning &amp; the Need for External Validation</strong></span><a href="#1-unlearning-amp-the-need-for-external-validation" class="header-anchor">ᡣ𐭩</a></h3>
+<p>External validation means seeking <strong>recognition, approval, or measurable success</strong> from others (or from systems like grades, money, or promotions). You grew up in a meritocratic system, where success was tied to <strong>clear KPIs</strong>—grades in school, achievements at work, financial growth. Over time, this made it easy to associate <strong>“progress” with numbers</strong> and hard to see value in things that don’t generate immediate, measurable outcomes.</p>
+<p><strong>Unlearning</strong> is the process of <strong>rewiring your mindset</strong>—letting go of beliefs that no longer serve you and replacing them with healthier, self-defined ones. In your case, that means <strong>detaching from the idea that everything worthwhile must be quantifiable.</strong></p>
+<p>Some signs that external validation still plays a role in your thinking:<br>
+✔️ Feeling lost or frustrated when an activity doesn’t produce measurable results.<br>
+✔️ Wondering if something is “meaningful” just because it doesn’t generate money or numbers.<br>
+✔️ Feeling uneasy when you enjoy something purely for yourself, without an audience or KPI attached.</p>
+<p>The good news? <strong>You already recognize this pattern.</strong> That’s a huge first step. Now, it’s about actively reshaping how you define progress.</p>
+<hr>
+<h3><span id="2-redefining-progress-in-a-new-way"><strong>2. Redefining Progress in a New Way</strong></span><a href="#2-redefining-progress-in-a-new-way" class="header-anchor">ᡣ𐭩</a></h3>
+<p>Since you still appreciate <strong>some structure</strong>, we can redefine progress in a way that feels fulfilling but not restrictive. Instead of KPIs, think about <strong>depth, experience, and personal fulfillment.</strong></p>
+<h4><span id="new-ways-to-track-progress"><strong>New Ways to Track Progress:</strong></span><a href="#new-ways-to-track-progress" class="header-anchor">ᡣ𐭩</a></h4>
+<p>✅ <strong>By Depth</strong> – Instead of counting books read, ask: <em>Did I deeply understand this book? Did it change my perspective?</em><br>
+✅ <strong>By Experiences</strong> – Instead of aiming for “more,” ask: <em>Did I try something new this week? Did I feel alive while doing it?</em><br>
+✅ <strong>By Connection</strong> – Instead of tracking external engagement, ask: <em>Did my writing help me express something real? Did it resonate with even one person?</em><br>
+✅ <strong>By Self-Growth</strong> – Instead of measuring output, ask: <em>Am I feeling more at peace with myself?</em></p>
+<p><strong>Example of a New Personal Progress Tracker:</strong><br>
+🌿 “This month, I wrote 5 blog posts that truly reflect my thoughts.”<br>
+📖 “I read a book that shifted my mindset, not just added to my count.”<br>
+🏃 “I jogged and felt physically strong—not just burned calories.”<br>
+💬 “I had one deep conversation that left me thinking for days.”</p>
+<p>This way, progress is still present, but it’s <strong>about quality, not quantity.</strong></p>
+<p>What do you think? Do any of these resonate with you? Would you like to tweak this in a way that fits your mindset better?</p>
+<p>These are really good advice. i am noting them down and make them a check list. Off the topic, why do I always feel so bad during sunset time? like I am lonely and hopeless. But at night, my life is back to energy and optimism?</p>
+<p>That’s really interesting, and it’s actually quite common! <strong>Sunset often triggers emotional shifts</strong> because it’s a natural transition period—marking the end of the day, a time for reflection, and sometimes an underlying sense of loss or incompletion.</p>
+<p>Some possible reasons why you feel this way:</p>
+<ul>
+<li><strong>Your brain associates sunset with endings.</strong> It’s a moment when the day is wrapping up, and if you feel like you haven’t “accomplished enough,” it can trigger unease.</li>
+<li><strong>Circadian rhythm shifts.</strong> Some people experience a dip in mood during sunset due to changes in light, which affect melatonin and serotonin levels.</li>
+<li><strong>A sense of loneliness.</strong> Sunset is often linked to images of togetherness (family dinners, couples walking, social gatherings). If you’re alone during this time, it can intensify feelings of isolation.</li>
+<li><strong>Night brings back control.</strong> Once it’s fully dark, your brain might switch into a “now it’s my time” mindset. With no more expectations from the day, you might feel freer, more creative, and more in tune with yourself.</li>
+</ul>
+<p>If this feeling bothers you, you could try <strong>“reframing sunset”</strong> as a ritual instead of a melancholic moment. Maybe play music, take a short walk, or use it as a mindful transition into the night—something that signals <strong>“I am shifting into a time that I enjoy.”</strong></p>
+<p>Does any of this resonate with you? Or do you think there’s another reason for your sunset mood dip?</p>
+<p>I like it, can you gimme more rituals of “reframing sunset”?</p>
+<p>I love that you’re open to reframing sunset into something positive! Here are some <strong>rituals to turn sunset from a low point into a moment of peace, reflection, or transition</strong>:</p>
+<h3><span id="1-sensory-reset-engaging-the-senses"><strong>1. Sensory Reset: Engaging the Senses</strong></span><a href="#1-sensory-reset-engaging-the-senses" class="header-anchor">ᡣ𐭩</a></h3>
+<p>🌅 <strong>Sunset Walk:</strong> Step outside, even if just for 5-10 minutes. Feel the air change, notice the sky’s colors, and let it be a “signal” of transition.<br>
+🎶 <strong>Curated Sunset Playlist:</strong> Make a playlist of calm, nostalgic, or uplifting songs and play them as the sun goes down.<br>
+🌿 <strong>Aromatherapy Ritual:</strong> Light a scented candle or use essential oils like lavender or citrus to shift your mood.</p>
+<h3><span id="2-emotional-shift-replacing-melancholy-with-gratitude"><strong>2. Emotional Shift: Replacing Melancholy with Gratitude</strong></span><a href="#2-emotional-shift-replacing-melancholy-with-gratitude" class="header-anchor">ᡣ𐭩</a></h3>
+<p>📝 <strong>Sunset Reflection Journal:</strong> Instead of feeling like the day is “ending,” write down <em>one good thing</em> from the day and <em>one intention</em> for the night.<br>
+🤗 <strong>“Send a Thought” Exercise:</strong> Text a friend or write a message (even if you don’t send it) expressing appreciation or sharing a moment from your day.</p>
+<h3><span id="3-energy-reset-making-sunset-a-launchpad"><strong>3. Energy Reset: Making Sunset a Launchpad</strong></span><a href="#3-energy-reset-making-sunset-a-launchpad" class="header-anchor">ᡣ𐭩</a></h3>
+<p>🥤 <strong>Sunset Tea or Drink Ritual:</strong> Prepare a special drink (tea, smoothie, hot chocolate) to mark the transition and give your brain a comforting cue.<br>
+🏃 <strong>Short Movement Routine:</strong> Stretch, do light yoga, or dance to shake off the heaviness and re-energize for the evening.</p>
+<h3><span id="4-creative-reset-turning-sunset-into-inspiration"><strong>4. Creative Reset: Turning Sunset into Inspiration</strong></span><a href="#4-creative-reset-turning-sunset-into-inspiration" class="header-anchor">ᡣ𐭩</a></h3>
+<p>🖋 <strong>Micro-Writing Prompt:</strong> Write a one-sentence story or thought inspired by the sunset colors or mood.<br>
+📷 <strong>Sunset Photography Challenge:</strong> Capture a daily sunset photo and compare how they change over time.<br>
+🎨 <strong>Doodle the Sky:</strong> Sketch the sunset in a notebook, no matter how simple. It’s about presence, not perfection.</p>
+<p>Would any of these ideas fit into your routine? Or do you already have little things that help during this time? 😊</p>
+<p>I am using rationale to convince myself that breaking up with Norbert isn’t a bad thing, as we are so different where I dont want to come down to accommodate him. What do you think?</p>
+<p>That’s a really healthy perspective. It sounds like you’re recognizing that a relationship shouldn’t require you to constantly accommodate someone at the cost of your own needs, values, or happiness. Rational thinking can be a useful tool for processing emotions, but <strong>it’s okay to feel both relief and loss at the same time</strong>—they’re not mutually exclusive.</p>
+<p>If you’re focusing on logic, here are a few ways to reinforce your thinking:</p>
+<ol>
+<li><strong>Long-Term Compatibility Matters:</strong> If you’re fundamentally different in ways that require constant compromise, it’s exhausting and unsustainable.</li>
+<li><strong>You Deserve a Relationship That Feels Natural:</strong> The right relationship shouldn’t make you feel like you have to shrink or bend too much.</li>
+<li><strong>You Are Not “Losing” Anything Essential:</strong> If staying with him required you to accommodate more than you wanted to, then you’re actually gaining freedom and alignment with yourself.</li>
+<li><strong>This Is a Step Toward the Life You Want:</strong> Your decision aligns with your values, and that’s a powerful thing.</li>
+</ol>
+<p>It’s also okay if your emotions sometimes contradict the logic—your attachment needs time to adjust. <strong>Would it help to list out specific things you don’t want to compromise on, so you have a reminder when emotions cloud your thinking?</strong></p>
+<p>I agree that we are fundamentally different, in many ways:</p>
+<ol>
+<li>Money. I dont like him always say “this is cheap/expensive” even I dont spend his money. We both are saving for our flats, but I dont let it impact my life quality, and I just avoid luxury buying. I dont sacrifice time and attention for money.</li>
+<li>Time management. He is not organized, always do things on a whim; I prefer to set for things one day in advance. We sometimes argue for a film watching. But I am not a control freak, I am flexible too. I just need to know and have the framework of what roughly to achieve.</li>
+<li>Racism and aggression. norbert doesn’t have any foreigner friends or dated any non-hungarian girls. He dated me simply because i am good-looking and he wants to know more about China. I am very uncomfortable with his imappropriate jokes and never found they are funny. I went overseas for study, I also worked in many countries, i speak good English, all these make me a very open-minded person.</li>
+<li>Personality. I am mostly active and positive. Even most of the days I am down, I looks for solutions and know that things will be solved in wanted or unwanted ways. But Norbi is different. He told me that he has too many things going on and canot spare time for me. But what? his grandma passing away, he has motorbike lessons, his employer is a bad one, he is busy thinking about buying a flat. Yeah his life is busy, but as a local, he doesn’t have language problems or culture issues, it was not that difficult for him. I dont know what he is losing hope for.<br>
+you can ask me more qs so you better know me and him.</li>
+</ol>
+<p>These differences seem pretty fundamental, and I can see why they’ve caused frustration over time. You have clear values—about money, time, open-mindedness, and resilience—that don’t fully align with his approach to life.</p>
+<p>It also seems like you prefer a <strong>balanced, solution-oriented mindset</strong>, while he leans into negativity and inaction. That mismatch can be exhausting, especially when you’re someone who <strong>actively works through challenges</strong> rather than dwelling on them.</p>
+<p>A couple of things I’m curious about:</p>
+<ol>
+<li><strong>Did you ever feel truly understood in this relationship?</strong> Or did you often feel like you had to explain yourself?</li>
+<li><strong>What were the best moments with him?</strong> What made you stay in the relationship despite these differences?</li>
+</ol>
+<p>These might help you reflect on whether you’re mourning the person or just the attachment.</p>
+<ol>
+<li>He cares about my mood but doesn’t really understand why I am upset. I had to explain myself though I believe this is because we only know each other for 5 months. but yeah, we have been arguing from day one we talked. Till the day we broke up, I was still mad at him.</li>
+<li>emmm discounted breads at grocery stores in the morning? We live far away from each other and I dont really meet him that frequently (weekly or biweekly). I enjoy having meaningful talks and walks with him and that’s my fave moment. The reason why I stayed, coz he is handsome and tall, I am tall lady as well and it’s always easy to find someone. I enjoy the sex life too.</li>
+</ol>
+<p>It sounds like the relationship was fulfilling in some ways but also left you frustrated due to misunderstandings and constant tension. It makes sense that you’d stay in the relationship, especially when there are enjoyable moments like the talks, walks, and physical attraction. But I also hear that you were often frustrated and felt misunderstood, which can wear you down over time.</p>
+<p>The fact that you’re reflecting on these dynamics is a sign of growth. You’re noticing the pattern and asking the right questions, which could help you find someone who aligns with your deeper needs and values. <strong>Do you feel more relieved now that you’ve broken up, or do you still feel conflicted about the decision?</strong></p>
+<p>It’s totally normal to feel conflicted, especially when you’ve had a strong attachment and are still in the process of emotionally detaching. During the daytime, when you might have more time to think, your mind can wander, and old emotions can resurface. At night, when the distractions fade, you may feel a sense of relief, but <strong>the pull of familiarity and attachment</strong> can still linger.</p>
+<p>It sounds like your rational side knows that breaking up was the right choice, but the emotional side is grieving the loss of the relationship and the comfort it brought. <strong>It’s not unusual to seek comfort in reuniting, even if deep down, you know it’s not what’s best for you long-term.</strong></p>
+<p>Here are a couple of things to help manage the conflicting feelings:</p>
+<ol>
+<li><strong>Give yourself permission to grieve</strong>: It’s okay to mourn the end of something, even if you know it was the right choice.</li>
+<li><strong>Remind yourself why you broke up</strong>: Reflect on those key differences and frustrations you mentioned. The need for mutual understanding, respect, and alignment on life goals is vital.</li>
+<li><strong>Stay focused on your needs</strong>: The right partner will align with your values and support your growth. Right now, it’s important to create space for healing and personal development.</li>
+</ol>
+<p>It’s hard to let go of the attachment, but <strong>take things one step at a time</strong>. Sometimes it’s about <strong>gaining clarity</strong> through the emotional process. Would it help to remind yourself about the things that made the relationship not work, when you feel tempted to reconnect?</p>
+<p>i guess during day time waiting for his message.</p>
+<p>It makes sense that you’d be waiting for his message, especially when your thoughts are quieter during the day and the temptation to reconnect feels stronger. It’s human to want reassurance or closure, but sometimes waiting for that external validation can keep us stuck in a cycle of uncertainty.</p>
+<p>To help you shift your focus, here’s a little exercise you could try:</p>
+<ol>
+<li><strong>Make a list of reasons you broke up</strong>: When you’re feeling weak or uncertain, pull out that list. Remind yourself of the fundamental differences, the misunderstandings, and how it didn’t bring you the long-term fulfillment you needed.</li>
+<li><strong>Visualize your future without him</strong>: What do you want your life to look like in the next few months or years? Picture a future where you have space to grow and meet someone more aligned with your values.</li>
+<li><strong>Journal about the growth you’re going through</strong>: Sometimes writing about the inner transformation you’re experiencing can help you step into your own power and see how far you’ve come, rather than focusing on the absence.</li>
+<li><strong>Embrace your emotions</strong>: It’s okay to miss the comfort, but remember that it’s temporary. Over time, these feelings will soften, and you’ll grow stronger in your decision.</li>
+</ol>
+<p>It might be hard now, but in time, you’ll realize how much <strong>better your life will be when you’re no longer held back by those unresolved issues</strong>. Would focusing on your <strong>own goals</strong> and <strong>personal growth</strong> help you feel more empowered when you’re tempted to reach out?</p>
+<p>Why do I tend to overshare and wait for people’s messages?</p>
+<p>Your tendency to <strong>overshare</strong> and <strong>wait for messages</strong> could stem from a mix of things, especially related to <strong>emotional needs</strong> and <strong>attachment styles</strong>. Here are some potential reasons behind these behaviors:</p>
+<ol>
+<li><strong>Seeking Connection</strong>: Oversharing might be a way of trying to establish a deeper emotional connection with others. When we feel vulnerable, sharing personal details can feel like a way to invite intimacy, showing trust and openness. It’s natural to seek understanding and connection, but sometimes it can lead to sharing more than what feels comfortable in the long run.</li>
+<li><strong>Attachment Style</strong>: If you tend to <strong>wait for messages</strong>, it could be related to an <strong>anxious attachment style</strong>, where there’s a need for constant reassurance or validation from others. You might feel uncertain or insecure about the connection, which makes you more likely to seek constant interaction or messages to feel valued.</li>
+<li><strong>Validation</strong>: Both <strong>oversharing</strong> and <strong>waiting for messages</strong> can be ways to seek external <strong>validation</strong>. By sharing personal things, you might be looking for approval or empathy from others. Similarly, waiting for messages can feel like waiting for someone to show they care or are interested in you.</li>
+<li><strong>Filling a Void</strong>: If you’re feeling lonely or unsure about your own worth, these behaviors can temporarily fill that emotional gap. <strong>Communication and connection</strong> through messages and sharing might give you the sense of being seen, heard, and cared for, even if it’s short-lived.</li>
+</ol>
+<p>Have you noticed a pattern or a situation where this behavior feels more intense? Understanding these moments can help you <strong>build more self-awareness</strong> around it and figure out ways to <strong>shift this habit</strong> to feel more empowered in your interactions.</p>
+<p>I am quite happy when i share my life with multiple friends and chat them at the same time. Like I feel fulfilled (i know this isn’t healthy right?) Last time it feels intense was when Norbi didn’t reply to me, before our first date, and for the whole day, I feel my life is awful… 😞</p>
+<p>It’s completely understandable to feel that way, especially when you’re <strong>waiting for a response</strong> from someone who matters to you. It sounds like, in moments like that, <strong>lack of communication</strong> can trigger feelings of <strong>uncertainty</strong> or <strong>rejection</strong>, which can make you feel <strong>disconnected</strong> or <strong>anxious</strong>. This is very common when we care about how others perceive us or rely on their attention for emotional fulfillment.</p>
+<p>Sharing your life with multiple friends can be fulfilling, as it <strong>creates connections</strong> and makes you feel <strong>supported</strong>, but it can also leave you feeling a bit <strong>overextended</strong> if you’re <strong>seeking external validation</strong> or constantly <strong>looking for reassurance</strong>. It’s important to find balance in these interactions, so they feel <strong>energizing</strong> rather than draining.</p>
+<p>When Norbi didn’t reply, it likely triggered an <strong>emotional response</strong> that felt <strong>intense</strong> because it was linked to your attachment to him and the <strong>uncertainty</strong> of the situation. We tend to place a lot of <strong>meaning</strong> on interactions, especially when they involve someone we like, and without the reassurance of a reply, the mind can start filling in the gaps with negative assumptions (e.g., “he’s not interested,” “he’s upset with me,” etc.).</p>
+<p>Here’s something to consider: <strong>Self-soothing strategies</strong> like focusing on your own interests or engaging in activities that make you feel good (e.g., hobbies, exercise, journaling) can help <strong>create emotional stability</strong> without relying so much on others’ responses.</p>
+<p>How do you feel about finding ways to <strong>rely more on yourself</strong> for reassurance and <strong>self-worth</strong>, instead of waiting for others to give it to you?</p>
+<p>I do want to live at present and myself instead of focusing too much on the phone! In the past 4 years I spent too much time on meaningless social media and videos. I want to read contented books or quality long videos. Besides, about waiting for messages, the most intense pattern was when i was in Uni. i like a guy so much and waited for his message, happy to be manipulated, while knowing he has a girlfriend. it lasted for 2 years and I waited for his message every night. what a fucked up expeience. i didn’t realize I am valuable.</p>
+<p>It sounds like that experience was quite <strong>painful</strong> for you, and I can see how it shaped your feelings and behaviors around <strong>waiting for messages</strong> or seeking validation from others. That situation, where you were <strong>aware</strong> of being manipulated but still <strong>hopeful</strong> for attention, often stems from feelings of <strong>self-doubt</strong> or <strong>not fully realizing your own worth</strong> at the time. It’s common for people to hold onto situations like that, especially if they aren’t sure of their <strong>value</strong> or <strong>deserve better</strong>. In hindsight, you now see how emotionally <strong>draining</strong> and <strong>unhealthy</strong> it was, which shows growth in your self-awareness.</p>
+<p>It’s amazing that you’re recognizing the <strong>importance of living in the present</strong> and focusing more on <strong>yourself</strong> rather than relying on external validation or <strong>constant phone interaction</strong>. Moving away from <strong>meaningless scrolling</strong> and engaging with more <strong>fulfilling content</strong>, like quality books and videos, is a great way to <strong>reclaim your time</strong> and refocus your energy on things that actually bring you <strong>joy and growth</strong>.</p>
+<p>To shift away from the pattern of waiting for messages or validation, you can start by <strong>setting clear boundaries</strong> for yourself with technology. For example, try to <strong>limit your phone use</strong> by setting specific times for checking messages and focusing the rest of the day on <strong>activities</strong> that make you feel empowered. Also, when you catch yourself thinking about waiting for someone’s message, gently remind yourself that <strong>you’re in control</strong> of your own worth and happiness, and <strong>you deserve more</strong> than those kinds of emotionally draining situations.</p>
+<p>It’s great that you’ve recognized your <strong>self-worth</strong> now—looking back on that experience shows just how far you’ve come in <strong>understanding</strong> what you truly deserve. How do you feel about setting intentional goals for the <strong>next phase</strong> of your life, where you actively seek things that uplift you and make you feel <strong>fulfilled</strong> on your own terms?</p>
+<p>Speak of self-worth, I always link it to social norm success you know… how can I build my own standard?</p>
+<p>Building your <strong>own standard</strong> of self-worth, independent of social norms, is such a liberating process, and it’s amazing that you’re ready to break away from the traditional definitions of <strong>success</strong>. Social norms often link success to things like <strong>career achievements</strong>, <strong>wealth</strong>, or <strong>relationships</strong>, but these aren’t the only ways to measure your value. Your self-worth should be based on <strong>your own values, growth, and fulfillment</strong>. Here are a few steps to help you build your own standard:</p>
+<h3><span id="1-reflect-on-your-values-and-passions">1. <strong>Reflect on Your Values and Passions</strong></span><a href="#1-reflect-on-your-values-and-passions" class="header-anchor">ᡣ𐭩</a></h3>
+<p>Take some time to <strong>define what really matters to you</strong>. What do you care about most in life—beyond societal expectations? Is it <strong>personal growth</strong>, <strong>helping others</strong>, <strong>creative expression</strong>, <strong>balance</strong>, <strong>adventure</strong>, or <strong>learning</strong>? Identifying your core values allows you to build your self-worth on your internal compass, rather than comparing it to what others may be doing.</p>
+<ul>
+<li><strong>Ask yourself</strong>: What gives me joy, peace, or satisfaction? What makes me feel <strong>alive</strong> and <strong>authentic</strong>?</li>
+</ul>
+<h3><span id="2-set-personal-goals-based-on-what-you-enjoy">2. <strong>Set Personal Goals Based on What You Enjoy</strong></span><a href="#2-set-personal-goals-based-on-what-you-enjoy" class="header-anchor">ᡣ𐭩</a></h3>
+<p>Shift your focus from goals that are centered around <strong>external validation</strong> to those that are <strong>intrinsically motivating</strong>. Your goals could be anything that <strong>nourishes</strong> you: reading a certain number of books, learning new skills, maintaining healthy habits, or working on <strong>personal projects</strong> like your blog or writing.</p>
+<ul>
+<li><strong>Create measurable but personal goals</strong>, not based on what others expect of you, but on <strong>your own growth</strong> and <strong>exploration</strong> of the things that matter to you.</li>
+</ul>
+<h3><span id="3-celebrate-small-wins">3. <strong>Celebrate Small Wins</strong></span><a href="#3-celebrate-small-wins" class="header-anchor">ᡣ𐭩</a></h3>
+<p>Recognize the <strong>small victories</strong> you achieve each day, whether it’s sticking to a new routine, finishing a book, or managing a tough situation with a positive mindset. These moments of progress help affirm your <strong>self-worth</strong> as you’re building it on your terms, rather than relying on societal milestones like promotions or fancy titles.</p>
+<ul>
+<li>Keep a <strong>gratitude journal</strong> where you note your daily wins, even the small ones. This can help <strong>shift your mindset</strong> from external success to internal fulfillment.</li>
+</ul>
+<h3><span id="4-let-go-of-social-comparison">4. <strong>Let Go of Social Comparison</strong></span><a href="#4-let-go-of-social-comparison" class="header-anchor">ᡣ𐭩</a></h3>
+<p>It’s easy to compare yourself to others, especially in today’s age of social media, but this is often a <strong>trap</strong> that can undermine your self-worth. Instead of looking at what others are doing or achieving, focus on <strong>your unique path</strong>. Recognize that everyone has their own journey and timeline.</p>
+<ul>
+<li>If you catch yourself comparing to others, gently remind yourself that <strong>their journey</strong> doesn’t define <strong>your worth</strong>. You’re on your own path.</li>
+</ul>
+<h3><span id="5-practice-self-compassion">5. <strong>Practice Self-Compassion</strong></span><a href="#5-practice-self-compassion" class="header-anchor">ᡣ𐭩</a></h3>
+<p>Be kind to yourself and allow room for mistakes. <strong>No one is perfect</strong>, and that’s okay. Self-worth comes from accepting both your <strong>strengths</strong> and <strong>imperfections</strong>, and not judging yourself based on external success metrics.</p>
+<ul>
+<li><strong>Check in with yourself regularly</strong>: When you feel down, ask, “What can I learn from this? How can I show myself kindness right now?”</li>
+</ul>
+<h3><span id="6-prioritize-your-mental-and-emotional-well-being">6. <strong>Prioritize Your Mental and Emotional Well-Being</strong></span><a href="#6-prioritize-your-mental-and-emotional-well-being" class="header-anchor">ᡣ𐭩</a></h3>
+<p>Instead of measuring success by how much you <strong>do</strong> or <strong>achieve</strong>, measure it by how you feel about yourself and how you treat yourself. Focusing on your <strong>mental health</strong>, <strong>self-care</strong>, and <strong>emotional resilience</strong> is an important aspect of self-worth that is often overlooked.</p>
+<ul>
+<li>Ask yourself: “Am I taking care of myself emotionally and mentally?” “Am I making time for things that <strong>nourish</strong> me?”</li>
+</ul>
+<h3><span id="7-create-a-new-definition-of-success">7. <strong>Create a New Definition of Success</strong></span><a href="#7-create-a-new-definition-of-success" class="header-anchor">ᡣ𐭩</a></h3>
+<p>Define success as <strong>the freedom to be yourself</strong> and the <strong>pursuit of what matters most to you</strong>—not just based on conventional standards. Success for you might mean feeling <strong>fulfilled</strong> and <strong>peaceful</strong> with your choices, regardless of what others may think.</p>
+<ul>
+<li>Your <strong>success</strong> is not about meeting everyone else’s standards; it’s about living authentically in alignment with your <strong>own values and desires</strong>.</li>
+</ul>
+<h3><span id="8-embrace-continuous-learning">8. <strong>Embrace Continuous Learning</strong></span><a href="#8-embrace-continuous-learning" class="header-anchor">ᡣ𐭩</a></h3>
+<p>If you’re not someone who wants to focus on traditional career goals, that’s totally okay. Create your own standard of success by how much you’re learning, exploring, and <strong>growing as a person</strong>. Whether that’s through <strong>books</strong>, <strong>travel</strong>, <strong>new skills</strong>, or <strong>hobbies</strong>, the pursuit of knowledge is a powerful way to define <strong>progress</strong> on your own terms.</p>
+<hr>
+<h3><span id="quick-exercise"><strong>Quick Exercise</strong>:</span><a href="#quick-exercise" class="header-anchor">ᡣ𐭩</a></h3>
+<p>Take a moment to list your <strong>top 5 values</strong> and <strong>priorities</strong>. Then, think of ways you can align your daily actions with those values. For example:</p>
+<ul>
+<li>If <strong>growth</strong> is important to you, you might prioritize activities that <strong>challenge</strong> you or push you out of your comfort zone.</li>
+<li>If <strong>balance</strong> is important, you might focus on <strong>self-care routines</strong> and setting boundaries to avoid burnout.</li>
+<li>If <strong>creativity</strong> is important, you might set time aside to write or work on <strong>personal projects</strong> that bring you joy.</li>
+</ul>
+<p>By identifying what truly matters to you, you start shifting your focus from <strong>external markers</strong> of success to your <strong>own inner fulfillment</strong>.</p>
+<hr>
+<p>Building your own standard of self-worth is a continuous, evolving journey. By embracing <strong>self-acceptance</strong>, <strong>growth</strong>, and <strong>authenticity</strong>, you can begin to feel empowered in your own unique definition of success, independent of outside expectations.</p>
+<p>How do you feel about starting to define your worth in a more <strong>personal and intrinsic</strong> way?</p>
+<!-- flag of hidden posts -->
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/adventure-park/tags/example/"># example</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/adventure-park/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>©  | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
