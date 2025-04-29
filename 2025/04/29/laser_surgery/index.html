@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+
+
+<title>近视激光手术资料整理 | </title>
+
+
+
+    <link rel="icon" href="/adventure-park/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/adventure-park/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/adventure-park/js/script.js"></script>
+    
+    <script src="/adventure-park/js/tocbot.min.js"></script>
+    
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/adventure-park/">Deborah Li JIA</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/adventure-park/archives">Posts</a>
+                
+                    <a class="menu-item" href="/adventure-park/category">Categories</a>
+                
+                    <a class="menu-item" href="/adventure-park/tag">Tags</a>
+                
+                    <a class="menu-item" href="/adventure-park/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/adventure-park/">Deborah Li JIA</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/adventure-park/archives">Posts</a>
+                
+                    <a class="menu-item" href="/adventure-park/category">Categories</a>
+                
+                    <a class="menu-item" href="/adventure-park/tag">Tags</a>
+                
+                    <a class="menu-item" href="/adventure-park/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <!-- <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a> -->
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    // var tocbot_timer; // if uncommented, toc will jump around
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+        hasInnerContainers: true,
+        linkClass: 'tocbot-link',
+        // activeLinkClass: 'tocbot-active-link', // if uncommented, no bold highlight to the current content
+        // listClass: 'tocbot-list', // If uncommented, the sub toc cannot unfold correctly
+        // isCollapsedClass: 'tocbot-is-collapsed',
+        // collapsibleClass: 'tocbot-is-collapsible',
+        hashChange: true, // Enable URL hash updates
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420);
+    }
+
+    // Ensure headings have IDs
+    function ensureHeadingIds() {
+        const headings = document.querySelector(tocbot_default_config.contentSelector)
+            .querySelectorAll(tocbot_default_config.headingSelector);
+        
+        headings.forEach(heading => {
+            if (!heading.id) {
+                heading.id = heading.textContent
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/(^-|-$)/g, '');
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        ensureHeadingIds(); // Generate IDs for headings if they don't exist
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+
+        // Handle hash changes
+        if (window.location.hash) {
+            setTimeout(function() {
+                const element = document.querySelector(window.location.hash);
+                if (element) {
+                    element.scrollIntoView();
+                    window.scrollBy(0, -tocbot_default_config.scrollSmoothOffset);
+                }
+            }, 100);
+        }
+    });
+
+    // function expand_toc() {
+    //     var b = document.querySelector('.tocbot-toc-expand');
+    //     var expanded = b.getAttribute('data-expanded');
+    //     expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+    //     tocbot.refresh(obj_merge(tocbot_default_config, {
+    //         collapseDepth: expanded ? 1 : DEPTH_MAX
+    //     }));
+    //     b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    // }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        return Object.assign({}, target, source);
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">近视激光手术资料整理</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">April 29, 2025&nbsp;&nbsp;Tuesday</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/adventure-park/categories/example/">example</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>术后效果好不好，有没有并发症，和你的术前检查完的眼部情况有很大关系。检查完符合手术要求的：风险小。</p>
+<p>手术方式选择：</p>
+<ul>
+<li>全飞秒：在所有条件都满足时，首选全飞秒。</li>
+<li>半飞秒：适合高散光，切口较大，眼干更严重，终生有角膜瓣移位风险。</li>
+<li>晶体植入（ICL）：风险极高，不要轻信“可逆性”的说法。</li>
+</ul>
+<ol>
+<li>
+<p>角膜厚度：参考范围：500～550um 最低不低于480um，最好500um以上，术后不低于400um</p>
+</li>
+<li>
+<p>角膜曲率： 正常范围：39D～46D 术后风险：曲率超出范围可能会存在圆锥角膜，视力回退的风险！</p>
+</li>
+<li>
+<p>暗瞳值： 正常标准&lt;7mm 手术风险：超过6.8mm不建议全飞秒，超过8mm不建议近视手术，防止术后可能出现眩光</p>
+</li>
+<li>
+<p>干眼标准：But/泪液分泌值＞10秒，且睑板腺正常。手术风险：干眼患者不适合半飞秒，but低于5正常范围视为严重干眼，不建议进行激光类手术</p>
+</li>
+<li>
+<p>Kappa角： 正常范围：0~5 手术风险:Kappa大于0.2度不建议进行全飞秒，可能会导致手术偏心切割</p>
+</li>
+<li>
+<p>眼压： 正常范围：10～21mmHg 手术风险：双眼眼压差超过5mmHg可能提示青光眼风险，不建议进行晶体植入</p>
+</li>
+<li>
+<p>前房深度与前房角 前房深度标准:&gt;2.8mm    前房角标准:&gt;35 手术风险:前房深度和前房角的大小决定能否进行晶体植入。虽然部分医生能够在前房深度 2.7mm的情况下进行手术，但手术风险较高</p>
+</li>
+<li>
+<p>内皮细胞数： 最低标准：不低于2000/mm2 手术风险：晶体植入的基本要求，内皮细胞会随着年龄增长而较少，数量下降一定程度，可能会带来风险</p>
+</li>
+</ol>
+<hr>
+<h2><span id="pre-surgery-checklist-zhu-qian-zhun-bei-qing-dan">📝 <strong>Pre-Surgery Checklist</strong> （术前准备清单）</span><a href="#pre-surgery-checklist-zhu-qian-zhun-bei-qing-dan" class="header-anchor">ᡣ𐭩</a></h2>
+<h3><span id="1-before-the-pre-operative-consultation">✅ 1. <strong>Before the pre-operative consultation</strong></span><a href="#1-before-the-pre-operative-consultation" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li>Stop wearing <strong>contact lenses</strong>:
+<ul>
+<li>Soft lenses: at least <strong>5 days before</strong> the consultation</li>
+<li>Hard lenses / RGP: at least <strong>2 weeks before</strong></li>
+</ul>
+</li>
+<li>Prepare a list of <strong>medical history</strong> and current medications.</li>
+<li>Avoid <strong>eye makeup</strong>, lotion, or perfume on the day of your consultation.</li>
+</ul>
+<h3><span id="2-before-the-surgery-1-2-weeks-prior">✅ 2. <strong>Before the surgery (1–2 weeks prior)</strong></span><a href="#2-before-the-surgery-1-2-weeks-prior" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li>Confirm your <strong>surgery type</strong> with the doctor (e.g., ZYOPTIX FEMTO ELITE, ZYOPTIX ELITE, or EPI-LASIK ELITE).</li>
+<li>Arrange for <strong>a friend or taxi</strong> to accompany you on surgery day—you should not drive.</li>
+<li>Buy prescribed <strong>eye drops</strong> in advance (antibiotic, steroid, artificial tears).</li>
+<li>Avoid alcohol and <strong>caffeine</strong> 24 hours before the procedure.</li>
+</ul>
+<h3><span id="3-on-the-day-of-surgery">✅ 3. <strong>On the day of surgery</strong></span><a href="#3-on-the-day-of-surgery" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li>Wear <strong>comfortable clothing</strong>, no makeup, no perfume or hairspray.</li>
+<li>Bring <strong>sunglasses</strong> (UV protection!) for after surgery.</li>
+<li>Bring your <strong>insurance card</strong>, ID, and any payment documentation.</li>
+</ul>
+<hr>
+<h2><span id="post-surgery-care-instructions-zhu-hou-hu-li-zhi-nan">🛟 <strong>Post-Surgery Care Instructions</strong> （术后护理指南）</span><a href="#post-surgery-care-instructions-zhu-hou-hu-li-zhi-nan" class="header-anchor">ᡣ𐭩</a></h2>
+<h3><span id="first-24-72-hours">👁️ <strong>First 24–72 hours</strong></span><a href="#first-24-72-hours" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li><strong>Do not rub your eyes!</strong></li>
+<li>Rest as much as possible. <strong>Keep eyes closed</strong> when possible.</li>
+<li>Use all prescribed <strong>eye drops on schedule</strong>.</li>
+<li>Wear <strong>eye shields</strong> or sleep goggles while sleeping.</li>
+<li>Avoid all screens (phones, laptops, TVs) for at least 24 hours.</li>
+</ul>
+<h3><span id="first-week">😎 <strong>First week</strong></span><a href="#first-week" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li>Avoid <strong>makeup</strong>, creams, and lotions near the eyes.</li>
+<li>Avoid <strong>smoking areas</strong>, dusty or windy environments.</li>
+<li>No swimming, saunas, or strenuous sports.</li>
+<li>Avoid washing hair in a way that water may enter the eyes.</li>
+<li>Wear sunglasses <strong>outdoors</strong> even on cloudy days.</li>
+</ul>
+<h3><span id="first-month">📅 <strong>First month</strong></span><a href="#first-month" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li>Resume <strong>normal screen use gradually</strong>, depending on eye comfort.</li>
+<li>Continue to avoid contact sports and <strong>direct eye trauma</strong>.</li>
+<li>Use artificial tears regularly if experiencing <strong>dry eye</strong>.</li>
+<li>Attend all follow-up appointments as scheduled.</li>
+</ul>
+<hr>
+<h2><span id="bonus-tips">✨ Bonus Tips</span><a href="#bonus-tips" class="header-anchor">ᡣ𐭩</a></h2>
+<ul>
+<li>Set alarms/reminders for eye drop times.</li>
+<li>Store eye drops in the fridge—they feel more soothing cold.</li>
+<li>Stay <strong>hydrated</strong> and eat a diet rich in omega-3s for recovery.</li>
+<li>Track symptoms in a small notebook to report at follow-ups.</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/adventure-park/tags/example/"># example</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/adventure-park/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/adventure-park/2025/04/08/cognitive_intervention/">身体懂了我心里的悄悄话</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>©  | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
