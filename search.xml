@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>DS/DE/FE Course Plan</title>
+      <link href="/adventure-park/2025/08/05/H_DE_CoursePlan/"/>
+      <url>/adventure-park/2025/08/05/H_DE_CoursePlan/</url>
+      
+        <content type="html"><![CDATA[<h2><span id="citizen-developer-at-the-firm">Citizen Developer at the Firm</span><a href="#citizen-developer-at-the-firm" class="header-anchor">ᡣ𐭩</a></h2><ul><li>[ ] Bronze Track</li><li>[ ] Silver Track</li><li>[ ] Gold Track</li></ul><h2><span id="data-engineer"><u>Data Engineer</u>:</span><a href="#data-engineer" class="header-anchor">ᡣ𐭩</a></h2><h3><span id="datacamp-track-associate-data-engineer-in-sql">DataCamp Track: Associate Data Engineer in SQL</span><a href="#datacamp-track-associate-data-engineer-in-sql" class="header-anchor">ᡣ𐭩</a></h3><ul><li>[x] 1. Understanding Data Engineering</li><li>[x] 2. Introduction to SQL</li><li>[x] 3. Intermediate SQL</li><li>[x] 4. Joining Data in SQL</li><li>[x] 5. Introduction to Relational Databases in SQL</li><li>[ ] 6. Database Design</li><li>[ ] 7. Data Warehousing Concepts</li><li>[ ] 8. Introduction to Snowflake SQL</li><li>[ ] 9. Understanding Data Visualization</li><li>[x] Project: Analyzing Students’ Mental Health</li><li>[ ] Project: Exploring London’s Travel Network</li><li>[ ] Tutorial: How to Install PostgreSQL on Windows and Max OS X</li><li>[ ] Assessment: Data Management Theory</li></ul><h3><span id="datacamp-track-data-engineer-in-python">DataCamp Track: Data Engineer in Python</span><a href="#datacamp-track-data-engineer-in-python" class="header-anchor">ᡣ𐭩</a></h3><ul><li>[ ] 1. Understanding Cloud Computing</li><li>[ ] 2. Introduction to Python for Developers</li><li>[ ] 3. Intermediate Python for Developers</li><li>[ ] 4. Introduction to Importing Data in Python</li><li>[ ] 5. Intermediate Importing Data in Python</li><li>[ ] 6. Introduction to APIs in Python</li><li>[ ] 7. Cleaning Data in Python</li><li>[ ] 8. Writing Efficient Python Code</li><li>[ ] 9. Streamlined Data Ingestion with pandas</li><li>[x] 10. Introduction to Git</li><li>[ ] 11. Intermediate Git</li><li>[ ] 12. Software Engineering Principles in Python</li><li>[ ] 13. ETL and ELT in Python</li><li>[ ] 14. Introduction to Apache Airflow in Python</li><li>[ ] Project: Cleaning Bank Marketing Campaign Data</li><li>[ ] Project: Performing a Code Review</li><li>[ ] Project: Building a Retail Data Pipeline</li></ul><h3><span id="associate-data-engineer-in-snowflake">Associate Data Engineer in Snowflake</span><a href="#associate-data-engineer-in-snowflake" class="header-anchor">ᡣ𐭩</a></h3><ul><li>[x] 1. Introduction to SQL</li><li>[x] 2. Intermediate SQL</li><li>[ ] 3. Introduction to Snowflake</li><li>[ ] 4. Joining Data in SQL</li><li>[ ] 5. Introduction to Snowflake SQL</li><li>[ ] 6. Data Manipulation in Snowflake</li><li>[ ] 7. Database Design</li><li>[ ] 8. Introduction to Data Modeling in Snowflake</li><li>[ ] Project: Producing Soccer Insights for a Sports Media Agency</li><li>[ ] Tutorial: Snowflake Data Ingestion: A Comprehensive Guide</li><li>[ ] Tutorial: Building Data Pipelines in Snowflake: A Beginner-Friendly Guide</li></ul><h3><span id="internal-resources-de-courses">Internal Resources: DE courses:</span><a href="#internal-resources-de-courses" class="header-anchor">ᡣ𐭩</a></h3><ul><li>[ ] Text</li></ul><h3><span id="professional-data-engineer-in-python">Professional Data Engineer in Python</span><a href="#professional-data-engineer-in-python" class="header-anchor">ᡣ𐭩</a></h3><ul><li>[ ] 1. Understanding Modern Data Architecture</li><li>[ ] 2. Introduction to Shell</li><li>[ ] 3. Containerization and Virtualization Concepts</li><li>[ ] 4. Introduction to dbt</li><li>[ ] 5. Introduction to Object-Oriented Programming in Python</li><li>[ ] 6. Introduction to NoSQL</li><li>[ ] 7. DevOps Concepts</li><li>[ ] 8. Introduction to Testing in Python</li><li>[ ] 9. Introduction to Docker</li><li>[ ] 10. Introduction to PySpark</li><li>[ ] 11. Big Data Fundamentals with PySpark</li><li>[ ] 12. Data Processing in Shell</li><li>[ ] 13. Streaming Concepts</li><li>[ ] 14. Introduction to Apache Kafka</li><li>[ ] 15. Introduction to Kubernetes</li><li>[ ] Project: Debugging Code</li><li>[ ] Project: Cleaning an Orders Dataset with PySpark</li><li>[ ] Webinar: Impactful Data Engineering—with Datadog’s Wouter de Bie</li></ul><h3><span id="miscellaneous-project-on-github">Miscellaneous Project on Github</span><a href="#miscellaneous-project-on-github" class="header-anchor">ᡣ𐭩</a></h3><ul><li>[ ] Extension: Analyzing Students’ Mental Health</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> example </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> example </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>身体懂了我心里的悄悄话</title>
       <link href="/adventure-park/2025/04/08/cognitive_intervention/"/>
       <url>/adventure-park/2025/04/08/cognitive_intervention/</url>
