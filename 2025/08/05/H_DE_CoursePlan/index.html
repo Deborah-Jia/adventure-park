@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+
+
+<title>DS/DE/FE Course Plan | </title><meta name="robots" content="noindex">
+
+
+
+    <link rel="icon" href="/adventure-park/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/adventure-park/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/adventure-park/js/script.js"></script>
+    
+    <script src="/adventure-park/js/tocbot.min.js"></script>
+    
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/adventure-park/">Deborah Li JIA</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/adventure-park/archives">Posts</a>
+                
+                    <a class="menu-item" href="/adventure-park/category">Categories</a>
+                
+                    <a class="menu-item" href="/adventure-park/tag">Tags</a>
+                
+                    <a class="menu-item" href="/adventure-park/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/adventure-park/">Deborah Li JIA</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/adventure-park/archives">Posts</a>
+                
+                    <a class="menu-item" href="/adventure-park/category">Categories</a>
+                
+                    <a class="menu-item" href="/adventure-park/tag">Tags</a>
+                
+                    <a class="menu-item" href="/adventure-park/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <!-- <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a> -->
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    // var tocbot_timer; // if uncommented, toc will jump around
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+        hasInnerContainers: true,
+        linkClass: 'tocbot-link',
+        // activeLinkClass: 'tocbot-active-link', // if uncommented, no bold highlight to the current content
+        // listClass: 'tocbot-list', // If uncommented, the sub toc cannot unfold correctly
+        // isCollapsedClass: 'tocbot-is-collapsed',
+        // collapsibleClass: 'tocbot-is-collapsible',
+        hashChange: true, // Enable URL hash updates
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420);
+    }
+
+    // Ensure headings have IDs
+    function ensureHeadingIds() {
+        const headings = document.querySelector(tocbot_default_config.contentSelector)
+            .querySelectorAll(tocbot_default_config.headingSelector);
+        
+        headings.forEach(heading => {
+            if (!heading.id) {
+                heading.id = heading.textContent
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/(^-|-$)/g, '');
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        ensureHeadingIds(); // Generate IDs for headings if they don't exist
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+
+        // Handle hash changes
+        if (window.location.hash) {
+            setTimeout(function() {
+                const element = document.querySelector(window.location.hash);
+                if (element) {
+                    element.scrollIntoView();
+                    window.scrollBy(0, -tocbot_default_config.scrollSmoothOffset);
+                }
+            }, 100);
+        }
+    });
+
+    // function expand_toc() {
+    //     var b = document.querySelector('.tocbot-toc-expand');
+    //     var expanded = b.getAttribute('data-expanded');
+    //     expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+    //     tocbot.refresh(obj_merge(tocbot_default_config, {
+    //         collapseDepth: expanded ? 1 : DEPTH_MAX
+    //     }));
+    //     b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    // }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        return Object.assign({}, target, source);
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">DS/DE/FE Course Plan</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 5, 2025&nbsp;&nbsp;Tuesday</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/adventure-park/categories/example/">example</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2><span id="citizen-developer-at-the-firm">Citizen Developer at the Firm</span><a href="#citizen-developer-at-the-firm" class="header-anchor">ᡣ𐭩</a></h2>
+<ul>
+<li>[ ] Bronze Track</li>
+<li>[ ] Silver Track</li>
+<li>[ ] Gold Track</li>
+</ul>
+<h2><span id="data-engineer"><u>Data Engineer</u>:</span><a href="#data-engineer" class="header-anchor">ᡣ𐭩</a></h2>
+<h3><span id="datacamp-track-associate-data-engineer-in-sql">DataCamp Track: Associate Data Engineer in SQL</span><a href="#datacamp-track-associate-data-engineer-in-sql" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li>[x] 1. Understanding Data Engineering</li>
+<li>[x] 2. Introduction to SQL</li>
+<li>[x] 3. Intermediate SQL</li>
+<li>[x] 4. Joining Data in SQL</li>
+<li>[x] 5. Introduction to Relational Databases in SQL</li>
+<li>[ ] 6. Database Design</li>
+<li>[ ] 7. Data Warehousing Concepts</li>
+<li>[ ] 8. Introduction to Snowflake SQL</li>
+<li>[ ] 9. Understanding Data Visualization</li>
+<li>[x] Project: Analyzing Students’ Mental Health</li>
+<li>[ ] Project: Exploring London’s Travel Network</li>
+<li>[ ] Tutorial: How to Install PostgreSQL on Windows and Max OS X</li>
+<li>[ ] Assessment: Data Management Theory</li>
+</ul>
+<h3><span id="datacamp-track-data-engineer-in-python">DataCamp Track: Data Engineer in Python</span><a href="#datacamp-track-data-engineer-in-python" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li>[ ] 1. Understanding Cloud Computing</li>
+<li>[ ] 2. Introduction to Python for Developers</li>
+<li>[ ] 3. Intermediate Python for Developers</li>
+<li>[ ] 4. Introduction to Importing Data in Python</li>
+<li>[ ] 5. Intermediate Importing Data in Python</li>
+<li>[ ] 6. Introduction to APIs in Python</li>
+<li>[ ] 7. Cleaning Data in Python</li>
+<li>[ ] 8. Writing Efficient Python Code</li>
+<li>[ ] 9. Streamlined Data Ingestion with pandas</li>
+<li>[x] 10. Introduction to Git</li>
+<li>[ ] 11. Intermediate Git</li>
+<li>[ ] 12. Software Engineering Principles in Python</li>
+<li>[ ] 13. ETL and ELT in Python</li>
+<li>[ ] 14. Introduction to Apache Airflow in Python</li>
+<li>[ ] Project: Cleaning Bank Marketing Campaign Data</li>
+<li>[ ] Project: Performing a Code Review</li>
+<li>[ ] Project: Building a Retail Data Pipeline</li>
+</ul>
+<h3><span id="associate-data-engineer-in-snowflake">Associate Data Engineer in Snowflake</span><a href="#associate-data-engineer-in-snowflake" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li>[x] 1. Introduction to SQL</li>
+<li>[x] 2. Intermediate SQL</li>
+<li>[ ] 3. Introduction to Snowflake</li>
+<li>[ ] 4. Joining Data in SQL</li>
+<li>[ ] 5. Introduction to Snowflake SQL</li>
+<li>[ ] 6. Data Manipulation in Snowflake</li>
+<li>[ ] 7. Database Design</li>
+<li>[ ] 8. Introduction to Data Modeling in Snowflake</li>
+<li>[ ] Project: Producing Soccer Insights for a Sports Media Agency</li>
+<li>[ ] Tutorial: Snowflake Data Ingestion: A Comprehensive Guide</li>
+<li>[ ] Tutorial: Building Data Pipelines in Snowflake: A Beginner-Friendly Guide</li>
+</ul>
+<h3><span id="internal-resources-de-courses">Internal Resources: DE courses:</span><a href="#internal-resources-de-courses" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li>[ ] Text</li>
+</ul>
+<h3><span id="professional-data-engineer-in-python">Professional Data Engineer in Python</span><a href="#professional-data-engineer-in-python" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li>[ ] 1. Understanding Modern Data Architecture</li>
+<li>[ ] 2. Introduction to Shell</li>
+<li>[ ] 3. Containerization and Virtualization Concepts</li>
+<li>[ ] 4. Introduction to dbt</li>
+<li>[ ] 5. Introduction to Object-Oriented Programming in Python</li>
+<li>[ ] 6. Introduction to NoSQL</li>
+<li>[ ] 7. DevOps Concepts</li>
+<li>[ ] 8. Introduction to Testing in Python</li>
+<li>[ ] 9. Introduction to Docker</li>
+<li>[ ] 10. Introduction to PySpark</li>
+<li>[ ] 11. Big Data Fundamentals with PySpark</li>
+<li>[ ] 12. Data Processing in Shell</li>
+<li>[ ] 13. Streaming Concepts</li>
+<li>[ ] 14. Introduction to Apache Kafka</li>
+<li>[ ] 15. Introduction to Kubernetes</li>
+<li>[ ] Project: Debugging Code</li>
+<li>[ ] Project: Cleaning an Orders Dataset with PySpark</li>
+<li>[ ] Webinar: Impactful Data Engineering—with Datadog’s Wouter de Bie</li>
+</ul>
+<h3><span id="miscellaneous-project-on-github">Miscellaneous Project on Github</span><a href="#miscellaneous-project-on-github" class="header-anchor">ᡣ𐭩</a></h3>
+<ul>
+<li>[ ] Extension: Analyzing Students’ Mental Health</li>
+</ul>
+<!-- flag of hidden posts -->
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/adventure-park/tags/example/"># example</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/adventure-park/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>©  | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
